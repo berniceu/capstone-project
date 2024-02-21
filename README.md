@@ -1,2 +1,2 @@
-# capstone-project
-Capstone project for atlp
+# Capstone Project
+This is a repository for atlp Capstone project
