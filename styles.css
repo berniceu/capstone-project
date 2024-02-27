@@ -10,6 +10,10 @@ body{
     font-size: 18px;
 }
 
+.title {
+    font-family: "Fascinate", sans-serif;
+}
+
 /* desktop navbar*/
 .container{
     display: flex;
@@ -91,6 +95,16 @@ nav ul a{
     padding-left: 1rem;
 }
 
+
+/* section */
+
+section {
+    padding-top: 4vh;
+    height: auto;
+    margin: 0 10rem;
+    min-height: fit-content;
+
+}
 /*home section*/
 
 .profile{
@@ -137,4 +151,20 @@ nav ul a{
     justify-content: center;
     gap: 5rem;
     height: 80vh;
+}
+
+/* about page */
+.about-container{
+    margin-top: 8rem;
+    height: 80vh;
+    text-align: center;
+
+}
+
+.about-container .first{
+    color: #E5989B;
+}
+
+.about-container p {
+    padding-top: 2rem;
 }
