@@ -47,6 +47,7 @@ nav ul a{
     font-weight: 600;
     border-radius: 10px;
     border: none;
+    
 }
 
 /* hamburger menu */
@@ -87,4 +88,53 @@ nav ul a{
 
 .header h1 {
     display: none;
+    padding-left: 1rem;
+}
+
+/*home section*/
+
+.profile{
+    width: 400px;
+    height: 300px;
+    padding-top: 8rem;
+    
+
+
+}
+
+.profile img{
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    
+}
+
+.description{
+    width: 500px;
+    height: 100vh;
+    padding-top: 10rem;
+    
+}
+
+.description h1{
+    font-family: 'Fascinate', 'sans-serif';
+    padding-bottom: 2rem;
+
+}
+
+.description p{
+    padding-bottom: 2rem;
+}
+
+.button a{
+
+    text-decoration: none;
+    color: #fff;
+}
+
+.home-container{
+    display: flex;
+    justify-content: center;
+    gap: 5rem;
+    height: 80vh;
 }
