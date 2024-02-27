@@ -1,0 +1,11 @@
+@media screen and (max-width: 1024px) {
+
+    .hamburger-btn {
+        display: flex;
+    }
+   
+
+    .container{
+        display: none;
+    }
+}
