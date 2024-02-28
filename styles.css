@@ -160,6 +160,7 @@ section {
 .about-container{
     margin-top: 8rem;
     height: 80vh;
+    margin-bottom: 8rem;
     
 
 }
@@ -194,3 +195,36 @@ section {
     align-items: center;
     padding-top: 2rem;
 }
+
+/*projects section */
+
+.projects{
+    height: 80vh;
+    margin-top: 10rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+
+
+}
+
+.project-container{
+    padding-top: 2rem;
+    width: 300px;
+    height: 400px;
+    border: 1px solid black;
+
+}
+
+.img-container{
+    width: 300px;
+    height: 300px;
+    padding: 2rem;
+}
+
+.img-container img{
+    max-width: 100%;
+    height: auto;
+
+}
+
