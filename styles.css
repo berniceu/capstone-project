@@ -154,10 +154,13 @@ section {
 }
 
 /* about page */
+.title {
+    text-align: center;
+}
 .about-container{
     margin-top: 8rem;
     height: 80vh;
-    text-align: center;
+    
 
 }
 
@@ -165,6 +168,29 @@ section {
     color: #E5989B;
 }
 
-.about-container p {
+.about-description {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.skills{
+    padding-top: 2rem;
+}
+
+
+
+.skills .title{
+    font-weight: 500;
+}
+
+.skills p {
+    opacity: 50%;
+    padding-bottom: 2rem;
+}
+
+.cv-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding-top: 2rem;
 }
