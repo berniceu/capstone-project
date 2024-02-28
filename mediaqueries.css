@@ -11,4 +11,12 @@
     .header h1 {
         display: block;
     }
+
+    .home-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+    }
 }
