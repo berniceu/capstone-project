@@ -165,7 +165,7 @@ section {
 
 }
 
-.about-container .first{
+.title.first{
     color: #E5989B;
 }
 
@@ -204,6 +204,7 @@ section {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
+    margin-bottom: 10rem;
 
 
 }
@@ -228,3 +229,35 @@ section {
 
 }
 
+/* contact section */
+
+#contact{
+    height: 80vh;
+    margin-top: 20rem;
+
+}
+
+.contact-form{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-top: 2rem;
+    
+}
+
+.contact-form input{
+    padding: 0.5rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+.contact-form textarea{
+    font-family: 'Poppins', sans-serif;
+    padding: 0.5rem;
+}
+
+.contact-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2rem;
+}
