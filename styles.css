@@ -21,9 +21,6 @@ body{
     
 }
 
-.container:not(.button){
-    padding-top: 10px;
-}
 
 nav li{
     list-style: none;
@@ -137,7 +134,7 @@ section {
 }
 
 .description p{
-    padding-bottom: 2rem;
+    padding-bottom: 1rem;
 }
 
 .button a{
@@ -200,7 +197,7 @@ section {
 
 .projects{
     height: 80vh;
-    margin-top: 10rem;
+    margin-top: 4rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
@@ -214,10 +211,10 @@ section {
 }
 
 .project-container{
-    padding-top: 2rem;
     width: 300px;
     height: 400px;
     border: 1px solid black;
+    border-radius: 10px;
 
 }
 
@@ -233,6 +230,17 @@ section {
 
 }
 
+.project-title{
+    text-align: center;
+    font-weight: 500;
+}
+
+.project-buttons{
+    display: flex;
+    justify-content: space-around;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
 /* contact section */
 
 #contact{
