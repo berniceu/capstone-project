@@ -12,30 +12,31 @@ body{
 h1{
     text-align: center;
     font-family: 'Fascinate', sans-serif;
-    margin-top: 2rem;
+    margin: 4rem;
 }
 
 .container{
     display: flex;
     flex-direction: column;
-    
-    align-items: center;
-    justify-content: center;
     gap: 4rem;
     padding-top: 2rem;
+    width: 70%;
+    margin: auto;
 
 }
 
 
 .article{
-    border: 1px solid black;
+    border: 2px solid black;
     border-radius: 10px;
+    height: auto;
+    
+
 }
 .img-container{
     border-radius: 10px;
     margin: 1rem;
     height: 12rem;
-    width: 15rem;
     background-color: #E5989B;
 }
 
@@ -58,7 +59,7 @@ button{
 
 
 .previous-page{
-    margin-top: 2rem;
+    margin: 2rem;
 }
 
 .signup{
