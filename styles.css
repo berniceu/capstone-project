@@ -8,6 +8,8 @@ body{
     font-family: "Poppins", sans-serif;
     font-weight: 400;
     font-size: 18px;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 .title {
@@ -110,9 +112,7 @@ main{
     margin: auto;
 }
 section {
-    padding-top: 4vh;
     height: auto;
-    margin: 0 10rem;
     min-height: fit-content;
     
 
@@ -165,16 +165,14 @@ section {
 /* about page */
 
 #about{
-    margin-top: 4rem;
+    padding-top: 6rem;
 }
 .title {
     text-align: center;
 }
 .about-container{
-    margin-top: 8rem;
-    margin-bottom: 8rem;
+    margin: 8rem 10rem;
     
-
 }
 
 .title.first{
@@ -218,6 +216,9 @@ section {
     justify-content: center;
     align-items: center;
     margin-bottom: 10rem;
+    width: 80%;
+    margin: auto;
+    padding: 4rem;
 
 
 }
@@ -244,7 +245,7 @@ section {
     margin: auto;
     overflow: hidden;
     background-color: #E5989B;
-    border: 1px solid black;
+    
     border-radius: 10px;
 
 }
@@ -272,11 +273,6 @@ section {
 }
 /* contact section */
 
-#contact{
-    margin-top: 20rem;
-    
-
-}
 
 .contact-form{
     display: flex;
@@ -286,6 +282,10 @@ section {
     
 }
 
+.contact-section{
+    width: 70%;
+    margin: auto;
+}
 .contact-form input{
     padding: 0.5rem;
     font-family: 'Poppins', sans-serif;
@@ -306,7 +306,7 @@ section {
 /* footer */
 
 footer{
-    padding: 2rem;
+    padding: 2rem 5rem;
     font-size: 0.8rem;
     display: flex;
     justify-content: space-between;

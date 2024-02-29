@@ -20,11 +20,21 @@
         align-items: center;
 
     }
+
+    
 }
 
 @media screen and (max-width: 767px){
     main{
         width: 100%;
         
+    }
+
+    footer{
+        flex-direction: column;
+    }
+
+    body{
+        font-size: 15px;
     }
 }
