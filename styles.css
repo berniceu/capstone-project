@@ -18,6 +18,7 @@ body{
 .container{
     display: flex;
     justify-content: space-around;
+    margin-top: 2rem;
     
 }
 
@@ -53,7 +54,9 @@ nav ul a{
 
 /* hamburger menu */
 
-
+#hamburger-menu{
+    margin-top: 1rem;
+}
 .header{
     display: flex;
     justify-content: space-between;
@@ -94,12 +97,16 @@ nav ul a{
 
 
 /* section */
-
+main{
+    width: 80%;
+    margin: auto;
+}
 section {
     padding-top: 4vh;
     height: auto;
     margin: 0 10rem;
     min-height: fit-content;
+    
 
 }
 /*home section*/
@@ -122,7 +129,6 @@ section {
 
 .description{
     width: 500px;
-    height: 100vh;
     padding-top: 8rem;
     
 }
@@ -147,7 +153,7 @@ section {
     display: flex;
     justify-content: center;
     gap: 3rem;
-    height: 80vh;
+    
 }
 
 /* about page */
@@ -156,7 +162,6 @@ section {
 }
 .about-container{
     margin-top: 8rem;
-    height: 80vh;
     margin-bottom: 8rem;
     
 
@@ -196,7 +201,6 @@ section {
 /*projects section */
 
 .projects{
-    height: 80vh;
     margin-top: 4rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -244,7 +248,6 @@ section {
 /* contact section */
 
 #contact{
-    height: 80vh;
     margin-top: 20rem;
     
 
@@ -272,18 +275,19 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 2rem;
+    padding: 2rem;
 }
 
 /* footer */
 
 footer{
     padding: 2rem;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     display: flex;
     justify-content: space-between;
     background-color: #E5989B;
     color: white;
+    
 }
 
 .footer-nav li{
@@ -305,6 +309,7 @@ footer{
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    font-size: 1rem;
 }
 
 .subscribe input{
@@ -312,6 +317,7 @@ footer{
     font-family: 'Poppins', sans-serif;
     font-size: 0.7rem;
     border: none;
+    outline: none;
 }
 
 .subscribe button{
@@ -323,6 +329,11 @@ footer{
     border: none;
     padding: 0.2rem;
     cursor: pointer;
+}
+
+form{
+    display: flex;
+    gap: 0.1rem;
 }
 
 .socials{
