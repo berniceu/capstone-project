@@ -34,6 +34,13 @@ nav ul a{
     font-weight: 500;
 }
 
+nav ul a:hover{
+    text-decoration: underline;
+    text-underline-offset: 1rem;
+    text-decoration-color: #E5989B;
+    text-decoration-thickness: 0.2rem ;
+}
+
 .desktop-nav ul{
     display: flex;
     justify-content: space-between;
@@ -115,9 +122,7 @@ section {
 .profile{
     width: 300px;
     height: 400px;
-    padding-top: 8rem;
-    
-
+    padding-top: 5rem;
 
 }
 
