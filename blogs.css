@@ -20,8 +20,9 @@ h1{
     flex-direction: column;
     gap: 4rem;
     padding-top: 2rem;
-    width: 70%;
+    width: 50%;
     margin: auto;
+    
 
 }
 
@@ -29,20 +30,26 @@ h1{
 .article{
     border: 2px solid black;
     border-radius: 10px;
-    height: auto;
+    height: 70vh;
     
 
 }
 .img-container{
     border-radius: 10px;
     margin: 1rem;
-    height: 12rem;
+    height: 70%;
     background-color: #E5989B;
+}
+
+@media screen and (max-width: 774px) {
+    .container{
+        width: 80%;
+    }
 }
 
 .title,
 .updates{
-    padding-left: 1rem;
+    padding-left: 1.2rem;
 }
 
 
@@ -58,9 +65,7 @@ button{
 }
 
 
-.previous-page{
-    margin: 2rem;
-}
+
 
 .signup{
     display: flex;
