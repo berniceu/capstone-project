@@ -12,7 +12,9 @@ body{
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    margin: 4rem;
+    padding-top: 2rem;
+    width: 80%;
+    margin: auto;
     
 
 }
@@ -23,24 +25,14 @@ body{
 
 
 
-.container input{
+.container textarea{
     font-family: 'Poppins', sans-serif;
-    width: 90vw;
     height: 70vh;
+    width: 100%;
     padding: 1rem;
-    padding-top: 3rem;
-    box-sizing: border-box;
-}
-
-.container input::placeholder{
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-    padding: 0;
-
-    
 
 }
+
 
 .buttons{
     display: flex;
