@@ -18,6 +18,16 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        
+
+    }
+
+    
+
+    .about-container{
+        width: 80%;
+        margin: auto;
+        margin-bottom: 4rem;
 
     }
 
@@ -32,9 +42,17 @@
 
     footer{
         flex-direction: column;
+        gap: 2rem;
     }
 
     body{
         font-size: 15px;
+    }
+
+    
+
+    .description{
+        width: 80%;
+        margin: auto;
     }
 }
