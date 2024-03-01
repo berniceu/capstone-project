@@ -36,7 +36,7 @@ nav ul a{
     font-weight: 500;
 }
 
-nav ul a:hover{
+nav ul .link:hover{
     text-decoration: underline;
     text-underline-offset: 1rem;
     text-decoration-color: #E5989B;
