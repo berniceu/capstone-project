@@ -95,73 +95,16 @@ button{
 
 /* footer */
 
-footer{
-    padding: 2rem 5rem;
-    font-size: 0.8rem;
-    display: flex;
-    justify-content: space-between;
-    background-color: #E5989B;
-    color: white;
-    
+
+
+.subscribe-button{
+    border-radius: 0px;
+    margin: 0;
 }
 
-.footer-nav li{
-    list-style: none;
-}
-
-.footer-nav li a{
-    text-decoration: none;
-    color: white;
-
-}
-
-.footer-nav p{
-    padding-top: 1rem;
-}
-
-
-.subscribe{
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    font-size: 1rem;
-    
-}
-
-.subscribe input{
-    padding: 0.2rem;
-    font-family: 'Poppins', sans-serif;
-    font-size: 0.7rem;
-    border: none;
-    outline: none;
-}
-
-footer .form-button{
-    background-color: #fff;
-    color: #E5989B;
-    font-family: 'Poppins', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 500;
-    border: none;
-    padding: 0.2rem;
-    cursor: pointer;
-}
-
-form{
-    display: flex;
-    gap: 0.1rem;
-}
-
-.socials{
-    display: flex;
-    gap: 0.4rem;
-}
-
-.icon a{
-    text-decoration: none;
-    color: #fff;
-}
-
-.footer-nav li a:hover{
-    color: black;
+@media screen and (max-width: 767px){
+    footer{
+        flex-direction: column;
+        gap: 2rem;
+    }
 }
