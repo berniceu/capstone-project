@@ -320,14 +320,16 @@ section {
 }
 
 /* footer */
-
 footer{
+    background-color: #E5989B;
+    color: white;
+}
+
+.footer-container{
     padding: 2rem 5rem;
     font-size: 0.8rem;
     display: flex;
     justify-content: space-between;
-    background-color: #E5989B;
-    color: white;
     
 }
 
@@ -390,4 +392,9 @@ form{
 
 .footer-nav li a:hover{
     color: black;
+}
+
+footer p{
+    text-align: center;
+    font-size: 0.8rem;
 }
