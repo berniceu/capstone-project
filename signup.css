@@ -11,6 +11,17 @@ body{
 
 
 }
+/* header*/
+.header{
+    text-align: left;    
+    background-color: #fff;
+    padding: 1rem;
+}
+
+.header a{
+    text-decoration: none;
+    color: black;
+}
 
 .container{
     display: flex;
