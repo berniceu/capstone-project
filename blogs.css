@@ -15,7 +15,7 @@ h1{
     margin: 4rem;
 }
 
-.container{
+.blogs-container{
     display: flex;
     flex-direction: column;
     gap: 4rem;
@@ -40,7 +40,7 @@ h1{
 
 
 @media screen and (max-width: 774px) {
-    .container{
+    .blogs-container{
         width: 100%;
     }
 }
@@ -102,3 +102,9 @@ button{
     margin: 0;
 }
 
+@media screen and (max-width: 767px){
+    footer{
+        flex-direction: column;
+        gap: 2rem;
+    }
+}
