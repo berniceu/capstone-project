@@ -21,6 +21,14 @@ body{
     display: flex;
     justify-content: space-around;
     margin-top: 2rem;
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+    width: 100%;
+    z-index: 1;
+    
+    padding: 1rem;
+
     
 }
 
