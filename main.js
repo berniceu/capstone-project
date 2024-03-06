@@ -13,6 +13,16 @@ hamburgerBtn.addEventListener('click', () => {
     }
 })
 
+const navList = document.querySelectorAll('.nav-links a')
+Array.from(navList).forEach(link => {
+    link.addEventListener('click', () => {
+        navLinks.style.display = 'none';    
+        hamburgerBtn.innerHTML = '☰';    
+    })
+})
+
+
+
 
 // add dark mode
 
@@ -27,3 +37,21 @@ toggleButton.addEventListener('click', () => {
 
 })
 
+
+// add animation on scroll
+
+let sections = document.querySelectorAll('.section');
+window.onscroll = () => {
+    sections.forEach (section => {
+        const sectionTop = section.getBoundingClientRect().top;
+        const sectionBottom = section.getBoundingClientRect().bottom;
+
+        if (sectionTop < window.innerHeight && sectionBottom >= 0) {
+            section.classList.add('animate');
+        } else {
+            section.classList.remove('animate');
+        }
+    })
+    
+    
+}
