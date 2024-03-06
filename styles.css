@@ -12,6 +12,58 @@ body{
     overflow-x: hidden;
 }
 
+/* dark mode */
+.toggle{
+    border: none;
+    background-color: white;
+    cursor: pointer;
+}
+
+
+.dark-mode,
+.container.dark-mode,
+.hamburger-menu.dark-mode,
+.dark-mode input,
+.dark-mode textarea{
+    background-color: black;
+    color: white;
+    
+}
+
+.dark-mode input,
+.dark-mode textarea{
+    border: 2px solid #161b22ef;
+}
+.dark-mode .link{
+    color: white;
+}
+
+.dark-mode .footer{
+    background-color: #161b22a1;
+}
+
+.dark-mode .footer a:hover{
+    color: #E5989B;
+}
+
+.dark-mode .hamburger-btn {
+    background-color: black;
+    color: white;
+}
+
+.dark-mode .hamburger-nav {
+    background-color: black;
+    
+}
+.dark-mode .hamburger-nav a {
+    color: white;
+}
+
+.dark-mode .hamburger-nav a:hover{
+    background-color: #161b22a1;
+}
+
+
 .title {
     font-family: "Fascinate", sans-serif;
 }

@@ -13,3 +13,17 @@ hamburgerBtn.addEventListener('click', () => {
     }
 })
 
+
+// add dark mode
+
+const toggleButton = document.querySelector('.toggle');
+
+toggleButton.addEventListener('click', () => {
+    document.body.classList.toggle("dark-mode");
+    document.querySelector('.container').classList.toggle("dark-mode");
+    document.querySelector('nav').classList.toggle("dark-mode");
+    document.querySelector('footer').classList.toggle("dark-mode");
+    document.querySelectorAll('input').classList.toggle("dark-mode");
+
+})
+
