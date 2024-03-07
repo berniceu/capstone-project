@@ -33,7 +33,13 @@ toggleButton.addEventListener('click', () => {
     document.querySelector('.container').classList.toggle("dark-mode");
     document.querySelector('nav').classList.toggle("dark-mode");
     document.querySelector('footer').classList.toggle("dark-mode");
-    document.querySelectorAll('input').classList.toggle("dark-mode");
+    
+
+    if (document.body.classList.contains("dark-mode")) {
+        document.querySelector('.moon').src = "images/sun.png";
+    } else {
+        document.querySelector('.moon').src = "images/moon.png";
+    }
 
 })
 

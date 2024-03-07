@@ -17,6 +17,22 @@ body{
     border: none;
     background-color: white;
     cursor: pointer;
+    display: inline;
+    
+}
+
+.toggle.dark-mode{
+    background-color: black;
+}
+
+.desktop-nav {
+    display: flex;
+    gap: 1rem;
+}
+
+.moon{
+    width: 30px;
+    height: auto;
 }
 
 
@@ -28,6 +44,10 @@ body{
     background-color: black;
     color: white;
     
+}
+
+.dark-mode .toggle {
+    background-color: black;
 }
 
 .dark-mode input,
@@ -72,8 +92,9 @@ body{
 
 .section{
     opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
+    margin-top: 100px;
+    transform: translateY(30px);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
 }
 
 .section.animate{
@@ -95,6 +116,7 @@ body{
 
     
 }
+
 
 
 nav li{
