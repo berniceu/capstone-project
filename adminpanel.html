@@ -21,12 +21,17 @@
             <div class="navigation">
                 <a href="">Home</a>
                 <a href="">Profile</a>
+                
             </div>
             
         
         </div>
         <div class="right-container">
-            <h2 class="welcome">Welcome Back</h2>
+            <div class="top">
+                <h2 class="welcome">Welcome Back</h2>
+                <button class="toggle"><img src="images/moon.png" alt="dark mode icon" class="moon"></button>
+            </div>
+            
             <div class="admin-profile">
                     <div class="info">
                         <h3>BERNICE UWITUZE</h3>
@@ -79,6 +84,20 @@
         </div>
     </div>
 
+    <script src="https://kit.fontawesome.com/53de108cc6.js" crossorigin="anonymous"></script>
+    <script>
+        const toggleButton = document.querySelector('.toggle');
+    
+        toggleButton.addEventListener('click', () => {
+            document.body.classList.toggle("dark-mode");
+    
+        if (document.body.classList.contains("dark-mode")) {
+            document.querySelector('.moon').src = "images/sun.png";
+        } else {
+            document.querySelector('.moon').src = "images/moon.png";
+        }
 
+        })
+    </script>
 </body>
 </html>

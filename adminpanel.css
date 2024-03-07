@@ -12,6 +12,15 @@
     border-right: 1px solid black;
 }
 
+
+.dark-mode .left-container{
+    background-color: #161b22a1;
+}
+
+.dark-mode .left-container a{
+    color: white;
+}
+
 .left-container h1{
     font-size: 1.5rem;
     padding: 1rem;
@@ -95,5 +104,10 @@
     color: #E5989B;
 }
 
+
+.right-container .top{
+    display: flex;
+    justify-content: space-between;
+}
 
 

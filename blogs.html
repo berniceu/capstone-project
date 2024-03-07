@@ -13,10 +13,15 @@
     <link rel="stylesheet" href="blogs.css">
     <link rel="stylesheet" href="styles.css">
     
+    
 </head>
 <body>
     <main>
-        <h1>Welcome To My Blog</h1>
+        <div class="welcome">
+            <h1>Welcome To My Blog</h1>
+            <button class="toggle"><img src="images/moon.png" alt="dark mode icon" class="moon"></button>
+        </div>
+        
     <div class="blogs-container">
         <div class="article">
             <div class="img-container">
@@ -148,5 +153,19 @@
         
     </footer>
     <script src="https://kit.fontawesome.com/53de108cc6.js" crossorigin="anonymous"></script>
+    <script>
+        const toggleButton = document.querySelector('.toggle');
+    
+    toggleButton.addEventListener('click', () => {
+        document.body.classList.toggle("dark-mode");
+
+    if (document.body.classList.contains("dark-mode")) {
+        document.querySelector('.moon').src = "images/sun.png";
+    } else {
+        document.querySelector('.moon').src = "images/moon.png";
+    }
+
+    })
+    </script>
 </body>
 </html>

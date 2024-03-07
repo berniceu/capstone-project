@@ -12,6 +12,28 @@ body{
 
 }
 /* header*/
+
+header{
+    display: flex;
+    justify-content: space-around;
+}
+
+.toggle{
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    display: inline;
+    
+}
+
+.toggle.dark-mode{
+    background-color: black;
+}
+
+.moon{
+    width: 30px;
+    height: auto;
+}
 .header{
     text-align: left;    
     background-color: #fff;
@@ -29,7 +51,7 @@ body{
     justify-content: center;
     align-items: center;
     gap: 2rem;
-    margin-top: 10rem;
+    margin-top: 5rem;
     
 }
 
