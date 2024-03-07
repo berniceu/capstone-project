@@ -1,0 +1,99 @@
+.admin-container{
+    display: grid;
+    grid-template-columns: 20% 80%;
+    height: 100vh;
+}
+
+.left-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    border-right: 1px solid black;
+}
+
+.left-container h1{
+    font-size: 1.5rem;
+    padding: 1rem;
+    padding-top: 2rem;
+}
+
+.left-container a{
+    color: black;
+    text-decoration: none;
+
+}
+.navigation{
+    display: flex;
+    flex-direction: column;
+}
+
+.navigation a{
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    
+}
+.navigation a:hover{
+    color: #fff;
+    background-color: #E5989B;
+}
+
+/* right-side of admin panel*/
+
+.welcome {
+    font-family: 'Fascinate', sans-serif;
+}
+
+.right-container{
+    padding: 2.2rem;
+}
+
+.right-container h2{
+    font-size: 1.5rem;
+}
+
+.admin-profile{
+    display: flex;
+    gap: 2rem;
+}
+
+.profile-picture{
+    width: 100px;
+    height: 90px;
+    
+}
+
+.profile-picture img{
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.admin-profile,
+.queries,
+.blogs{
+    margin: 2rem auto;
+    border: 2px solid;
+    padding: 2rem;
+    border-radius: 10px;
+    
+}
+
+.admin-profile p{
+    color: gray;
+    font-size: 1rem;
+}
+
+.analytics{
+    display: flex;
+    gap: 1rem;
+    padding-top: 2rem;
+}
+
+.analytics{
+    color: #E5989B;
+}
+
+
+
