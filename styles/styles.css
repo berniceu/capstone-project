@@ -46,6 +46,13 @@ body{
     
 }
 
+.dark-mode .project-container{
+    border: 1px solid #fff;
+}
+
+.dark-mode .project-container:hover{
+    border: 3px solid #fff;
+}
 .dark-mode .toggle {
     background-color: black;
 }
@@ -495,5 +502,5 @@ form{
 
 footer p{
     text-align: center;
-    font-size: 0.8rem;
+    font-size: 1rem;
 }

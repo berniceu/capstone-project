@@ -4,14 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Brand | Admin Panel</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="adminpanel.css">
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/adminpanel.css">
+    <link rel="stylesheet" href="styles/mediaqueries.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fascinate&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <script src="main.js" defer></script>
 </head>
 <body>
     <div class="admin-container">
@@ -19,14 +21,32 @@
             <a href="index.html"><h1>BERNICE</h1></a>
     
             <div class="navigation">
-                <a href="">Home</a>
-                <a href="">Profile</a>
+                <a href="adminpanel.html">Dashboard</a>
+                <a href="profile.html">Profile</a>
+                <a href="login.html">Sign Out</a>
                 
             </div>
             
         
         </div>
         <div class="right-container">
+            <div id="hamburger-menu">
+                <div class="header">
+                    <button class="hamburger-btn">☰</button>
+                </div>
+                
+                <nav class="hamburger-nav">
+                    
+                    
+                    <div class="nav-links">
+                        <a href="index.html"><h1>BERNICE</h1></a>
+                        <a href="adminpanel.html">Dashboard</a>
+                        <a href="profile.html">Profile</a>
+                        <a href="login.html">Sign Out</a>
+                        
+                    </div>
+                </nav>
+            </div>
             <div class="top">
                 <h2 class="welcome">Welcome Back</h2>
                 <button class="toggle"><img src="images/moon.png" alt="dark mode icon" class="moon"></button>
@@ -35,13 +55,15 @@
             <div class="admin-profile">
                     <div class="info">
                         <h3>BERNICE UWITUZE</h3>
-                    <p>Developer/Blogger</p>
+                        <p>Developer/Blogger</p>
 
-                    <div class="analytics">
-                        <h6>10 Posts</h6>
-                        <h6>10 Likes</h6>
-                        <h6>10 Comments</h6>
-                    </div>
+                        <div class="analytics">
+                            <h6>10 Posts</h6>
+                            <h6>10 Likes</h6>
+                            <h6>10 Comments</h6>
+                        </div>
+
+                        <button class="button">Write New Post</button>
                     </div>
                 <div class="profile-picture">
                     <img src="images/profile.png" alt="profile">
@@ -79,25 +101,55 @@
                 <p>How I got into software engineering</p>
 
                 <i class="fa-solid fa-heart"></i>
+                <span>10 Likes</span>
+                <i class="fa-solid fa-comment"></i>
+                <span>10 Comments</span>
+                
+                <i class="fa-solid fa-pen"></i>
+                <span>Edit</span>
+                <i class="fa-solid fa-trash"></i>
+                <span>Delete</span>
+            </div>
 
+            <div class="blogs">
+                <div class="blog-title">
+                    <h3>Blog 1</h3>
+                </div>
+                <p>How I got into software engineering</p>
+
+
+                    <i class="fa-solid fa-heart"></i>
+                    <span>10 Likes</span>
+                
+                <i class="fa-solid fa-comment"></i>
+                <span>10 Comments</span>
+                
+                <i class="fa-solid fa-pen"></i>
+                <span>Edit</span>
+                <i class="fa-solid fa-trash"></i>
+                <span>Delete</span>
+            </div>
+
+            <div class="blogs">
+                <div class="blog-title">
+                    <h3>Blog 1</h3>
+                </div>
+                <p>How I got into software engineering</p>
+
+                <i class="fa-solid fa-heart"></i>
+                <span>10 Likes</span>
+                <i class="fa-solid fa-comment"></i>
+                <span>10 Comments</span>
+                
+                <i class="fa-solid fa-pen"></i>
+                <span>Edit</span>
+                <i class="fa-solid fa-trash"></i>
+                <span>Delete</span>
             </div>
         </div>
     </div>
 
     <script src="https://kit.fontawesome.com/53de108cc6.js" crossorigin="anonymous"></script>
-    <script>
-        const toggleButton = document.querySelector('.toggle');
     
-        toggleButton.addEventListener('click', () => {
-            document.body.classList.toggle("dark-mode");
-    
-        if (document.body.classList.contains("dark-mode")) {
-            document.querySelector('.moon').src = "images/sun.png";
-        } else {
-            document.querySelector('.moon').src = "images/moon.png";
-        }
-
-        })
-    </script>
 </body>
 </html>

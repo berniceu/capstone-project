@@ -16,6 +16,10 @@ body{
 
 }
 
+.dark-mode .article{
+    border: 2px solid #fff;
+}
+
 h1{
     text-align: center;
     font-family: 'Fascinate', sans-serif;
