@@ -62,3 +62,22 @@ window.onscroll = () => {
     
 }
 
+// open and close popup
+
+const queryButtons = document.querySelectorAll('.queries .button');
+const closePopups = document.querySelectorAll('.close');
+
+queryButtons.forEach(queryBtn => {
+    queryBtn.addEventListener('click', function openPopUp(){
+        document.querySelector('.popup').style.display = 'block';
+    });
+})
+    
+
+
+closePopups.forEach(closePopup => {
+    closePopup.addEventListener('click', function(){
+        document.querySelector('.popup').style.display = 'none';
+    });
+})
+
