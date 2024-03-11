@@ -73,6 +73,10 @@ h1{
     .blogs-container{
         width: 100%;
     }
+
+    .header header h1{
+        margin-left: 0;
+    }
 }
 
 
@@ -137,7 +141,11 @@ button{
         flex-direction: column;
         gap: 2rem;
     }
+
+    
 }
+
+
 
 /*read blog*/
 
@@ -149,21 +157,34 @@ button{
     margin: auto;
 }
 
-.left-column h5{
+.column h5{
     font-weight: 400;
 }
 
-.left-column .img-container{
+.column .img-container{
     width: 100%;
     padding-top: 2rem;
     padding-bottom: 2rem;
 
 }
 
-.left-column{
+.column .img-container img{
+    max-width: 100%;
+    height: auto;
+}
+
+.column{
     overflow-y: auto;
 }
 
+.column p{
+    padding-top: 1rem;
+}
+
+.img-container .readblog-img{
+    width: 100%;
+    height: auto;
+}
 
 .comment-section{
     margin-top: 2rem;
@@ -176,6 +197,7 @@ button{
 .comment-section textarea{
     font-family: 'Poppins', sans-serif;
     padding: 1rem;
+    max-width: 100%;
 }
 
 .comment-section .button{
@@ -196,6 +218,11 @@ header{
 
 .header header h1{
     font-family: 'Poppins', sans-serif;
+    
+}
+
+.header header h1:hover{
+    color: #E5989B;
 }
 
 .header a{
@@ -203,3 +230,15 @@ header{
     color: black;
 }
 
+.updates i:hover{
+    color: #E5989B;
+    
+}
+
+.updates i{
+    cursor: pointer;
+}
+
+.blog-button{
+    margin-top: 0.5rem;
+}
