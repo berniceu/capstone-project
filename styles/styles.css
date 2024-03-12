@@ -12,10 +12,103 @@ body{
     overflow-x: hidden;
 }
 
+/* dark mode */
+.toggle{
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    display: inline;
+    
+}
+
+.toggle.dark-mode{
+    background-color: black;
+}
+
+.desktop-nav {
+    display: flex;
+    gap: 1rem;
+}
+
+.moon{
+    width: 30px;
+    height: auto;
+}
+
+
+.dark-mode,
+.container.dark-mode,
+.hamburger-menu.dark-mode,
+.dark-mode input,
+.dark-mode textarea{
+    background-color: black;
+    color: white;
+    
+}
+
+.dark-mode .project-container{
+    border: 1px solid #fff;
+}
+
+.dark-mode .project-container:hover{
+    border: 3px solid #fff;
+}
+.dark-mode .toggle {
+    background-color: black;
+}
+
+.dark-mode input,
+.dark-mode textarea{
+    border: 2px solid #161b22ef;
+}
+.dark-mode .link{
+    color: white;
+}
+
+.dark-mode .footer{
+    background-color: #161b22a1;
+}
+
+.dark-mode .footer a:hover{
+    color: #E5989B;
+}
+
+.dark-mode .hamburger-btn {
+    background-color: black;
+    color: white;
+}
+
+.dark-mode .hamburger-nav {
+    background-color: black;
+    
+}
+.dark-mode .hamburger-nav a {
+    color: white;
+}
+
+.dark-mode .hamburger-nav a:hover{
+    background-color: #161b22a1;
+}
+
+
 .title {
     font-family: "Fascinate", sans-serif;
 }
 
+/* animation on scroll */
+
+.section{
+    opacity: 0;
+
+    transform: translateY(30px);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+
+}
+
+.section.animate{
+    opacity: 1;
+    transform: translateY(0);
+}
 /* desktop navbar*/
 .container{
     display: flex;
@@ -31,6 +124,7 @@ body{
 
     
 }
+
 
 
 nav li{
@@ -181,6 +275,25 @@ section {
     
 }
 
+.social-icons{
+    display: flex;
+    gap: 1rem;
+    padding-top: 2rem;
+    
+}
+.social-icons a{
+    text-decoration: none;
+    color: black;
+
+}
+
+
+
+.dark-mode .social-icons a{
+    color: white;
+}
+
+
 /* about page */
 
 #about{
@@ -228,7 +341,7 @@ section {
 /*projects section */
 
 .projects{
-    margin-top: 4rem;
+    margin-top: 6rem;
     display: flex;
     flex-wrap: wrap;
     gap: 4rem;
@@ -409,5 +522,5 @@ form{
 
 footer p{
     text-align: center;
-    font-size: 0.8rem;
+    font-size: 1rem;
 }

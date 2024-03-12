@@ -13,3 +13,71 @@ hamburgerBtn.addEventListener('click', () => {
     }
 })
 
+const navList = document.querySelectorAll('.nav-links a')
+Array.from(navList).forEach(link => {
+    link.addEventListener('click', () => {
+        navLinks.style.display = 'none';    
+        hamburgerBtn.innerHTML = '☰';    
+    })
+})
+
+
+
+
+// add dark mode
+
+const toggleButton = document.querySelector('.toggle');
+
+toggleButton.addEventListener('click', () => {
+    document.body.classList.toggle("dark-mode");
+    document.querySelector('.container').classList.toggle("dark-mode");
+    document.querySelector('nav').classList.toggle("dark-mode");
+    document.querySelector('footer').classList.toggle("dark-mode");
+    
+
+    if (document.body.classList.contains("dark-mode")) {
+        document.querySelector('.moon').src = "images/sun.png";
+    } else {
+        document.querySelector('.moon').src = "images/moon.png";
+    }
+
+})
+
+
+// add animation on scroll
+
+let sections = document.querySelectorAll('.section');
+window.onscroll = () => {
+    sections.forEach (section => {
+        const sectionTop = section.getBoundingClientRect().top;
+        const sectionBottom = section.getBoundingClientRect().bottom;
+
+        if (sectionTop < window.innerHeight && sectionBottom >= 0) {
+            section.classList.add('animate');
+        } else {
+            section.classList.remove('animate');
+        }
+    })
+    
+    
+}
+
+// open and close popup
+
+const queryButtons = document.querySelectorAll('.queries .button');
+const closePopups = document.querySelectorAll('.close');
+
+queryButtons.forEach(queryBtn => {
+    queryBtn.addEventListener('click', function openPopUp(){
+        document.querySelector('.popup').style.display = 'block';
+    });
+})
+    
+
+
+closePopups.forEach(closePopup => {
+    closePopup.addEventListener('click', function(){
+        document.querySelector('.popup').style.display = 'none';
+    });
+})
+

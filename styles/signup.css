@@ -11,8 +11,29 @@ body{
 
 
 }
-
 /* header*/
+
+header{
+    display: flex;
+    justify-content: space-around;
+}
+
+.toggle{
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    display: inline;
+    
+}
+
+.toggle.dark-mode{
+    background-color: black;
+}
+
+.moon{
+    width: 30px;
+    height: auto;
+}
 .header{
     text-align: left;    
     background-color: #fff;
@@ -29,21 +50,20 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
-    margin-top: 10rem;
+    gap: 2rem;
+    margin-top: 5rem;
     
 }
 
 .title h1{
     color: #E5989B;
     font-weight: 800;
-    padding-bottom: 2rem;
 }
 
 form{
     display: flex;
     flex-direction: column;
-    gap: 4rem;
+    gap: 2rem;
 
 }
 
@@ -61,14 +81,6 @@ form input:focus{
     border-bottom: 3px solid black;
 }
 
-
-.container .forgot-password{
-    text-decoration: none;
-    color: #E5989B;
-    font-size: 0.8rem;
-    padding-left: 12rem;
-}
-
 button{
     border-radius: 10px;
     padding: 10px 18px;
@@ -78,4 +90,3 @@ button{
     border: none;
     cursor: pointer;
 }
-

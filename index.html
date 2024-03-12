@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="mediaqueries.css">
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/mediaqueries.css">
     <title>Web Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,8 +26,11 @@
                 <li><a class="link" href="#projects">Projects</a></li>
                 <li><a class="link" href="#contact">Contact</a></li>
                 <li><a href="login.html" class="button">Log In</a></li>
+                
             </ul>
+            <button class="toggle"><img src="images/moon.png" alt="dark mode icon" class="moon"></button>
         </nav>
+        
     </div>
 
     <!--hamburger menu for smaller screens-->
@@ -60,16 +63,22 @@
                     <h1>Welcome To My Personal Website</h1>
                     <p>Hello, welcome to my online portfolio.
                     My name is Bernice Uwituze,  I’m 
-                    a developer/student based in Kigali, Rwanda. <br>
+                    a software developer based in Kigali, Rwanda. <br>
                     Here you’ll find information about my skills, 
                     experience, projects I have worked on, and blogs.</p>
+                    
                 <button class="button"><a href="blogs.html">Read My Blogs</a></button>
+                <div class="social-icons">
+                    <a href="https://linkedin.com/in/bernice-uwituze" target="_blank"><i class="fa-brands fa-linkedin fa-2x"></i></a>    
+                    <a href="https://github.com/berniceu" target="_blank"><i class="fa-brands fa-github fa-2x"></i></a>
                 </div>
-                
+                        
+                    
+                </div>
             </div>
         </section>
 
-        <section id="about">
+        <section id="about" class="section">
             <div class="about-container">
                 <h1 class="title first">Get To Know More</h1>
                 <h1 class="title">About Me</h1>
@@ -111,7 +120,7 @@
         </section>
 
         <!--projects section-->
-        <section id="projects">
+        <section id="projects" class="section">
             <h1 class="title">Projects</h1>
             <div class="projects">
                 
@@ -120,6 +129,7 @@
                         <img src="images/url-shortener.JPG" alt="project image">
                     </div>
                     <h3 class="project-title"> URL Shortener</h3>
+                    
                     <div class="project-buttons">
                         <button class="button" onclick="location.href='https://berniceu.github.io/weather-app/'">Demo</button>
                         <button class="button" onclick="location.href='https://github.com/berniceu/weather-app.git'">GitHub</button>
@@ -159,11 +169,13 @@
                     </div>
                 </div>
             </div>
+
+            
             
         </section>
 
         <!--contact section-->
-        <section id="contact">
+        <section id="contact" class="section">
             <div class="contact-section">
                 <h1 class="title first">Get In Touch</h1>
                 <h1 class="title">With Me</h1>
@@ -174,7 +186,7 @@
                     <textarea name="query" id="" cols="30" rows="10" placeholder="Enter Your Query..."></textarea>
                 </form>
                 <div class="contact-button">
-                    <button class="button">Submit</button>
+                    <button class="button">Send</button>
                 </div>
                 
             </div>
@@ -182,7 +194,7 @@
         
     </main>
 
-    <footer>
+    <footer class="footer">
         <div class="footer-container">
             <div class="footer-nav">
                 <ul>

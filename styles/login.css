@@ -11,6 +11,35 @@ body{
 
 
 }
+
+.dark-mode{
+    background-color: black;
+}
+
+.dark-mode .header{
+    background-color: black;
+    
+}
+
+.dark-mode .header a{
+    color: #fff;
+}
+
+.dark-mode input{
+    background-color: black;
+    border-bottom: 2px solid #161b22ef ;
+    color: white;
+}
+
+.dark-mode input:focus{
+    border-bottom: 3px solid white;
+}
+
+.dark-mode .toggle{
+    background-color: black;
+}
+
+
 /* header*/
 .header{
     text-align: left;    
@@ -23,12 +52,12 @@ body{
     color: black;
 }
 
-.container{
+.login-container{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 2rem;
+    gap: 1rem;
     margin-top: 10rem;
     
 }
@@ -36,12 +65,13 @@ body{
 .title h1{
     color: #E5989B;
     font-weight: 800;
+    padding-bottom: 2rem;
 }
 
-form{
+.login-container form{
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 4rem;
 
 }
 
@@ -59,6 +89,14 @@ form input:focus{
     border-bottom: 3px solid black;
 }
 
+
+.login-container .forgot-password{
+    text-decoration: none;
+    color: #E5989B;
+    font-size: 0.8rem;
+    padding-left: 12rem;
+}
+
 button{
     border-radius: 10px;
     padding: 10px 18px;
@@ -68,3 +106,4 @@ button{
     border: none;
     cursor: pointer;
 }
+
