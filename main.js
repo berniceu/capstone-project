@@ -1,5 +1,18 @@
 const hamburgerBtn = document.querySelector('.hamburger-btn');
 const navLinks = document.querySelector(".nav-links");
+const tabItems = document.querySelectorAll('.tab-item');
+
+// add active state on navbar
+function selectItem(e){
+    removeClass();
+    this.classList.add('active')
+}
+
+function removeClass(){
+    tabItems.forEach(tabItem => tabItem.classList.remove('active'));
+}
+
+tabItems.forEach(tabItem => tabItem.addEventListener('click', selectItem))
 
 
 // target hamburger button to display navlinks when clicked and turn the button into x-mark

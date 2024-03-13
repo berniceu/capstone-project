@@ -138,11 +138,8 @@ nav ul a{
     font-weight: 500;
 }
 
-nav ul .link:hover{
-    text-decoration: underline;
-    text-underline-offset: 1rem;
-    text-decoration-color: #E5989B;
-    text-decoration-thickness: 0.2rem ;
+nav ul a:hover{
+    color: #161b22a1;
 }
 
 .desktop-nav ul{
@@ -162,6 +159,14 @@ nav ul .link:hover{
     border: none;
     cursor: pointer;
     
+}
+
+.active{
+
+    text-decoration: underline;
+    text-underline-offset: 1rem;
+    text-decoration-color: #E5989B;
+    text-decoration-thickness: 0.2rem ; 
 }
 
 /* hamburger menu */
