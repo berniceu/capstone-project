@@ -428,14 +428,19 @@ section {
     flex-direction: column;
     gap: 2rem;
     padding-top: 2rem;
+    width: 80%;
+    margin: auto;
     
 }
+
+
 
 .contact-section{
     width: 70%;
     margin: auto;
 }
 .contact-form input{
+    width: 100%;
     padding: 0.5rem;
     font-family: 'Poppins', sans-serif;
 }
@@ -444,6 +449,7 @@ section {
     font-family: 'Poppins', sans-serif;
     padding: 0.5rem;
     resize: none;
+    width: 100%;
 }
 
 .contact-button{
@@ -451,6 +457,12 @@ section {
     justify-content: center;
     align-items: center;
     padding: 2rem;
+}
+
+.error-text{
+    font-size: 0.8rem;
+    color: #d93025;
+    padding: 0.2rem;
 }
 
 /* footer */

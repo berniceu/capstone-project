@@ -103,8 +103,7 @@ let query = document.querySelector('.contact-form textarea');
 function sendEmail(){
     Email.send({
         Host: "smtp.gmail.com",
-        Username: "b.uwituze@alustudent.com",
-        Password: "Boubouni",
+        SecureToken : "tfmy unsr rnul ewjr",
         To: 'berniceuwituze@gmail.com',
         From: userEmail.value,
         Subject: "Portfolio Query",
