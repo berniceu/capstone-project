@@ -142,6 +142,8 @@ nav ul a:hover{
     color: #161b22a1;
 }
 
+
+
 .desktop-nav ul{
     display: flex;
     justify-content: space-between;
@@ -159,6 +161,11 @@ nav ul a:hover{
     border: none;
     cursor: pointer;
     
+}
+
+.button:hover{
+    color: #fff;
+    opacity: 0.9;
 }
 
 .active{
@@ -436,6 +443,7 @@ section {
 .contact-form textarea{
     font-family: 'Poppins', sans-serif;
     padding: 0.5rem;
+    resize: none;
 }
 
 .contact-button{
@@ -492,6 +500,7 @@ footer{
     font-size: 0.8rem;
     border: none;
     outline: none;
+    width: 15rem;
 }
 
 .subscribe button{
@@ -503,6 +512,7 @@ footer{
     border: none;
     padding: 0.2rem;
     cursor: pointer;
+    
 }
 
 form{

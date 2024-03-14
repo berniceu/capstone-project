@@ -94,3 +94,25 @@ closePopups.forEach(closePopup => {
     });
 })
 
+// send email 
+
+let contactBtn = document.querySelector('.contact-button .button');
+let userEmail = document.getElementById('useremail');
+let query = document.querySelector('.contact-form textarea');
+
+function sendEmail(){
+    Email.send({
+        Host: "smtp.gmail.com",
+        Username: "b.uwituze@alustudent.com",
+        Password: "Boubouni",
+        To: 'berniceuwituze@gmail.com',
+        From: userEmail.value,
+        Subject: "Portfolio Query",
+        Body: query.value,
+    })
+        .then(function (message) {
+            alert("mail sent successfully")
+        });
+}
+
+contactBtn.addEventListener('click', sendEmail);

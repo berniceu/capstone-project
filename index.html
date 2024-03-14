@@ -180,10 +180,10 @@
                 <h1 class="title first">Get In Touch</h1>
                 <h1 class="title">With Me</h1>
 
-                <form action="" class="contact-form">
-                    <input type="text" placeholder="Name" name="username">
-                    <input type="email" placeholder="Email" name="useremail">
-                    <textarea name="query" id="" cols="30" rows="10" placeholder="Enter Your Query..."></textarea>
+                <form method="post" class="contact-form">
+                    <input type="text" placeholder="Name" name="username" autocomplete="name">
+                    <input type="email" placeholder="Email Address" name="useremail" id="useremail" autocomplete="email">
+                    <textarea name="query" id="query" cols="30" rows="10" placeholder="Enter Your Query..." autocomplete="off"></textarea>
                 </form>
                 <div class="contact-button">
                     <button class="button">Send</button>
@@ -209,9 +209,9 @@
 
                 <h2>Get the freshest articles right in your inbox</h2>
 
-                <form action="">
-                    <input type="email" placeholder="Email">
-                    <button>Subscribe</button>
+                <form method="post">
+                    <input type="email" id="email" placeholder="Email">
+                    <button id="subscribe-btn">Subscribe</button>
                 </form>
     
 
@@ -238,9 +238,8 @@
         <p>© Bernice 2024</p>
         
     </footer>
-    <script src="main.js">
-
-    </script>
+    <script src="main.js"></script>
     <script src="https://kit.fontawesome.com/53de108cc6.js" crossorigin="anonymous"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
 </body>
 </html>
