@@ -94,6 +94,27 @@ closePopups.forEach(closePopup => {
     });
 })
 
+// display error message
+
+const contactInputs = document.querySelectorAll('.item');
+const errorMsg = document.querySelector('.error-text');
+
+contactInputs.forEach(input => {
+
+    input.addEventListener("blur", () => {
+        if (input.value != ''){
+            input.classList.remove("error");
+            input.parentElement.classList.remove("error");
+        } else {
+            input.classList.add("error");
+            input.parentElement.classList.add("error");
+        }
+    })
+
+
+})
+
+
 // send email 
 
 let contactBtn = document.querySelector('.contact-button .button');
