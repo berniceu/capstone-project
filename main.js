@@ -119,20 +119,24 @@ contactInputs.forEach(input => {
 
 let contactBtn = document.querySelector('.contact-button .button');
 let userEmail = document.getElementById('useremail');
+let userName = document.getElementById('username');
 let query = document.querySelector('.contact-form textarea');
 
 function sendEmail(){
+    
     Email.send({
-        Host: "smtp.gmail.com",
-        SecureToken : "tfmy unsr rnul ewjr",
-        To: 'berniceuwituze@gmail.com',
-        From: userEmail.value,
-        Subject: "Portfolio Query",
-        Body: query.value,
-    })
-        .then(function (message) {
-            alert("mail sent successfully")
-        });
+        Host : "smtp.elasticemail.com",
+        Username : "berniceuwituze@gmail.com",
+        Password : "C65756295C348ECB6FD31FECAC66EEE1D6D5",
+        To : 'berniceuwituze@gmail.com',
+        From : 'berniceuwituze@gmail.com',
+        Subject : "Portfolio Query",
+        Body : `Name: ${userName.value}<br>
+        Email: ${userEmail.value}<br>
+        Message: ${query.value}<br>`
+    }).then(
+      message => alert(message)
+    );
 }
 
 contactBtn.addEventListener('click', sendEmail);
