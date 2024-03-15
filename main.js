@@ -16,15 +16,18 @@ tabItems.forEach(tabItem => tabItem.addEventListener('click', selectItem))
 
 
 // target hamburger button to display navlinks when clicked and turn the button into x-mark
-hamburgerBtn.addEventListener('click', () => {
-    if (navLinks.style.display === 'none' || navLinks.style.display === '') {
-        navLinks.style.display = 'block';
-        hamburgerBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
-    } else {
-        navLinks.style.display = 'none';
-        hamburgerBtn.innerHTML = '☰';
-    }
-})
+if (hamburgerBtn){
+    hamburgerBtn.addEventListener('click', () => {
+        if (navLinks.style.display === 'none' || navLinks.style.display === '') {
+            navLinks.style.display = 'block';
+            hamburgerBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+        } else {
+            navLinks.style.display = 'none';
+            hamburgerBtn.innerHTML = '☰';
+        }
+    })
+}
+
 
 const navList = document.querySelectorAll('.nav-links a')
 Array.from(navList).forEach(link => {
@@ -98,6 +101,8 @@ closePopups.forEach(closePopup => {
 
 const contactInputs = document.querySelectorAll('.item');
 const errorMsg = document.querySelector('.error-text');
+
+
 
 contactInputs.forEach(input => {
 

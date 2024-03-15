@@ -23,29 +23,30 @@
             <h1>SIGN UP</h1>
         </div>
         <form action="">
-            <input type="text" placeholder="Name" required>
-            <input type="email" placeholder="Email Address" required>
-            <input type="password" placeholder="Password" id="passwordInput" required>
-            <input type="password" placeholder="Confirm Password" class="passwordInput" required>
+            
+            <div class="input-field">
+                <input type="text" placeholder="Name" class="item" autocomplete="name">
+                <div class="error-text">Name can't be blank</div>
+            </div>
+            <div class="input-field">
+                <input type="email" placeholder="Email Address" class="item" autocomplete="email">
+                <div class="error-text">Email Address can't be blank</div>
+            </div>
+            <div class="input-field">
+                <input type="password" placeholder="Password" id="passwordInput" class="item" required min="6" max="10">
+                <div class="error-text">Password can't be blank</div>
+            </div>
+            <div class="input-field">
+                <input type="password" placeholder="Confirm Password" class="item passwordInput" required min="6" max="10">
+                <div class="error-text">Repeat Password</div>
+            </div>
         </form>
         
         <button type="submit">Submit</button>
     </div>
 
-    <script>
-        const toggleButton = document.querySelector('.toggle');
+    <script src="main.js"></script>
     
-    toggleButton.addEventListener('click', () => {
-        document.body.classList.toggle("dark-mode");
-
-    if (document.body.classList.contains("dark-mode")) {
-        document.querySelector('.moon').src = "images/sun.png";
-    } else {
-        document.querySelector('.moon').src = "images/moon.png";
-    }
-
-    })
-    </script>
 
     
 </body>

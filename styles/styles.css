@@ -464,6 +464,7 @@ section {
     color: #d93025;
     padding: 0.2rem;
     display: none;
+    
 }
 
 .input-field.error input,
@@ -473,7 +474,10 @@ section {
 
 .input-field.error .error-text{
     display: block;
+
 }
+
+
 
 /* footer */
 footer{

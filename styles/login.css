@@ -107,3 +107,21 @@ button{
     cursor: pointer;
 }
 
+/* empty input */
+.input-field .error-text{
+    font-size: 0.8rem;
+    color: #d93025;
+    padding: 0.2rem;
+    display: none;
+}
+
+.input-field.error input,
+.input-field.error textarea{
+    border-bottom: 2px solid #d93025;
+}
+
+.input-field.error .error-text{
+    display: block;
+    text-align: left;
+}
+

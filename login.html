@@ -21,16 +21,26 @@
         <div class="title">
             <h1>LOG IN</h1>
         </div>
-        <form action="">
-            <input type="email" placeholder="Email Address" required>
-            <input type="password" placeholder="Password" required>
+        <form action="" >
+            <div class="input-field">
+                <input type="email" placeholder="Email Address" class="item" autocomplete="email">
+                <div class="error-text">Email Address can't be blank</div>
+            </div>
+            
+            <div class="input-field">
+                <input type="password" placeholder="Password" class="item" autocomplete="current-password">
+                <div class="error-text">Password can't be blank</div>
+            </div>
+            
         </form>
         <a href="" class="forgot-password">Forgot Password?</a>
         
         <a href="adminpanel.html"><button type="submit">Log In</button></a>
     </div>
 
-    <script>
+
+    <script src="main.js"></script>
+  <!--  <script>
         const toggleButton = document.querySelector('.toggle');
     
     toggleButton.addEventListener('click', () => {
@@ -43,7 +53,7 @@
     }
 
     })
-    </script> 
+    </script> -->
 </body>
 
 </html>
