@@ -34,19 +34,22 @@
             </div>
             <div class="input-field signup-password">
                 <input type="password" placeholder="Password" id="passwordInput" class="item" required>
+                <div>
+                    <input type="checkbox" id="show-password">
+                </div>
                 <div class="error-text">
                     <i class="fa-solid fa-xmark"></i>
-                    <span>Password should have 8 or more characters</span><br>
+                    <span class="length requirement">Password should have 8 or more characters</span><br>
                     <i class="fa-solid fa-xmark"></i>
-                    <span>Password should include a capital letter</span><br>
+                    <span class="capital requirement">Password should include uppercase letter</span><br>
                     <i class="fa-solid fa-xmark"></i>
-                    <span>Password should include a number</span><br>
+                    <span class="number requirement">Password should include number</span><br>
                     <i class="fa-solid fa-xmark"></i>
-                    <span>Password should include a special character</span><br>
+                    <span class="special requirement">Password should include a special character</span><br>
                 </div>
             </div>
             <div class="input-field">
-                <input type="password" placeholder="Confirm Password" class="item passwordInput" required>
+                <input type="password" placeholder="Confirm Password" class="item passwordInput" id="Confirm-password" required>
                 <div class="error-text">Repeat Password</div>
             </div>
         </form>

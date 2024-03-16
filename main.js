@@ -102,6 +102,16 @@ closePopups.forEach(closePopup => {
 const contactInputs = document.querySelectorAll('.item');
 const errorMsg = document.querySelector('.error-text');
 const signupPassword = document.querySelector('.signup-password input');
+const confirmPassword = document.getElementById('confirm-password');
+const showPassword = document.getElementById('show-password');
+
+showPassword.addEventListener('click', (e) => {
+    if (signupPassword.type == 'password'){
+        signupPassword.type = 'text';
+    } else {
+        signupPassword.type = 'password';
+    }
+})
 
 
 contactInputs.forEach(input => {
