@@ -111,6 +111,8 @@ const passwordNumber = document.querySelector('.number');
 const specialChar = document.querySelector('.special-character');
 const requirement = document.querySelector('.requirement');
 
+
+// show password
 showPassword.addEventListener('click', (e) => {
     if (signupPassword.type == 'password'){
         signupPassword.type = 'text';
@@ -118,9 +120,6 @@ showPassword.addEventListener('click', (e) => {
         signupPassword.type = 'password';
     }
 })
-
-
-signupPassword.addEventListener('input', validatePassword );
 
 contactInputs.forEach(input => {
 
@@ -139,13 +138,7 @@ contactInputs.forEach(input => {
 
 })
 
-
-
-/*document.querySelector('form').addEventListener('submit', (e) => {
-    e.preventDefault();
-    validatePassword()
-} )*/
-
+signupPassword.addEventListener('input', validatePassword );
 // validate password
 function validatePassword(){
 
@@ -173,7 +166,16 @@ function validatePassword(){
 }
 
 // confirm password
+const repeat = document.getElementById('repeat');
+confirmPassword.addEventListener('blur', (e) => {
+    const value = e.target.value;
 
+    if(value.length && value != signupPassword.value){
+        repeat.classList.add('error');
+    } else {
+        repeat.classList.remove('error');
+    }
+})
 
 
 
