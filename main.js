@@ -101,7 +101,7 @@ closePopups.forEach(closePopup => {
 
 const contactInputs = document.querySelectorAll('.item');
 const errorMsg = document.querySelector('.error-text');
-
+const signupPassword = document.querySelector('.signup-password input');
 
 
 contactInputs.forEach(input => {
@@ -118,6 +118,9 @@ contactInputs.forEach(input => {
 
 
 })
+
+// signup error message
+
 
 
 // send email 
