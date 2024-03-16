@@ -90,3 +90,10 @@ button{
     border: none;
     cursor: pointer;
 }
+
+.valid{
+    color: green;
+}
+
+
+

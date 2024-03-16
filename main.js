@@ -101,9 +101,15 @@ closePopups.forEach(closePopup => {
 
 const contactInputs = document.querySelectorAll('.item');
 const errorMsg = document.querySelector('.error-text');
-const signupPassword = document.querySelector('.signup-password input');
+const signupPassword = document.getElementById('passwordInput');
 const confirmPassword = document.getElementById('confirm-password');
 const showPassword = document.getElementById('show-password');
+const passwordLength = document.querySelector('.length');
+const capitalLetter = document.querySelector('.capital');
+const lowercase = document.querySelector('.lowercase');
+const passwordNumber = document.querySelector('.number');
+const specialChar = document.querySelector('.special-character');
+const requirement = document.querySelector('.requirement');
 
 showPassword.addEventListener('click', (e) => {
     if (signupPassword.type == 'password'){
@@ -114,22 +120,61 @@ showPassword.addEventListener('click', (e) => {
 })
 
 
+signupPassword.addEventListener('input', validatePassword );
+
 contactInputs.forEach(input => {
 
     input.addEventListener("blur", () => {
         if (input.value != ''){
             input.classList.remove("error");
             input.parentElement.classList.remove("error");
+            
         } else {
             input.classList.add("error");
             input.parentElement.classList.add("error");
         }
+        
     })
 
 
 })
 
-// signup error message
+
+
+/*document.querySelector('form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    validatePassword()
+} )*/
+
+// validate password
+function validatePassword(){
+
+    passwordLength.classList.remove('valid');
+    capitalLetter.classList.remove('valid');
+    lowercase.classList.remove('valid');
+    passwordNumber.classList.remove('valid');
+    specialChar.classList.remove('valid');
+    
+    if (signupPassword.value.length >= 8) {
+        passwordLength.classList.add('valid');
+    }
+    if (/[A-Z]/.test(signupPassword.value)) {
+        capitalLetter.classList.add('valid');
+    }
+    if (/[a-z]/.test(signupPassword.value)) {
+        lowercase.classList.add('valid');
+    }
+    if (/\d/.test(signupPassword.value)) {
+        passwordNumber.classList.add('valid');
+    }
+    if (/[#.?!@$%^&*\-_]/.test(signupPassword.value)) { // Escape hyphen with a backslash
+        specialChar.classList.add('valid');
+    }
+}
+
+// confirm password
+
+
 
 
 
