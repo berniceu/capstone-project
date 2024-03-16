@@ -8,6 +8,7 @@ body{
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
     text-align: center;
+    background-color: #E5989B;
 
 
 }
@@ -15,12 +16,13 @@ body{
 
 header{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    
 }
 
 .toggle{
     border: none;
-    background-color: white;
+    background-color: #E5989B;
     cursor: pointer;
     display: inline;
     
@@ -33,16 +35,17 @@ header{
 .moon{
     width: 30px;
     height: auto;
+    
 }
 .header{
     text-align: left;    
-    background-color: #fff;
+    background-color: #E5989B;
     padding: 1rem;
 }
 
 .header a{
     text-decoration: none;
-    color: black;
+    color: #fff;
 }
 
 .container{
@@ -52,8 +55,15 @@ header{
     align-items: center;
     gap: 2rem;
     margin-top: 5rem;
+    background-color: #fff;
+    width: 400px;
+    height: 500px;
+    margin: 2vw auto;
+    border-radius: 10px;
     
 }
+
+
 
 .title h1{
     color: #E5989B;
