@@ -101,8 +101,33 @@ closePopups.forEach(closePopup => {
 
 const contactInputs = document.querySelectorAll('.item');
 const errorMsg = document.querySelector('.error-text');
+const signupPassword = document.getElementById('passwordInput');
+const confirmPassword = document.getElementById('confirm-password');
+const showPassword = document.getElementById('show-password');
+const passwordLength = document.querySelector('.length');
+const capitalLetter = document.querySelector('.capital');
+const lowercase = document.querySelector('.lowercase');
+const passwordNumber = document.querySelector('.number');
+const specialChar = document.querySelector('.special-character');
+const requirement = document.querySelector('.requirement');
 
 
+// show password
+
+if (showPassword){
+    showPassword.addEventListener('click', (e) => {
+        if (signupPassword.type == 'password'){
+            signupPassword.type = 'text';
+        } else {
+            signupPassword.type = 'password';
+        }
+    
+        
+    })
+}
+
+
+// add error message
 
 contactInputs.forEach(input => {
 
@@ -110,15 +135,104 @@ contactInputs.forEach(input => {
         if (input.value != ''){
             input.classList.remove("error");
             input.parentElement.classList.remove("error");
+            
         } else {
             input.classList.add("error");
             input.parentElement.classList.add("error");
         }
+        
     })
 
 
 })
 
+// replace icon
+
+let errorIcons = document.querySelectorAll('.error-icon');
+let correctIcon = document.createElement('i');
+correctIcon.textContent = '';
+errorIcons.forEach(icon => {
+    icon.replaceWith(correctIcon);
+
+})
+
+
+if (signupPassword){
+    signupPassword.addEventListener('blur', validatePassword );
+// validate password
+function validatePassword(){
+    let isValid = true;
+
+    passwordLength.classList.remove('valid');
+    capitalLetter.classList.remove('valid');
+    lowercase.classList.remove('valid');
+    passwordNumber.classList.remove('valid');
+    specialChar.classList.remove('valid');
+    
+    
+    if (signupPassword.value.length >= 8) {
+        passwordLength.classList.add('valid');
+    } else {
+        isValid = false;
+    }
+    if (/[A-Z]/.test(signupPassword.value)) {
+        capitalLetter.classList.add('valid');
+    } else {
+        isValid = false;
+    }
+    if (/[a-z]/.test(signupPassword.value)) {
+        lowercase.classList.add('valid');
+    } else {
+        isValid = false;
+    }
+    if (/\d/.test(signupPassword.value)) {
+        passwordNumber.classList.add('valid');
+    } else {
+        isValid = false;
+    }
+    if (/[#.?!@$%^&*\-_]/.test(signupPassword.value)) {
+        specialChar.classList.add('valid');
+    } else {
+        isValid = false;
+    }
+
+
+    if (!isValid){
+        signupPassword.classList.add('error');
+        signupPassword.parentElement.classList.add('error');
+    } else {
+        signupPassword.classList.remove('error');
+        signupPassword.parentElement.classList.remove('error');
+    }
+
+    
+}
+}
+
+
+// confirm password
+
+if (confirmPassword){
+    confirmPassword.addEventListener('blur', () => {
+        const value = confirmPassword.value;
+    
+        if(value.length && value != signupPassword.value){
+            confirmPassword.classList.add('error');
+            confirmPassword.parentElement.classList.add('error');
+        } else {
+            confirmPassword.classList.remove('error');
+            confirmPassword.parentElement.classList.remove('error');
+        }
+    })
+}
+
+
+
+// disable submit button
+
+const formValidation = () => {
+
+}
 
 // send email 
 

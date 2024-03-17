@@ -32,13 +32,29 @@
                 <input type="email" placeholder="Email Address" class="item" autocomplete="email">
                 <div class="error-text">Email Address can't be blank</div>
             </div>
-            <div class="input-field">
-                <input type="password" placeholder="Password" id="passwordInput" class="item" required min="6" max="10">
-                <div class="error-text">Password can't be blank</div>
+            <div class="input-field signup-password">
+                <input type="password" placeholder="Password" id="passwordInput" required>
+            <div class="checkbox-div">
+                <input type="checkbox" id="show-password">
+                <label for="show-password">Show Password</label>
+            </div>
+                
+                <div class="error-text">
+                    <i class="fa-solid fa-xmark" class="error-icon"></i>
+                    <span class="length requirement">Password should have 8 or more characters</span><br>
+                    <i class="fa-solid fa-xmark" class="error-icon"></i>
+                    <span class="lowercase requirement">Password should include lowercase letter</span><br>
+                    <i class="fa-solid fa-xmark" class="error-icon"></i>
+                    <span class="capital requirement">Password should include uppercase letter</span><br>
+                    <i class="fa-solid fa-xmark" class="error-icon"></i>
+                    <span class="number requirement">Password should include number</span><br>
+                    <i class="fa-solid fa-xmark" class="error-icon"></i>
+                    <span class="special-character requirement">Password should include a special character</span><br>
+                </div>
             </div>
             <div class="input-field">
-                <input type="password" placeholder="Confirm Password" class="item passwordInput" required min="6" max="10">
-                <div class="error-text">Repeat Password</div>
+                <input type="password" placeholder="Confirm Password" class="passwordInput" id="Confirm-password" required>
+                <div class="error-text" id="repeat">Passwords must match</div>
             </div>
         </form>
         
@@ -46,7 +62,7 @@
     </div>
 
     <script src="main.js"></script>
-    
+    <script src="https://kit.fontawesome.com/53de108cc6.js" crossorigin="anonymous"></script>
 
     
 </body>
