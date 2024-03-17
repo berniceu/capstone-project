@@ -108,4 +108,26 @@ button{
 }
 
 
+.checkbox-div{
+    position: relative;
+    padding-top: 1rem;
+    
 
+}
+
+#show-password{
+    position: absolute;
+    left: -144px;
+    accent-color: #E5989B;
+    cursor: pointer;
+    
+    
+}
+
+.checkbox-div label{
+    font-size: 0.8rem;
+    color: #333;
+    position: absolute;
+    left: 20px;
+    top: 12px;
+}
