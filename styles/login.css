@@ -43,13 +43,13 @@ body{
 /* header*/
 .header{
     text-align: left;    
-    background-color: #fff;
-    padding: 1rem;
+    background-color: #E5989B;
+    
 }
 
 .header a{
     text-decoration: none;
-    color: black;
+    color: #fff;
 }
 
 .login-container{
@@ -57,15 +57,21 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
-    margin-top: 10rem;
+    gap: 2rem;
+    margin-top: 5rem;
+    background-color: #fff;
+    width: 400px;
+    height: 500px;
+    margin: 2vw auto;
+    border-radius: 10px;
+
     
 }
 
 .title h1{
     color: #E5989B;
     font-weight: 800;
-    padding-bottom: 2rem;
+    padding-bottom: 1rem;
 }
 
 .login-container form{
@@ -105,5 +111,23 @@ button{
     font-weight: 600;
     border: none;
     cursor: pointer;
+}
+
+/* empty input */
+.input-field .error-text{
+    font-size: 0.8rem;
+    color: #d93025;
+    padding: 0.2rem;
+    display: none;
+}
+
+.input-field.error input,
+.input-field.error textarea{
+    border-bottom: 2px solid #d93025;
+}
+
+.input-field.error .error-text{
+    display: block;
+    text-align: left;
 }
 

@@ -138,12 +138,11 @@ nav ul a{
     font-weight: 500;
 }
 
-nav ul .link:hover{
-    text-decoration: underline;
-    text-underline-offset: 1rem;
-    text-decoration-color: #E5989B;
-    text-decoration-thickness: 0.2rem ;
+nav ul a:hover{
+    color: #161b22a1;
 }
+
+
 
 .desktop-nav ul{
     display: flex;
@@ -162,6 +161,19 @@ nav ul .link:hover{
     border: none;
     cursor: pointer;
     
+}
+
+.button:hover{
+    color: #fff;
+    opacity: 0.9;
+}
+
+.active{
+
+    text-decoration: underline;
+    text-underline-offset: 1rem;
+    text-decoration-color: #E5989B;
+    text-decoration-thickness: 0.2rem ; 
 }
 
 /* hamburger menu */
@@ -416,14 +428,19 @@ section {
     flex-direction: column;
     gap: 2rem;
     padding-top: 2rem;
+    width: 80%;
+    margin: auto;
     
 }
+
+
 
 .contact-section{
     width: 70%;
     margin: auto;
 }
 .contact-form input{
+    width: 100%;
     padding: 0.5rem;
     font-family: 'Poppins', sans-serif;
 }
@@ -431,6 +448,8 @@ section {
 .contact-form textarea{
     font-family: 'Poppins', sans-serif;
     padding: 0.5rem;
+    resize: none;
+    width: 100%;
 }
 
 .contact-button{
@@ -439,6 +458,26 @@ section {
     align-items: center;
     padding: 2rem;
 }
+
+.input-field .error-text{
+    font-size: 0.8rem;
+    color: #d93025;
+    padding: 0.2rem;
+    display: none;
+    
+}
+
+.input-field.error input,
+.input-field.error textarea{
+    border: 2px solid #d93025;
+}
+
+.input-field.error .error-text{
+    display: block;
+
+}
+
+
 
 /* footer */
 footer{
@@ -487,6 +526,7 @@ footer{
     font-size: 0.8rem;
     border: none;
     outline: none;
+    width: 15rem;
 }
 
 .subscribe button{
@@ -498,6 +538,7 @@ footer{
     border: none;
     padding: 0.2rem;
     cursor: pointer;
+    
 }
 
 form{
