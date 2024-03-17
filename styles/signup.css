@@ -63,6 +63,11 @@ header{
     
 }
 
+@media screen and (max-width: 800px) {
+    .container{
+        width: 400px;
+    }
+}
 
 
 .title h1{
@@ -111,7 +116,7 @@ button{
 .checkbox-div{
     position: relative;
     padding-top: 1rem;
-    
+    padding-bottom: 1rem;
 
 }
 

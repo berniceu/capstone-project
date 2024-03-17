@@ -159,7 +159,9 @@ errorIcons.forEach(icon => {
 
 if (signupPassword){
     signupPassword.addEventListener('blur', validatePassword );
+
 // validate password
+
 function validatePassword(){
     let isValid = true;
 
@@ -205,8 +207,16 @@ function validatePassword(){
         signupPassword.parentElement.classList.remove('error');
     }
 
-    
-}
+
+    // prevent submit
+    }
+
+    document.getElementById('signup-form').addEventListener('submit', (e) => {
+        if (signupPassword.classList.contains('error') && signupPassword.parentElement.classList.contains('error')){
+            e.preventDefault();
+            alert("Please fill in all the fields correctly");
+        }
+    })
 }
 
 
@@ -214,9 +224,9 @@ function validatePassword(){
 
 if (confirmPassword){
     confirmPassword.addEventListener('blur', () => {
-        const value = confirmPassword.value;
+        
     
-        if(value.length && value != signupPassword.value){
+        if(confirmPassword.value.length && confirmPassword.value !== signupPassword.value){
             confirmPassword.classList.add('error');
             confirmPassword.parentElement.classList.add('error');
         } else {
@@ -230,20 +240,32 @@ if (confirmPassword){
 
 // disable submit button
 
-const formValidation = () => {
+const contactBtn = document.querySelector('.contact-button .button');
 
+if (contactBtn){
+    contactBtn.addEventListener('click', () => {
+        
+        if (contactInputs.classList.contains('error') && contactInputs.parentElement.classList.contains('error')){
+            contactBtn.ariaDisabled = "true";
+            return;
+            
+        } else {
+            contactBtn.ariaDisabled = "false";
+        }
+    })
 }
+
 
 // send email 
 
-let contactBtn = document.querySelector('.contact-button .button');
+
 let userEmail = document.getElementById('useremail');
 let userName = document.getElementById('username');
 let query = document.querySelector('.contact-form textarea');
 
 function sendEmail(){
     
-    Email.send({
+    userEmail.send({
         Host : "smtp.elasticemail.com",
         Username : "berniceuwituze@gmail.com",
         Password : "C65756295C348ECB6FD31FECAC66EEE1D6D5",
@@ -258,4 +280,43 @@ function sendEmail(){
     );
 }
 
-contactBtn.addEventListener('click', sendEmail);
+if (contactBtn){
+    contactBtn.addEventListener('click', sendEmail);
+}
+
+
+
+// store sign up information
+
+const signupBtn = document.querySelector('.signup-button');
+const username = document.getElementById('name');
+const email = document.getElementById('email');
+const password = document.getElementById('password');
+
+if (signupBtn){
+    signupBtn.addEventListener('click', storeSignUp)
+}
+
+function storeSignUp(){
+    if (username.value && email.value && password.value){
+        localStorage.setItem("name", username.value);
+        localStorage.setItem("email", email.value);
+        localStorage.setItem("password",  password.value);
+
+        username.value = '';
+        email.value = '';
+        password.value = '';
+
+        alert("Signed Up successfully!");
+    } else {
+        alert("Please fill in all fields.")
+    }
+
+    
+    
+
+    
+}
+
+
+
