@@ -138,9 +138,11 @@ contactInputs.forEach(input => {
 
 })
 
-signupPassword.addEventListener('input', validatePassword );
+
+signupPassword.addEventListener('blur', validatePassword );
 // validate password
 function validatePassword(){
+    let isValid = true;
 
     passwordLength.classList.remove('valid');
     capitalLetter.classList.remove('valid');
@@ -148,20 +150,40 @@ function validatePassword(){
     passwordNumber.classList.remove('valid');
     specialChar.classList.remove('valid');
     
+    
     if (signupPassword.value.length >= 8) {
         passwordLength.classList.add('valid');
+    } else {
+        isValid = false;
     }
     if (/[A-Z]/.test(signupPassword.value)) {
         capitalLetter.classList.add('valid');
+    } else {
+        isValid = false;
     }
     if (/[a-z]/.test(signupPassword.value)) {
         lowercase.classList.add('valid');
+    } else {
+        isValid = false;
     }
     if (/\d/.test(signupPassword.value)) {
         passwordNumber.classList.add('valid');
+    } else {
+        isValid = false;
     }
-    if (/[#.?!@$%^&*\-_]/.test(signupPassword.value)) { // Escape hyphen with a backslash
+    if (/[#.?!@$%^&*\-_]/.test(signupPassword.value)) {
         specialChar.classList.add('valid');
+    } else {
+        isValid = false;
+    }
+
+
+    if (!isValid){
+        signupPassword.classList.add('error');
+        signupPassword.parentElement.classList.add('error');
+    } else {
+        signupPassword.classList.remove('error');
+        signupPassword.parentElement.classList.remove('error');
     }
 }
 
@@ -172,8 +194,10 @@ confirmPassword.addEventListener('blur', (e) => {
 
     if(value.length && value != signupPassword.value){
         repeat.classList.add('error');
+        repeat.parentElement.classList.add('error');
     } else {
         repeat.classList.remove('error');
+        repeat.parentElement.classList.remove('error');
     }
 })
 
