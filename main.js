@@ -113,13 +113,21 @@ const requirement = document.querySelector('.requirement');
 
 
 // show password
-showPassword.addEventListener('click', (e) => {
-    if (signupPassword.type == 'password'){
-        signupPassword.type = 'text';
-    } else {
-        signupPassword.type = 'password';
-    }
-})
+
+if (showPassword){
+    showPassword.addEventListener('click', (e) => {
+        if (signupPassword.type == 'password'){
+            signupPassword.type = 'text';
+        } else {
+            signupPassword.type = 'password';
+        }
+    
+        
+    })
+}
+
+
+// add error message
 
 contactInputs.forEach(input => {
 
@@ -138,8 +146,19 @@ contactInputs.forEach(input => {
 
 })
 
+// replace icon
 
-signupPassword.addEventListener('blur', validatePassword );
+let errorIcons = document.querySelectorAll('.error-icon');
+let correctIcon = document.createElement('i');
+correctIcon.textContent = '';
+errorIcons.forEach(icon => {
+    icon.replaceWith(correctIcon);
+
+})
+
+
+if (signupPassword){
+    signupPassword.addEventListener('blur', validatePassword );
 // validate password
 function validatePassword(){
     let isValid = true;
@@ -185,24 +204,35 @@ function validatePassword(){
         signupPassword.classList.remove('error');
         signupPassword.parentElement.classList.remove('error');
     }
+
+    
+}
 }
 
+
 // confirm password
-const repeat = document.getElementById('repeat');
-confirmPassword.addEventListener('blur', (e) => {
-    const value = e.target.value;
 
-    if(value.length && value != signupPassword.value){
-        repeat.classList.add('error');
-        repeat.parentElement.classList.add('error');
-    } else {
-        repeat.classList.remove('error');
-        repeat.parentElement.classList.remove('error');
-    }
-})
+if (confirmPassword){
+    confirmPassword.addEventListener('blur', () => {
+        const value = confirmPassword.value;
+    
+        if(value.length && value != signupPassword.value){
+            confirmPassword.classList.add('error');
+            confirmPassword.parentElement.classList.add('error');
+        } else {
+            confirmPassword.classList.remove('error');
+            confirmPassword.parentElement.classList.remove('error');
+        }
+    })
+}
 
 
 
+// disable submit button
+
+const formValidation = () => {
+
+}
 
 // send email 
 
