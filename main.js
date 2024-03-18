@@ -135,40 +135,46 @@ if (showPassword){
 const contactForm = document.querySelector(".contact-form");
 const emailValid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const userEmail = document.getElementById('useremail');
-
+let hasError = false;
 
 contactInputs.forEach(input => {
     input.addEventListener("blur", () => {
         if (input.value.trim() !== ''){
             input.classList.remove("error");
             input.parentElement.classList.remove("error");
+            hasError = false
         } else {
             input.classList.add("error");
             input.parentElement.classList.add("error");
+            hasError = true;
            
         } if (userEmail.value!== '' && !emailValid.test(userEmail.value.trim())){
             userEmail.classList.add("error");
             userEmail.parentElement.classList.add("error");
             document.querySelector('.email.error-text').textContent = "Enter valid email";
+            hasError = true
         }
     });
 });
 
 if(contactForm){
     contactForm.addEventListener('submit', (e) => {
+        
         e.preventDefault();
-
-        if (input.classList.contains('error')){
+        
+        if (hasError){
             alert("Please fill out all fields correctly");
-        } else if(!emailValid.test(userEmail)){
-
+        } else {
+            alert("Message sent successfully")
         }
     })
 }
 
+
+
 // send email using smtp
 
-const userName = document.getElementById('username');
+/*const userName = document.getElementById('username');
 const query = document.querySelector('.contact-form textarea');
 
 function sendEmail(){
@@ -184,9 +190,12 @@ function sendEmail(){
         Email: ${userEmail.value}<br>
         Message: ${query.value}<br>`
     }).then(
-      message => alert(message)
-    );
-}
+      message => alert("message sent successfully")
+    ).catch (err => {
+        alert("Failed to send message");
+        console.log(err)
+    });
+}*/
 
 
 
