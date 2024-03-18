@@ -148,7 +148,8 @@ contactInputs.forEach(input => {
             input.parentElement.classList.add("error");
             hasError = true;
            
-        } if (userEmail.value!== '' && !emailValid.test(userEmail.value.trim())){
+        }
+         if (userEmail.value!== '' && !emailValid.test(userEmail.value.trim())){
             userEmail.classList.add("error");
             userEmail.parentElement.classList.add("error");
             document.querySelector('.email.error-text').textContent = "Enter valid email";
@@ -235,7 +236,7 @@ errorIcons.forEach(icon => {
 
 
 if (signupPassword){
-    signupPassword.addEventListener('blur', validatePassword );
+    signupPassword.addEventListener('input', validatePassword );
 
 // validate password
 
@@ -293,7 +294,7 @@ function validatePassword(){
 // confirm password
 
 if (confirmPassword){
-    confirmPassword.addEventListener('blur', () => {
+    confirmPassword.addEventListener('input', () => {
         
     
         if(confirmPassword.value.length && confirmPassword.value !== signupPassword.value){
@@ -401,5 +402,44 @@ if (subscribeForm){
             alert ("Enter valid email address");
         }
     })
+}
+
+// add comment
+
+const commentForm = document.querySelector('.comment-form');
+const commenterName = document.querySelector(".commenter-name");
+const commentText = document.querySelector('.comment-text');
+
+const newComment = document.querySelector('.new-comment');
+
+if (commentForm){
+    commentForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        if (commentText.value.trim() == '' || commenterName.value.trim() == ''){
+            alert("Fill in required fields");
+        } else {
+            let commentObj = {
+                commenter: commenterName.value,
+                comment: commentText.value
+            }
+
+            localStorage.setItem("comment", JSON.stringify(commentObj));
+    
+            let commentElement = JSON.parse(localStorage.getItem("comment"));
+            createNewComment(commentElement);
+
+            commenterName.value = '';
+            commentText.value = ''
+        }
+    })
+    
+}
+function createNewComment(commentObj){
+    const commentElement = document.createElement('div');
+    commentElement.classList.add('comment');
+    commentElement.innerHTML = `<p>${commentObj.commenter}</p>
+    <p>${commentObj.comment}</p>`;
+    newComment.appendChild(commentElement);
 }
 
