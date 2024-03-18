@@ -44,20 +44,23 @@ Array.from(navList).forEach(link => {
 
 const toggleButton = document.querySelector('.toggle');
 
-toggleButton.addEventListener('click', () => {
-    document.body.classList.toggle("dark-mode");
-    document.querySelector('.container').classList.toggle("dark-mode");
-    document.querySelector('nav').classList.toggle("dark-mode");
-    document.querySelector('footer').classList.toggle("dark-mode");
+if (toggleButton){
+    toggleButton.addEventListener('click', () => {
+        document.body.classList.toggle("dark-mode");
+        document.querySelector('.container').classList.toggle("dark-mode");
+        document.querySelector('nav').classList.toggle("dark-mode");
+        document.querySelector('footer').classList.toggle("dark-mode");
+        
     
+        if (document.body.classList.contains("dark-mode")) {
+            document.querySelector('.moon').src = "images/sun.png";
+        } else {
+            document.querySelector('.moon').src = "images/moon.png";
+        }
+    
+    })
+}
 
-    if (document.body.classList.contains("dark-mode")) {
-        document.querySelector('.moon').src = "images/sun.png";
-    } else {
-        document.querySelector('.moon').src = "images/moon.png";
-    }
-
-})
 
 
 // add animation on scroll
@@ -129,32 +132,74 @@ if (showPassword){
 
 // add error message
 
-contactInputs.forEach(input => {
+const contactForm = document.querySelector(".contact-form");
 
+contactInputs.forEach(input => {
     input.addEventListener("blur", () => {
-        if (input.value != ''){
+        if (input.value.trim() !== ''){
             input.classList.remove("error");
             input.parentElement.classList.remove("error");
-            
         } else {
             input.classList.add("error");
             input.parentElement.classList.add("error");
+           
         }
-        
+    });
+});
+
+
+/*if (contactForm){
+    contactForm.addEventListener('submit', (e) => {
+        let hasError = false;
+        contactInputs.forEach(input => {
+            if (input.value.trim() === '') {
+                input.classList.add("error");
+                input.parentElement.classList.add("error");
+                hasError = true;
+            }
+        });
+    
+        if (hasError) {
+            e.preventDefault();
+            alert("Please fill out all fields before submitting");
+        }
+    });
+}*/
+
+
+// prevent login form submission
+
+/*const loginForm = document.getElementById('login-form');
+if (loginForm){
+    loginForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+    
+        let hasError = false;
+        contactInputs.forEach(input => {
+            if (input.classList.contains('error')) {
+                hasError = true;
+            }
+        });
+    
+        if (hasError){
+            alert("Please fill out all field");
+        }else {
+            loginForm.submit();
+        }
+    
     })
+}*/
 
-
-})
 
 // replace icon
 
-let errorIcons = document.querySelectorAll('.error-icon');
+/*let errorIcons = document.querySelectorAll('.error-icon');
 let correctIcon = document.createElement('i');
 correctIcon.textContent = '';
 errorIcons.forEach(icon => {
     icon.replaceWith(correctIcon);
 
-})
+})*/
 
 
 if (signupPassword){
@@ -177,22 +222,22 @@ function validatePassword(){
     } else {
         isValid = false;
     }
-    if (/[A-Z]/.test(signupPassword.value)) {
+    if (/[A-Z]/g.test(signupPassword.value)) {
         capitalLetter.classList.add('valid');
     } else {
         isValid = false;
     }
-    if (/[a-z]/.test(signupPassword.value)) {
+    if (/[a-z]/g.test(signupPassword.value)) {
         lowercase.classList.add('valid');
     } else {
         isValid = false;
     }
-    if (/\d/.test(signupPassword.value)) {
+    if (/\d/g.test(signupPassword.value)) {
         passwordNumber.classList.add('valid');
     } else {
         isValid = false;
     }
-    if (/[#.?!@$%^&*\-_]/.test(signupPassword.value)) {
+    if (/[#.?!@$%^&*\-_]/g.test(signupPassword.value)) {
         specialChar.classList.add('valid');
     } else {
         isValid = false;
@@ -208,15 +253,8 @@ function validatePassword(){
     }
 
 
-    // prevent submit
     }
 
-    document.getElementById('signup-form').addEventListener('submit', (e) => {
-        if (signupPassword.classList.contains('error') && signupPassword.parentElement.classList.contains('error')){
-            e.preventDefault();
-            alert("Please fill in all the fields correctly");
-        }
-    })
 }
 
 
@@ -240,7 +278,7 @@ if (confirmPassword){
 
 // disable submit button
 
-const contactBtn = document.querySelector('.contact-button .button');
+/*const contactBtn = document.querySelector('.contact-button .button');
 
 if (contactBtn){
     contactBtn.addEventListener('click', () => {
@@ -253,7 +291,7 @@ if (contactBtn){
             contactBtn.ariaDisabled = "false";
         }
     })
-}
+}*/
 
 
 // send email 
@@ -280,9 +318,9 @@ function sendEmail(){
     );
 }
 
-if (contactBtn){
+/*if (contactBtn){
     contactBtn.addEventListener('click', sendEmail);
-}
+}*/
 
 
 
@@ -319,4 +357,59 @@ function storeSignUp(){
 }
 
 
+
+// add article to localStorage
+
+/*const publishBtn = document.getElementById('publish');
+const article = document.getElementById("story");
+const articleTitle = document.getElementById("title");
+let data = [{
+    title: articleTitle.value,
+    story: article.value
+}]
+
+localStorage.setItem("data", JSON.stringify(data));
+*/
+// add likes and comments
+
+const hearts = document.querySelectorAll('.fa-solid.fa-heart');
+let likesNumber = document.querySelector('.likes-number');
+
+
+if (hearts){
+    hearts.forEach(heart => {
+        let count = 0;
+        heart.addEventListener('click', () => {
+            if (heart.style.color === 'black') {
+                heart.style.color = '#E5989B';
+                count++;
+                Number(likesNumber.value)++
+            } else {
+                heart.style.color = 'black';
+                count--;
+            }
+        });
+    });
+}
+
+// subscribe
+const subscribeEmail = document.getElementById('subscribe-email');
+const subscribeBtn = document.getElementById("subscribe-btn");
+const subscribeForm = document.getElementById('subscribe');
+const emailValid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+if (subscribeForm){
+    subscribeForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        if (subscribeEmail.value == ''){
+            alert("Please fill out your email");
+        } else if (emailValid.test(subscribeEmail.value)){
+            alert("Subscribed successfully");
+           // subscribeForm.submit();
+        } else {
+            alert ("Enter valid email address");
+        }
+    })
+}
 

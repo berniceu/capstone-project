@@ -141,15 +141,16 @@ span{
     padding-right: 1rem;
 }
 
+span:hover{
+    cursor: pointer;
+}
+
 .queries .user h3{
     color: #E5989B;
 }
 
 
-span:hover{
-    color: #E5989B;
-    cursor: pointer;
-}
+
 
 .admin-profile .button{
     margin-top: 1rem;
@@ -196,6 +197,10 @@ span:hover{
 
 .queries .button{
     margin-top: 1rem;
+}
+
+.button a{
+    color: #E5989B;
 }
 
 /*popup */
@@ -270,6 +275,9 @@ span:hover{
     
 }
 
+.fa-solid:hover{
+    cursor: pointer;
+}
 @media screen and (max-width: 805px) {
     .admin-profile{
         display: flex;
