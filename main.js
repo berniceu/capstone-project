@@ -133,6 +133,9 @@ if (showPassword){
 // add error message
 
 const contactForm = document.querySelector(".contact-form");
+const emailValid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+const userEmail = document.getElementById('useremail');
+
 
 contactInputs.forEach(input => {
     input.addEventListener("blur", () => {
@@ -143,28 +146,48 @@ contactInputs.forEach(input => {
             input.classList.add("error");
             input.parentElement.classList.add("error");
            
+        } if (userEmail.value!== '' && !emailValid.test(userEmail.value.trim())){
+            userEmail.classList.add("error");
+            userEmail.parentElement.classList.add("error");
+            document.querySelector('.email.error-text').textContent = "Enter valid email";
         }
     });
 });
 
-
-/*if (contactForm){
+if(contactForm){
     contactForm.addEventListener('submit', (e) => {
-        let hasError = false;
-        contactInputs.forEach(input => {
-            if (input.value.trim() === '') {
-                input.classList.add("error");
-                input.parentElement.classList.add("error");
-                hasError = true;
-            }
-        });
-    
-        if (hasError) {
-            e.preventDefault();
-            alert("Please fill out all fields before submitting");
+        e.preventDefault();
+
+        if (input.classList.contains('error')){
+            alert("Please fill out all fields correctly");
+        } else if(!emailValid.test(userEmail)){
+
         }
-    });
-}*/
+    })
+}
+
+// send email using smtp
+
+const userName = document.getElementById('username');
+const query = document.querySelector('.contact-form textarea');
+
+function sendEmail(){
+    
+    userEmail.send({
+        Host : "smtp.elasticemail.com",
+        Username : "berniceuwituze@gmail.com",
+        Password : "C65756295C348ECB6FD31FECAC66EEE1D6D5",
+        To : 'berniceuwituze@gmail.com',
+        From : 'berniceuwituze@gmail.com',
+        Subject : "Portfolio Query",
+        Body : `Name: ${userName.value}<br>
+        Email: ${userEmail.value}<br>
+        Message: ${query.value}<br>`
+    }).then(
+      message => alert(message)
+    );
+}
+
 
 
 // prevent login form submission
@@ -276,48 +299,6 @@ if (confirmPassword){
 
 
 
-// disable submit button
-
-/*const contactBtn = document.querySelector('.contact-button .button');
-
-if (contactBtn){
-    contactBtn.addEventListener('click', () => {
-        
-        if (contactInputs.classList.contains('error') && contactInputs.parentElement.classList.contains('error')){
-            contactBtn.ariaDisabled = "true";
-            return;
-            
-        } else {
-            contactBtn.ariaDisabled = "false";
-        }
-    })
-}*/
-
-
-// send email 
-
-
-let userEmail = document.getElementById('useremail');
-let userName = document.getElementById('username');
-let query = document.querySelector('.contact-form textarea');
-
-function sendEmail(){
-    
-    userEmail.send({
-        Host : "smtp.elasticemail.com",
-        Username : "berniceuwituze@gmail.com",
-        Password : "C65756295C348ECB6FD31FECAC66EEE1D6D5",
-        To : 'berniceuwituze@gmail.com',
-        From : 'berniceuwituze@gmail.com',
-        Subject : "Portfolio Query",
-        Body : `Name: ${userName.value}<br>
-        Email: ${userEmail.value}<br>
-        Message: ${query.value}<br>`
-    }).then(
-      message => alert(message)
-    );
-}
-
 /*if (contactBtn){
     contactBtn.addEventListener('click', sendEmail);
 }*/
@@ -396,7 +377,7 @@ if (hearts){
 const subscribeEmail = document.getElementById('subscribe-email');
 const subscribeBtn = document.getElementById("subscribe-btn");
 const subscribeForm = document.getElementById('subscribe');
-const emailValid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
 
 if (subscribeForm){
     subscribeForm.addEventListener('submit', (e) => {
