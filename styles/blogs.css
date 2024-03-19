@@ -250,3 +250,7 @@ header{
     display: block;
     margin-bottom: 1rem;
 }
+
+.comment-form .button{
+    display: block;
+}

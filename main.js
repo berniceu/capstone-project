@@ -351,16 +351,69 @@ function storeSignUp(){
 
 // add article to localStorage
 
-/*const publishBtn = document.getElementById('publish');
+const publishBtn = document.getElementById('publish');
 const article = document.getElementById("story");
 const articleTitle = document.getElementById("title");
-let data = [{
-    title: articleTitle.value,
-    story: article.value
-}]
+const articlesContainer = document.querySelector('.blogs-container');
 
-localStorage.setItem("data", JSON.stringify(data));
-*/
+if (publishBtn){
+    publishBtn.addEventListener('click', () => {
+        let data = {
+            title: articleTitle.value,
+            story: article.value
+        };
+        
+        const newArticles = JSON.parse(localStorage.getItem('data')) || [];
+        newArticles.push(data);
+    
+        localStorage.setItem("data", JSON.stringify(newArticles));
+        
+    
+        
+        newArticles.forEach(article => {
+            const post = document.createElement('div');
+            post.classList.add('new-blog');
+        
+            post.innerHTML = `<div class="new-article">
+            <h3>${article.title}</h3>
+            <p>${article.story}</p>
+            </div>`
+    
+    
+            articlesContainer.appendChild(post);
+            
+        })
+    })
+}
+publishBtn.addEventListener('click', () => {
+    let data = {
+        title: articleTitle.value,
+        story: article.value
+    };
+    
+    const newArticles = JSON.parse(localStorage.getItem('data')) || [];
+    newArticles.push(data);
+
+    localStorage.setItem("data", JSON.stringify(newArticles));
+    
+
+    
+    newArticles.forEach(article => {
+        const post = document.createElement('div');
+        post.classList.add('new-blog');
+    
+        post.innerHTML = `<div class="new-article">
+        <h3>${article.title}</h3>
+        <p>${article.story}</p>
+        </div>`
+
+
+        articlesContainer.appendChild(post);
+        
+    })
+})
+
+
 // add likes and comments
 
 const hearts = document.querySelectorAll('.fa-solid.fa-heart');
@@ -412,22 +465,37 @@ const commentText = document.querySelector('.comment-text');
 
 const newComment = document.querySelector('.new-comment');
 
+/*let commentObj = {
+    commenter: commenterName.value,
+    commentText: commentText.value
+}*/
+
 if (commentForm){
+    commentForm.addEventListener('submit', () => {
+        localStorage.setItem('comments', JSON.stringify(commentObj));
+    })
+}
+
+
+
+
+/*if (commentForm){
     commentForm.addEventListener('submit', (e) => {
         e.preventDefault();
 
-        if (commentText.value.trim() == '' || commenterName.value.trim() == ''){
+        if (commentText.value.trim() === '' || commenterName.value.trim() === ''){
             alert("Fill in required fields");
         } else {
             let commentObj = {
                 commenter: commenterName.value,
                 comment: commentText.value
             }
+            
+            localStorage.setItem("comments", JSON.stringify(commentObj));
+            let comments = JSON.parse(localStorage.getItem("comments")) || [];
+            comments.push(commentObj);
 
-            localStorage.setItem("comment", JSON.stringify(commentObj));
-    
-            let commentElement = JSON.parse(localStorage.getItem("comment"));
-            createNewComment(commentElement);
+            displayComments();
 
             commenterName.value = '';
             commentText.value = ''
@@ -435,11 +503,20 @@ if (commentForm){
     })
     
 }
-function createNewComment(commentObj){
-    const commentElement = document.createElement('div');
-    commentElement.classList.add('comment');
-    commentElement.innerHTML = `<p>${commentObj.commenter}</p>
-    <p>${commentObj.comment}</p>`;
-    newComment.appendChild(commentElement);
+function displayComments(){
+    newComment.innerHTML = '';
+    let comments = JSON.parse(localStorage.getItem("comments")) || [];
+    comments.forEach(commentObj => {
+        const commentElement = document.createElement('div');
+        commentElement.classList.add('comment');
+        commentElement.innerHTML = `
+            <p>${commentObj.commenter}</p>
+            <p>${commentObj.comment}</p>`;
+        newComment.appendChild(commentElement);
+    });
 }
 
+
+displayComments()*/
+
+// display blogs
