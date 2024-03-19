@@ -354,7 +354,7 @@ function storeSignUp(){
 const publishBtn = document.getElementById('publish');
 const article = document.getElementById("story");
 const articleTitle = document.getElementById("title");
-const articlesContainer = document.querySelector('.blogs-container');
+const newArticleContainer = document.querySelector('.new-article-container');
 
 if (publishBtn){
     publishBtn.addEventListener('click', () => {
@@ -367,11 +367,11 @@ if (publishBtn){
         newArticles.push(data);
     
         localStorage.setItem("data", JSON.stringify(newArticles));
-        
-    
+        newArticleContainer.innerHTML = ''
         
         newArticles.forEach(article => {
             const post = document.createElement('div');
+            post.appendChild('articlesContainer');
             post.classList.add('new-blog');
         
             post.innerHTML = `<div class="new-article">
@@ -380,38 +380,11 @@ if (publishBtn){
             </div>`
     
     
-            articlesContainer.appendChild(post);
+            newArticleContainer.appendChild(post);
             
         })
     })
 }
-publishBtn.addEventListener('click', () => {
-    let data = {
-        title: articleTitle.value,
-        story: article.value
-    };
-    
-    const newArticles = JSON.parse(localStorage.getItem('data')) || [];
-    newArticles.push(data);
-
-    localStorage.setItem("data", JSON.stringify(newArticles));
-    
-
-    
-    newArticles.forEach(article => {
-        const post = document.createElement('div');
-        post.classList.add('new-blog');
-    
-        post.innerHTML = `<div class="new-article">
-        <h3>${article.title}</h3>
-        <p>${article.story}</p>
-        </div>`
-
-
-        articlesContainer.appendChild(post);
-        
-    })
-})
 
 
 // add likes and comments
