@@ -465,14 +465,32 @@ const commentText = document.querySelector('.comment-text');
 
 const newComment = document.querySelector('.new-comment');
 
-/*let commentObj = {
-    commenter: commenterName.value,
-    commentText: commentText.value
-}*/
+
 
 if (commentForm){
-    commentForm.addEventListener('submit', () => {
-        localStorage.setItem('comments', JSON.stringify(commentObj));
+
+    commentForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        let commentObj = {
+            commenter: commenterName.value,
+            commentText: commentText.value
+        }
+
+        const newComments = JSON.parse(localStorage.getItem('comments')) || [];
+        newComments.push(commentObj);
+
+        localStorage.setItem('comments', JSON.stringify(newComments));
+        newComment.innerHTML = '';
+
+        newComments.forEach(comment => {
+            const commentDiv = document.createElement('div');
+            commentDiv.classList.add('comment-div');
+
+            commentDiv.innerHTML = `h5>${comment.commenter}</h5>
+            <p>${comment.commentText}</p>`
+
+            newComment.appendChild(commentDiv);
+        })
     })
 }
 
@@ -517,6 +535,5 @@ function displayComments(){
 }
 
 
-displayComments()*/
+displayComments();*/
 
-// display blogs
