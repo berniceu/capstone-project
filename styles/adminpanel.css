@@ -342,3 +342,7 @@ span:hover{
 .blog-form form{
     display: table;
 }
+
+.blogs-container .button a{
+    color: #fff;
+}

@@ -357,7 +357,8 @@ const articleTitle = document.getElementById("title");
 const newArticleContainer = document.querySelector('.new-article-container');
 
 if (publishBtn){
-    publishBtn.addEventListener('click', () => {
+    publishBtn.addEventListener('click', (e) => {
+        e.preventDefault();
         let data = {
             title: articleTitle.value,
             story: article.value
@@ -371,7 +372,6 @@ if (publishBtn){
         
         newArticles.forEach(article => {
             const post = document.createElement('div');
-            post.appendChild('articlesContainer');
             post.classList.add('new-blog');
         
             post.innerHTML = `<div class="new-article">
@@ -381,8 +381,13 @@ if (publishBtn){
     
     
             newArticleContainer.appendChild(post);
+
+            
             
         })
+
+        article.value = '';
+        articleTitle.value = '';
     })
 }
 
