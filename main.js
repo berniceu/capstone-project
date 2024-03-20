@@ -359,7 +359,10 @@ const newArticleContainer = document.querySelector('.new-article-container');
 if (publishBtn){
     publishBtn.addEventListener('click', (e) => {
         e.preventDefault();
+
+     //   let count = 1;
         let data = {
+    //        id: count,
             title: articleTitle.value,
             story: article.value
         };
@@ -374,14 +377,28 @@ if (publishBtn){
             const post = document.createElement('div');
             post.classList.add('new-blog');
         
-            post.innerHTML = `<div class="new-article">
-            <h3>${article.title}</h3>
-            <p>${article.story}</p>
-            </div>
-            <div>
-            <button class="delete-button button">Delete</button>
-            <button class="button">Edit</button>
+            post.innerHTML = `
+            <div class="blogs">
+                <div class="new-article">
+                    <div class="blog-title">
+                        <h3>${article.title}</h3>
+                    </div>
+                    <p>${article.story}</p>
+
+                    <i class="fa-solid fa-heart" id="heart"></i>
+                    <span>0 Likes</span>
+
+                    <i class="fa-solid fa-comment"></i>
+                    <span>10 Comments</span>
+
+                    <i class="fa-solid fa-pen"></i>
+                    <span>Edit</span>
+
+                    <i class="fa-solid fa-trash delete-button"></i>
+                    <span>Delete</span>
+                </div>
             </div>`
+            
     
     
             newArticleContainer.appendChild(post);
@@ -496,9 +513,18 @@ if (commentForm){
             commentDiv.classList.add('comment-div');
 
             commentDiv.innerHTML = `<h5>${comment.commenter}</h5>
-            <p>${comment.commentText}</p>`
+            <p>${comment.commentText}</p>
+            <button class="button">delete</button>`
 
             newCommentContainer.appendChild(commentDiv);
+
+            const deleteComment = commentDiv.querySelector('.button');
+            if(deleteComment){
+                deleteComment.addEventListener('click', () => {
+                    commentDiv.remove();
+                })
+            }
+
         })
 
         commenterName.value = '';
