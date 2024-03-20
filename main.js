@@ -377,10 +377,21 @@ if (publishBtn){
             post.innerHTML = `<div class="new-article">
             <h3>${article.title}</h3>
             <p>${article.story}</p>
+            </div>
+            <div>
+            <button class="delete-button button">Delete</button>
+            <button class="button">Edit</button>
             </div>`
     
     
             newArticleContainer.appendChild(post);
+
+            const deleteBtn = post.querySelector('.delete-button');
+            if (deleteBtn) {
+                deleteBtn.addEventListener('click', () => {
+                    post.remove();
+                })
+            }
 
             
             
@@ -389,6 +400,8 @@ if (publishBtn){
         article.value = '';
         articleTitle.value = '';
     })
+    
+    
 }
 
 
