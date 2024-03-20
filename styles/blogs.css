@@ -254,3 +254,11 @@ header{
 .comment-form .button{
     display: block;
 }
+
+.comment-section h4{
+    padding-bottom: 2rem;
+}
+
+.new-comment .comment-div{
+    padding-bottom: 1rem;
+}

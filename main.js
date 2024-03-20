@@ -349,7 +349,7 @@ function storeSignUp(){
 
 
 
-// add article to localStorage
+// add article to localStorage and delete
 
 const publishBtn = document.getElementById('publish');
 const article = document.getElementById("story");
@@ -390,6 +390,8 @@ if (publishBtn){
         articleTitle.value = '';
     })
 }
+
+
 
 
 // add likes and comments
@@ -440,8 +442,9 @@ if (subscribeForm){
 const commentForm = document.querySelector('.comment-form');
 const commenterName = document.querySelector(".commenter-name");
 const commentText = document.querySelector('.comment-text');
+const commentBtn = document.querySelector('.comment-form .button');
 
-const newComment = document.querySelector('.new-comment');
+const newCommentContainer = document.querySelector('.new-comment');
 
 
 
@@ -454,21 +457,26 @@ if (commentForm){
             commentText: commentText.value
         }
 
+        console.log(commentObj)
+
         const newComments = JSON.parse(localStorage.getItem('comments')) || [];
         newComments.push(commentObj);
 
         localStorage.setItem('comments', JSON.stringify(newComments));
-        newComment.innerHTML = '';
+        newCommentContainer.innerHTML = '';
 
         newComments.forEach(comment => {
             const commentDiv = document.createElement('div');
             commentDiv.classList.add('comment-div');
 
-            commentDiv.innerHTML = `h5>${comment.commenter}</h5>
+            commentDiv.innerHTML = `<h5>${comment.commenter}</h5>
             <p>${comment.commentText}</p>`
 
-            newComment.appendChild(commentDiv);
+            newCommentContainer.appendChild(commentDiv);
         })
+
+        commenterName.value = '';
+        commentText.value = '';
     })
 }
 
