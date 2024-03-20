@@ -392,7 +392,20 @@ if (publishBtn){
 }
 
 
+//display write new post container
 
+const newPostBtn = document.getElementById('new-post-button');
+const hiddenPost = document.querySelector('.create-article.hidden');
+
+if (newPostBtn){
+    newPostBtn.addEventListener('click', () => {
+        if (hiddenPost.style.display == 'none'){
+            hiddenPost.style.display = 'block';
+        } else {
+            hiddenPost.style.display = 'none';
+        }
+    })
+}
 
 // add likes and comments
 
@@ -481,45 +494,4 @@ if (commentForm){
 }
 
 
-
-
-/*if (commentForm){
-    commentForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-
-        if (commentText.value.trim() === '' || commenterName.value.trim() === ''){
-            alert("Fill in required fields");
-        } else {
-            let commentObj = {
-                commenter: commenterName.value,
-                comment: commentText.value
-            }
-            
-            localStorage.setItem("comments", JSON.stringify(commentObj));
-            let comments = JSON.parse(localStorage.getItem("comments")) || [];
-            comments.push(commentObj);
-
-            displayComments();
-
-            commenterName.value = '';
-            commentText.value = ''
-        }
-    })
-    
-}
-function displayComments(){
-    newComment.innerHTML = '';
-    let comments = JSON.parse(localStorage.getItem("comments")) || [];
-    comments.forEach(commentObj => {
-        const commentElement = document.createElement('div');
-        commentElement.classList.add('comment');
-        commentElement.innerHTML = `
-            <p>${commentObj.commenter}</p>
-            <p>${commentObj.comment}</p>`;
-        newComment.appendChild(commentElement);
-    });
-}
-
-
-displayComments();*/
 

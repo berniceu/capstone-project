@@ -346,3 +346,7 @@ span:hover{
 .blogs-container .button a{
     color: #fff;
 }
+
+.create-article.hidden{
+    display: none;
+}
