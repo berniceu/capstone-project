@@ -44,20 +44,23 @@ Array.from(navList).forEach(link => {
 
 const toggleButton = document.querySelector('.toggle');
 
-toggleButton.addEventListener('click', () => {
-    document.body.classList.toggle("dark-mode");
-    document.querySelector('.container').classList.toggle("dark-mode");
-    document.querySelector('nav').classList.toggle("dark-mode");
-    document.querySelector('footer').classList.toggle("dark-mode");
+if (toggleButton){
+    toggleButton.addEventListener('click', () => {
+        document.body.classList.toggle("dark-mode");
+        document.querySelector('.container').classList.toggle("dark-mode");
+        document.querySelector('nav').classList.toggle("dark-mode");
+        document.querySelector('footer').classList.toggle("dark-mode");
+        
     
+        if (document.body.classList.contains("dark-mode")) {
+            document.querySelector('.moon').src = "images/sun.png";
+        } else {
+            document.querySelector('.moon').src = "images/moon.png";
+        }
+    
+    })
+}
 
-    if (document.body.classList.contains("dark-mode")) {
-        document.querySelector('.moon').src = "images/sun.png";
-    } else {
-        document.querySelector('.moon').src = "images/moon.png";
-    }
-
-})
 
 
 // add animation on scroll
@@ -129,37 +132,114 @@ if (showPassword){
 
 // add error message
 
-contactInputs.forEach(input => {
+const contactForm = document.querySelector(".contact-form");
+const emailValid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+const userEmail = document.getElementById('useremail');
+let hasError = false;
 
+contactInputs.forEach(input => {
     input.addEventListener("blur", () => {
-        if (input.value != ''){
+        if (input.value.trim() !== ''){
             input.classList.remove("error");
             input.parentElement.classList.remove("error");
-            
+            hasError = false
         } else {
             input.classList.add("error");
             input.parentElement.classList.add("error");
+            hasError = true;
+           
         }
+         if (userEmail.value!== '' && !emailValid.test(userEmail.value.trim())){
+            userEmail.classList.add("error");
+            userEmail.parentElement.classList.add("error");
+            document.querySelector('.email.error-text').textContent = "Enter valid email";
+            hasError = true
+        }
+    });
+});
+
+if(contactForm){
+    contactForm.addEventListener('submit', (e) => {
         
+        e.preventDefault();
+        
+        if (hasError){
+            alert("Please fill out all fields correctly");
+        } else {
+            alert("Message sent successfully")
+        }
     })
+}
 
 
-})
+
+// send email using smtp
+
+/*const userName = document.getElementById('username');
+const query = document.querySelector('.contact-form textarea');
+
+function sendEmail(){
+    
+    userEmail.send({
+        Host : "smtp.elasticemail.com",
+        Username : "berniceuwituze@gmail.com",
+        Password : "C65756295C348ECB6FD31FECAC66EEE1D6D5",
+        To : 'berniceuwituze@gmail.com',
+        From : 'berniceuwituze@gmail.com',
+        Subject : "Portfolio Query",
+        Body : `Name: ${userName.value}<br>
+        Email: ${userEmail.value}<br>
+        Message: ${query.value}<br>`
+    }).then(
+      message => alert("message sent successfully")
+    ).catch (err => {
+        alert("Failed to send message");
+        console.log(err)
+    });
+}*/
+
+
+
+// prevent login form submission
+
+/*const loginForm = document.getElementById('login-form');
+if (loginForm){
+    loginForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+    
+        let hasError = false;
+        contactInputs.forEach(input => {
+            if (input.classList.contains('error')) {
+                hasError = true;
+            }
+        });
+    
+        if (hasError){
+            alert("Please fill out all field");
+        }else {
+            loginForm.submit();
+        }
+    
+    })
+}*/
+
 
 // replace icon
 
-let errorIcons = document.querySelectorAll('.error-icon');
+/*let errorIcons = document.querySelectorAll('.error-icon');
 let correctIcon = document.createElement('i');
 correctIcon.textContent = '';
 errorIcons.forEach(icon => {
     icon.replaceWith(correctIcon);
 
-})
+})*/
 
 
 if (signupPassword){
-    signupPassword.addEventListener('blur', validatePassword );
+    signupPassword.addEventListener('input', validatePassword );
+
 // validate password
+
 function validatePassword(){
     let isValid = true;
 
@@ -175,22 +255,22 @@ function validatePassword(){
     } else {
         isValid = false;
     }
-    if (/[A-Z]/.test(signupPassword.value)) {
+    if (/[A-Z]/g.test(signupPassword.value)) {
         capitalLetter.classList.add('valid');
     } else {
         isValid = false;
     }
-    if (/[a-z]/.test(signupPassword.value)) {
+    if (/[a-z]/g.test(signupPassword.value)) {
         lowercase.classList.add('valid');
     } else {
         isValid = false;
     }
-    if (/\d/.test(signupPassword.value)) {
+    if (/\d/g.test(signupPassword.value)) {
         passwordNumber.classList.add('valid');
     } else {
         isValid = false;
     }
-    if (/[#.?!@$%^&*\-_]/.test(signupPassword.value)) {
+    if (/[#.?!@$%^&*\-_]/g.test(signupPassword.value)) {
         specialChar.classList.add('valid');
     } else {
         isValid = false;
@@ -205,18 +285,19 @@ function validatePassword(){
         signupPassword.parentElement.classList.remove('error');
     }
 
-    
-}
+
+    }
+
 }
 
 
 // confirm password
 
 if (confirmPassword){
-    confirmPassword.addEventListener('blur', () => {
-        const value = confirmPassword.value;
+    confirmPassword.addEventListener('input', () => {
+        
     
-        if(value.length && value != signupPassword.value){
+        if(confirmPassword.value.length && confirmPassword.value !== signupPassword.value){
             confirmPassword.classList.add('error');
             confirmPassword.parentElement.classList.add('error');
         } else {
@@ -228,34 +309,228 @@ if (confirmPassword){
 
 
 
-// disable submit button
+/*if (contactBtn){
+    contactBtn.addEventListener('click', sendEmail);
+}*/
 
-const formValidation = () => {
 
+
+// store sign up information
+
+const signupBtn = document.querySelector('.signup-button');
+const username = document.getElementById('name');
+const email = document.getElementById('email');
+const password = document.getElementById('password');
+
+if (signupBtn){
+    signupBtn.addEventListener('click', storeSignUp)
 }
 
-// send email 
+function storeSignUp(){
+    if (username.value && email.value && password.value){
+        localStorage.setItem("name", username.value);
+        localStorage.setItem("email", email.value);
+        localStorage.setItem("password",  password.value);
 
-let contactBtn = document.querySelector('.contact-button .button');
-let userEmail = document.getElementById('useremail');
-let userName = document.getElementById('username');
-let query = document.querySelector('.contact-form textarea');
+        username.value = '';
+        email.value = '';
+        password.value = '';
 
-function sendEmail(){
+        alert("Signed Up successfully!");
+    } else {
+        alert("Please fill in all fields.")
+    }
+
     
-    Email.send({
-        Host : "smtp.elasticemail.com",
-        Username : "berniceuwituze@gmail.com",
-        Password : "C65756295C348ECB6FD31FECAC66EEE1D6D5",
-        To : 'berniceuwituze@gmail.com',
-        From : 'berniceuwituze@gmail.com',
-        Subject : "Portfolio Query",
-        Body : `Name: ${userName.value}<br>
-        Email: ${userEmail.value}<br>
-        Message: ${query.value}<br>`
-    }).then(
-      message => alert(message)
-    );
+    
+
+    
 }
 
-contactBtn.addEventListener('click', sendEmail);
+
+
+// add article to localStorage and delete
+
+const publishBtn = document.getElementById('publish');
+const article = document.getElementById("story");
+const articleTitle = document.getElementById("title");
+const newArticleContainer = document.querySelector('.new-article-container');
+
+if (publishBtn){
+    publishBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+
+     //   let count = 1;
+        let data = {
+    //        id: count,
+            title: articleTitle.value,
+            story: article.value
+        };
+        
+        const newArticles = JSON.parse(localStorage.getItem('data')) || [];
+        newArticles.push(data);
+    
+        localStorage.setItem("data", JSON.stringify(newArticles));
+        newArticleContainer.innerHTML = ''
+        
+        newArticles.forEach(article => {
+            const post = document.createElement('div');
+            post.classList.add('new-blog');
+        
+            post.innerHTML = `
+            <div class="blogs">
+                <div class="new-article">
+                    <div class="blog-title">
+                        <h3>${article.title}</h3>
+                    </div>
+                    <p>${article.story}</p>
+
+                    <i class="fa-solid fa-heart" id="heart"></i>
+                    <span>0 Likes</span>
+
+                    <i class="fa-solid fa-comment"></i>
+                    <span>10 Comments</span>
+
+                    <i class="fa-solid fa-pen"></i>
+                    <span>Edit</span>
+
+                    <i class="fa-solid fa-trash delete-button"></i>
+                    <span>Delete</span>
+                </div>
+            </div>`
+            
+    
+    
+            newArticleContainer.appendChild(post);
+
+            const deleteBtn = post.querySelector('.delete-button');
+            if (deleteBtn) {
+                deleteBtn.addEventListener('click', () => {
+                    post.remove();
+                })
+            }
+
+            
+            
+        })
+
+        article.value = '';
+        articleTitle.value = '';
+    })
+    
+    
+}
+
+
+//display write new post container
+
+const newPostBtn = document.getElementById('new-post-button');
+const hiddenPost = document.querySelector('.create-article.hidden');
+
+if (newPostBtn){
+    newPostBtn.addEventListener('click', () => {
+        if (hiddenPost.style.display == 'none'){
+            hiddenPost.style.display = 'block';
+        } else {
+            hiddenPost.style.display = 'none';
+        }
+    })
+}
+
+// add likes and comments
+
+const hearts = document.querySelectorAll('.fa-solid.fa-heart');
+let likesNumber = document.querySelector('.likes-number');
+
+
+if (hearts){
+    hearts.forEach(heart => {
+        let count = 0;
+        heart.addEventListener('click', () => {
+            if (heart.style.color === 'black') {
+                heart.style.color = '#E5989B';
+                count++;
+                Number(likesNumber.value)++
+            } else {
+                heart.style.color = 'black';
+                count--;
+            }
+        });
+    });
+}
+
+// subscribe
+const subscribeEmail = document.getElementById('subscribe-email');
+const subscribeBtn = document.getElementById("subscribe-btn");
+const subscribeForm = document.getElementById('subscribe');
+
+
+if (subscribeForm){
+    subscribeForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        if (subscribeEmail.value == ''){
+            alert("Please fill out your email");
+        } else if (emailValid.test(subscribeEmail.value)){
+            alert("Subscribed successfully");
+           // subscribeForm.submit();
+        } else {
+            alert ("Enter valid email address");
+        }
+    })
+}
+
+// add comment
+
+const commentForm = document.querySelector('.comment-form');
+const commenterName = document.querySelector(".commenter-name");
+const commentText = document.querySelector('.comment-text');
+const commentBtn = document.querySelector('.comment-form .button');
+
+const newCommentContainer = document.querySelector('.new-comment');
+
+
+
+if (commentForm){
+
+    commentForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        let commentObj = {
+            commenter: commenterName.value,
+            commentText: commentText.value
+        }
+
+        console.log(commentObj)
+
+        const newComments = JSON.parse(localStorage.getItem('comments')) || [];
+        newComments.push(commentObj);
+
+        localStorage.setItem('comments', JSON.stringify(newComments));
+        newCommentContainer.innerHTML = '';
+
+        newComments.forEach(comment => {
+            const commentDiv = document.createElement('div');
+            commentDiv.classList.add('comment-div');
+
+            commentDiv.innerHTML = `<h5>${comment.commenter}</h5>
+            <p>${comment.commentText}</p>
+            <button class="button">delete</button>`
+
+            newCommentContainer.appendChild(commentDiv);
+
+            const deleteComment = commentDiv.querySelector('.button');
+            if(deleteComment){
+                deleteComment.addEventListener('click', () => {
+                    commentDiv.remove();
+                })
+            }
+
+        })
+
+        commenterName.value = '';
+        commentText.value = '';
+    })
+}
+
+
+

@@ -189,8 +189,8 @@
                     </div>
                     
                     <div class="input-field">
-                        <input type="email" placeholder="Email Address" name="useremail" id="useremail" autocomplete="email" class="item" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
-                        <div class="error-text">Email Address can't be blank</div>
+                        <input type="email" placeholder="Email Address" name="useremail" id="useremail" autocomplete="email" class="item">
+                        <div class="email error-text">Email Address can't be blank</div>
                     </div>
 
                     <div class="input-field">
@@ -198,11 +198,12 @@
                         <div class="error-text">Message can't be blank</div>
                     </div>
                     
+                    <div class="contact-button">
+                        <button type="submit" class="button">Send</button>
+                    </div>
                     
                 </form>
-                <div class="contact-button">
-                    <button class="button">Send</button>
-                </div>
+                
                 
             </div>
         </section>
@@ -224,9 +225,9 @@
 
                 <h2>Get the freshest articles right in your inbox</h2>
 
-                <form method="post">
-                    <input type="email" id="email" placeholder="Email">
-                    <button id="subscribe-btn">Subscribe</button>
+                <form method="post" id="subscribe">
+                    <input type="email" id="subscribe-email" placeholder="Email">
+                    <button type="submit" id="subscribe-btn">Subscribe</button>
                 </form>
     
 
