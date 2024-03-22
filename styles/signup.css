@@ -120,7 +120,8 @@ button{
 
 }
 
-#show-password{
+#show-password, 
+#show-confirm-password{
     position: absolute;
     left: -144px;
     accent-color: #E5989B;
@@ -135,4 +136,13 @@ button{
     position: absolute;
     left: 20px;
     top: 12px;
+}
+
+button a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.fa-xmark{
+    display: none;
 }

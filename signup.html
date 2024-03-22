@@ -35,30 +35,34 @@
             <div class="input-field signup-password">
                 <input type="password" placeholder="Password" id="passwordInput" required>
             <div class="checkbox-div">
-                <input type="checkbox" id="show-password">
+                <input type="checkbox" id="show-password" class="show-password">
                 <label for="show-password">Show Password</label>
             </div>
                 
                 <div class="error-text">
-                    <i class="fa-solid fa-xmark" class="error-icon"></i>
+                    
                     <span class="length requirement">Password should have 8 or more characters</span><br>
-                    <i class="fa-solid fa-xmark" class="error-icon"></i>
+                   
                     <span class="lowercase requirement">Password should include lowercase letter</span><br>
-                    <i class="fa-solid fa-xmark" class="error-icon"></i>
+                    
                     <span class="capital requirement">Password should include uppercase letter</span><br>
-                    <i class="fa-solid fa-xmark" class="error-icon"></i>
+                    
                     <span class="number requirement">Password should include number</span><br>
-                    <i class="fa-solid fa-xmark" class="error-icon"></i>
+                    
                     <span class="special-character requirement">Password should include a special character</span><br>
                 </div>
             </div>
             <div class="input-field">
                 <input type="password" placeholder="Confirm Password" class="passwordInput" id="confirm-password" required>
+                <div class="checkbox-div">
+                    <input type="checkbox" id="show-confirm-password" class="show-password">
+                    <label for="show-password" >Show Password</label>
+                </div>
                 <div class="error-text" id="repeat">Passwords must match</div>
             </div>
         </form>
         
-        <button type="submit">Submit</button>
+        <button type="submit"><a href="login.html">Submit</a></button>
     </div>
 
     <script src="main.js"></script>
