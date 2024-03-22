@@ -113,7 +113,7 @@ const lowercase = document.querySelector('.lowercase');
 const passwordNumber = document.querySelector('.number');
 const specialChar = document.querySelector('.special-character');
 const requirement = document.querySelector('.requirement');
-
+const showConfirm = document.getElementById('show-confirm-password');
 
 // show password
 
@@ -128,6 +128,17 @@ if (showPassword){
         
     })
 }
+
+if(showConfirm){
+    showConfirm.addEventListener('click', () => {
+        if (confirmPassword.type == 'password'){
+            confirmPassword.type = 'text';
+        } else {
+            confirmPassword.type = 'password';
+        } 
+    })
+}
+
 
 
 // add error message
