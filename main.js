@@ -235,19 +235,10 @@ if (loginForm){
 }*/
 
 
-// replace icon
-
-/*let errorIcons = document.querySelectorAll('.error-icon');
-let correctIcon = document.createElement('i');
-correctIcon.textContent = '';
-errorIcons.forEach(icon => {
-    icon.replaceWith(correctIcon);
-
-})*/
-
 
 if (signupPassword){
     signupPassword.addEventListener('input', validatePassword );
+
 
 // validate password
 
@@ -263,6 +254,7 @@ function validatePassword(){
     
     if (signupPassword.value.length >= 8) {
         passwordLength.classList.add('valid');
+        
     } else {
         isValid = false;
     }
@@ -294,6 +286,8 @@ function validatePassword(){
     } else {
         signupPassword.classList.remove('error');
         signupPassword.parentElement.classList.remove('error');
+
+
     }
 
 
@@ -311,9 +305,11 @@ if (confirmPassword){
         if(confirmPassword.value.length && confirmPassword.value !== signupPassword.value){
             confirmPassword.classList.add('error');
             confirmPassword.parentElement.classList.add('error');
+            
         } else {
             confirmPassword.classList.remove('error');
             confirmPassword.parentElement.classList.remove('error');
+         
         }
     })
 }
@@ -410,7 +406,7 @@ if (publishBtn){
                     <div class="blog-title">
                         <h3>${article.title}</h3>
                     </div>
-                    <p>${article.story}</p>
+                    <p class="blog-story">${article.story}</p>
 
                     <i class="fa-solid fa-heart" id="heart"></i>
                     <span>0 Likes</span>
@@ -446,8 +442,9 @@ if (publishBtn){
             const editBtn = post.querySelector('.edit-button');
             editBtn.addEventListener('click', () => {
                 hiddenPost.style.display = 'block';
+                hiddenPost.dataset.index = index;
                 articleTitle.value = post.querySelector('h3').textContent;
-                article.value = post.querySelector('p').textContent;
+                article.value = post.querySelector('.blog-story').textContent;
             
 
             })
@@ -458,10 +455,11 @@ if (publishBtn){
 
         article.value = '';
         articleTitle.value = '';
+        hiddenPost.style.display = 'none';
     })
     
     
-}
+} 
 
 
 

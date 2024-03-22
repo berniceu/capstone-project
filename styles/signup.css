@@ -137,3 +137,12 @@ button{
     left: 20px;
     top: 12px;
 }
+
+button a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.fa-xmark{
+    display: none;
+}
