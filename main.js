@@ -349,12 +349,28 @@ function storeSignUp(){
 
 
 
-// add article to localStorage and delete
-
 const publishBtn = document.getElementById('publish');
 const article = document.getElementById("story");
 const articleTitle = document.getElementById("title");
 const newArticleContainer = document.querySelector('.new-article-container');
+
+//display write new post container
+
+const newPostBtn = document.getElementById('new-post-button');
+const hiddenPost = document.querySelector('.create-article.hidden');
+
+if (newPostBtn){
+    newPostBtn.addEventListener('click', () => {
+        if (hiddenPost.style.display == 'none'){
+            hiddenPost.style.display = 'block';
+        } else {
+            hiddenPost.style.display = 'none';
+        }
+    });
+}
+
+
+// add article to localStorage and delete
 
 if (publishBtn){
     publishBtn.addEventListener('click', (e) => {
@@ -373,7 +389,7 @@ if (publishBtn){
         localStorage.setItem("data", JSON.stringify(newArticles));
         newArticleContainer.innerHTML = ''
         
-        newArticles.forEach(article => {
+        newArticles.forEach((article, index) => {
             const post = document.createElement('div');
             post.classList.add('new-blog');
         
@@ -391,10 +407,10 @@ if (publishBtn){
                     <i class="fa-solid fa-comment"></i>
                     <span>10 Comments</span>
 
-                    <i class="fa-solid fa-pen"></i>
+                    <i class="fa-solid fa-pen edit-button"></i>
                     <span>Edit</span>
 
-                    <i class="fa-solid fa-trash delete-button"></i>
+                    <i class="fa-solid fa-trash delete-button" data-index="${index}"></i>
                     <span>Delete</span>
                 </div>
             </div>`
@@ -403,13 +419,28 @@ if (publishBtn){
     
             newArticleContainer.appendChild(post);
 
+            hiddenPost.style.display = 'none';
+
             const deleteBtn = post.querySelector('.delete-button');
             if (deleteBtn) {
                 deleteBtn.addEventListener('click', () => {
                     post.remove();
+                    const deleteArticle = parseInt(deleteBtn.dataset.index);
+                    newArticles.splice(deleteArticle, 1);
+
+                    localStorage.setItem('data', JSON.stringify(newArticles));
+                    
                 })
             }
+            const editBtn = post.querySelector('.edit-button');
+            editBtn.addEventListener('click', () => {
+                hiddenPost.style.display = 'block';
+                articleTitle.value = post.querySelector('h3').textContent;
+                article.value = post.querySelector('p').textContent;
+            
 
+            })
+            
             
             
         })
@@ -422,39 +453,40 @@ if (publishBtn){
 }
 
 
-//display write new post container
 
-const newPostBtn = document.getElementById('new-post-button');
-const hiddenPost = document.querySelector('.create-article.hidden');
 
-if (newPostBtn){
-    newPostBtn.addEventListener('click', () => {
-        if (hiddenPost.style.display == 'none'){
-            hiddenPost.style.display = 'block';
-        } else {
-            hiddenPost.style.display = 'none';
-        }
-    })
-}
+
+
+
 
 // add likes and comments
 
 const hearts = document.querySelectorAll('.fa-solid.fa-heart');
-let likesNumber = document.querySelector('.likes-number');
+const likesNumber = document.querySelector('.likes-number');
+let count = 0;
 
 
 if (hearts){
     hearts.forEach(heart => {
-        let count = 0;
+        
         heart.addEventListener('click', () => {
             if (heart.style.color === 'black') {
                 heart.style.color = '#E5989B';
                 count++;
-                Number(likesNumber.value)++
+                
             } else {
                 heart.style.color = 'black';
-                count--;
+                if (count > 0) {
+                    count--;
+                }
             }
+
+            if (count == 1){
+                likesNumber.innerHTML = `${count} Like`;
+            } else {
+                likesNumber.innerHTML = `${count} Likes`;
+            }
+            
         });
     });
 }
@@ -479,6 +511,18 @@ if (subscribeForm){
         }
     })
 }
+
+// hide comment form
+
+const commentIcon = document.querySelector('.fa-comment');
+const commentSection = document.querySelector('.comment-section');
+
+if (commentIcon){
+    commentIcon.addEventListener('click', () => {
+        commentSection.classList.toggle('hidden');
+    })
+}
+
 
 // add comment
 
@@ -508,19 +552,23 @@ if (commentForm){
         localStorage.setItem('comments', JSON.stringify(newComments));
         newCommentContainer.innerHTML = '';
 
-        newComments.forEach(comment => {
+        newComments.forEach((comment, index) => {
             const commentDiv = document.createElement('div');
             commentDiv.classList.add('comment-div');
 
             commentDiv.innerHTML = `<h5>${comment.commenter}</h5>
             <p>${comment.commentText}</p>
-            <button class="button">delete</button>`
+            <button class="button" data-index="${index}">delete</button>`
 
             newCommentContainer.appendChild(commentDiv);
 
             const deleteComment = commentDiv.querySelector('.button');
             if(deleteComment){
                 deleteComment.addEventListener('click', () => {
+                    const deleteIndex = parseInt(deleteComment.dataset.index);
+                    newComments.splice(deleteIndex, 1);
+
+                    localStorage.setItem('comments', JSON.stringify(newComments));
                     commentDiv.remove();
                 })
             }
@@ -531,6 +579,3 @@ if (commentForm){
         commentText.value = '';
     })
 }
-
-
-

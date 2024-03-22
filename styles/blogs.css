@@ -249,6 +249,7 @@ header{
     width: 50%;
     display: block;
     margin-bottom: 1rem;
+    font-family: 'Poppins', sans-serif;
 }
 
 .comment-form .button{
@@ -261,4 +262,17 @@ header{
 
 .new-comment .comment-div{
     padding-bottom: 1rem;
+}
+
+.likes-comments{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.likes-comments i{
+    cursor: pointer;
+}
+
+.comment-section.hidden{
+    display: none;
 }
