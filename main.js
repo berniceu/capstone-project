@@ -414,7 +414,7 @@ if (publishBtn){
                     <i class="fa-solid fa-comment"></i>
                     <span>10 Comments</span>
 
-                    <i class="fa-solid fa-pen edit-button"></i>
+                    <i class="fa-solid fa-pen edit-button" data-index="${index}"></i>
                     <span>Edit</span>
 
                     <i class="fa-solid fa-trash delete-button" data-index="${index}"></i>
