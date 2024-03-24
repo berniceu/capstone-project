@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
 
   // Your web app's Firebase configuration
   const firebaseConfig = {
@@ -15,41 +15,36 @@ import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/fir
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const auth = getAuth();
+  const db = getDatabase(app);
 
+  const signupBtn = document.getElementById('submit-btn');
 
-  
-  const loginBtn = document.getElementById('login-button');
-
-loginBtn.addEventListener('click', (e) => {
+  signupBtn.addEventListener('click', (e) => {
     e.preventDefault();
 
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('login-password').value;
+    const email = document.getElementById('signup-email').value;
+    const password = document.getElementById('passwordInput').value;
+    const fullName = document.getElementById('full-name').value;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if (!email || !password){
-        alert("Please enter email and password");
-        loginBtn.disabled = true;
-        return;
+    if (!emailRegex.test(email)){
+      alert("Please enter valid email address");
+      return;
     }
 
-    
-    signInWithEmailAndPassword(auth, email, password)
+    createUserWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
-    // Signed In
+    // Signed up 
     const user = userCredential.user;
-    alert("Logging In...");
-    loginBtn.disabled = false;
-    window.location.href = 'adminpanel.html';
-
-     
+    alert("Signed up Successfully!");
+    window.location.href = 'login.html';
     // ...
   })
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
     alert(errorMessage);
-    loginBtn.disabled = true;
-    return;
     // ..
   });
   })
+

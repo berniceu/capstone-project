@@ -149,24 +149,27 @@ const userEmail = document.getElementById('useremail');
 let hasError = false;
 
 contactInputs.forEach(input => {
-    input.addEventListener("blur", () => {
-        if (input.value.trim() !== ''){
-            input.classList.remove("error");
-            input.parentElement.classList.remove("error");
-            hasError = false
-        } else {
-            input.classList.add("error");
-            input.parentElement.classList.add("error");
-            hasError = true;
-           
-        }
-         if (userEmail.value!== '' && !emailValid.test(userEmail.value.trim())){
-            userEmail.classList.add("error");
-            userEmail.parentElement.classList.add("error");
-            document.querySelector('.email.error-text').textContent = "Enter valid email";
-            hasError = true
-        }
-    });
+    if (input){
+        input.addEventListener("blur", () => {
+            if (input.value.trim() !== ''){
+                input.classList.remove("error");
+                input.parentElement.classList.remove("error");
+                hasError = false
+            } else {
+                input.classList.add("error");
+                input.parentElement.classList.add("error");
+                hasError = true;
+               
+            }
+             if (userEmail.value!== '' && !emailValid.test(userEmail.value.trim())){
+                userEmail.classList.add("error");
+                userEmail.parentElement.classList.add("error");
+                document.querySelector('.email.error-text').textContent = "Enter valid email";
+                hasError = true
+            }
+        });
+    }
+    
 });
 
 if(contactForm){
@@ -463,21 +466,24 @@ if (publishBtn){
     
 }
 
-hiddenPost.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const index = parseInt(hiddenPost.dataset.index);
-    const editedData = {
-        title: articleTitle.value,
-        story: article.value
-    };
+if (hiddenPost){
+    hiddenPost.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const index = parseInt(hiddenPost.dataset.index);
+        const editedData = {
+            title: articleTitle.value,
+            story: article.value
+        };
+    
+        newArticles[index] = editedData;
+        localStorage.setItem('data', JSON.stringify(newArticles));
+        renderArticles(newArticles);
+        hiddenPost.style.display = 'none';
+    
+    
+    });
+}
 
-    newArticles[index] = editedData;
-    localStorage.setItem('data', JSON.stringify(newArticles));
-    renderArticles(newArticles);
-    hiddenPost.style.display = 'none';
-
-
-});
 
 
 
