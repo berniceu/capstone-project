@@ -396,7 +396,7 @@ if (publishBtn){
         localStorage.setItem("data", JSON.stringify(newArticles));
         newArticleContainer.innerHTML = ''
         
-        newArticles.forEach((article, index) => {
+        newArticles.forEach((articleData, index) => {
             const post = document.createElement('div');
             post.classList.add('new-blog');
         
@@ -404,9 +404,9 @@ if (publishBtn){
             <div class="blogs">
                 <div class="new-article">
                     <div class="blog-title">
-                        <h3>${article.title}</h3>
+                        <h3>${articleData.title}</h3>
                     </div>
-                    <p class="blog-story">${article.story}</p>
+                    <p class="blog-story">${articleData.story}</p>
 
                     <i class="fa-solid fa-heart" id="heart"></i>
                     <span>0 Likes</span>
@@ -443,24 +443,75 @@ if (publishBtn){
             editBtn.addEventListener('click', () => {
                 hiddenPost.style.display = 'block';
                 hiddenPost.dataset.index = index;
-                articleTitle.value = post.querySelector('h3').textContent;
-                article.value = post.querySelector('.blog-story').textContent;
+                articleTitle.value = articleData.title;
+                article.value = articleData.story;
+
+                
+                    
             
 
-            })
-            
-            
-            
-        })
+            });
+
+
+        });
 
         article.value = '';
         articleTitle.value = '';
         hiddenPost.style.display = 'none';
-    })
-    
-    
-} 
+    });
 
+    
+}
+
+hiddenPost.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const index = parseInt(hiddenPost.dataset.index);
+    const editedData = {
+        title: articleTitle.value,
+        story: article.value
+    };
+
+    newArticles[index] = editedData;
+    localStorage.setItem('data', JSON.stringify(newArticles));
+    renderArticles(newArticles);
+    hiddenPost.style.display = 'none';
+
+
+});
+
+
+
+function renderArticles(articles) {
+    newArticleContainer.innerHTML = '';
+    articles.forEach((articleData, index) => {
+        const post = document.createElement('div');
+        post.classList.add('new-blog');
+
+        post.innerHTML = `
+        <div class="blogs">
+            <div class="new-article">
+                <div class="blog-title">
+                    <h3>${articleData.title}</h3>
+                </div>
+                <p class="blog-story">${articleData.story}</p>
+
+                <i class="fa-solid fa-heart" id="heart"></i>
+                <span>0 Likes</span>
+
+                <i class="fa-solid fa-comment"></i>
+                <span>10 Comments</span>
+
+                <i class="fa-solid fa-pen edit-button" data-index="${index}"></i>
+                <span>Edit</span>
+
+                <i class="fa-solid fa-trash delete-button" data-index="${index}"></i>
+                <span>Delete</span>
+            </div>
+        </div>`
+
+        newArticleContainer.appendChild(post);
+    });
+}
 
 
 
