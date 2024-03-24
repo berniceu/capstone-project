@@ -25,11 +25,11 @@
         <form action="" id="signup-form">
             
             <div class="input-field">
-                <input type="text" placeholder="Name" class="item" autocomplete="name">
+                <input type="text" placeholder="Name" class="item" id="full-name" autocomplete="name">
                 <div class="error-text">Name can't be blank</div>
             </div>
             <div class="input-field">
-                <input type="email" placeholder="Email Address" class="item" autocomplete="email">
+                <input type="email" placeholder="Email Address" id="signup-email" class="item" autocomplete="email">
                 <div class="error-text">Email Address can't be blank</div>
             </div>
             <div class="input-field signup-password">
@@ -41,15 +41,8 @@
                 
                 <div class="error-text">
                     
-                    <span class="length requirement">Password should have 8 or more characters</span><br>
+                    <span class="requirements">Password should have 8 or more characters, include lowercase and uppercase letters, number and special character</span><br>
                    
-                    <span class="lowercase requirement">Password should include lowercase letter</span><br>
-                    
-                    <span class="capital requirement">Password should include uppercase letter</span><br>
-                    
-                    <span class="number requirement">Password should include number</span><br>
-                    
-                    <span class="special-character requirement">Password should include a special character</span><br>
                 </div>
             </div>
             <div class="input-field">
@@ -60,12 +53,17 @@
                 </div>
                 <div class="error-text" id="repeat">Passwords must match</div>
             </div>
+
+            <button type="submit" id="submit-btn">Submit</button>
         </form>
         
-        <button type="submit"><a href="login.html">Submit</a></button>
+        
     </div>
 
+
+    
     <script src="main.js"></script>
+    <script type="module" src="register.js"></script>
     <script src="https://kit.fontawesome.com/53de108cc6.js" crossorigin="anonymous"></script>
 
     
