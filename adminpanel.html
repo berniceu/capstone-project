@@ -154,14 +154,14 @@
             <div class="blogs-container">
                 <div class="blogs">
                     <div class="blog-title">
-                        <h3>Blog 1</h3>
+                        <h3><a href="readblog.html" class="blog-link">Break Into Tech</a></h3>
                     </div>
-                    <p>How I got into software engineering</p>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam quisquam atque in expedita porro quae dolores ab doloribus vero. </p>
     
                     <i class="fa-solid fa-heart"></i>
-                    <span class="likes-number">10 <span>Likes</span></span>
+                    <span class="likes-number">0 <span>Likes</span></span>
                     <i class="fa-solid fa-comment"></i>
-                    <span>10 Comments</span>
+                    <span>0 Comments</span>
                     
                     <i class="fa-solid fa-pen"></i>
                     <span>Edit</span>
@@ -171,16 +171,14 @@
     
                 <div class="blogs">
                     <div class="blog-title">
-                        <h3>Blog 1</h3>
+                        <h3><a href="readblog.html" class="blog-link">Break Into Tech</a></h3>
                     </div>
-                    <p>How I got into software engineering</p>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam quisquam atque in expedita porro quae dolores ab doloribus vero. </p>
     
-    
-                        <i class="fa-solid fa-heart" id="heart"></i>
-                        <span>10 Likes</span>
-                    
+                    <i class="fa-solid fa-heart"></i>
+                    <span class="likes-number">0 <span>Likes</span></span>
                     <i class="fa-solid fa-comment"></i>
-                    <span>10 Comments</span>
+                    <span>0 Comments</span>
                     
                     <i class="fa-solid fa-pen"></i>
                     <span>Edit</span>
@@ -190,14 +188,14 @@
     
                 <div class="blogs">
                     <div class="blog-title">
-                        <h3>Blog 1</h3>
+                        <h3><a href="readblog.html" class="blog-link">Break Into Tech</a></h3>
                     </div>
-                    <p>How I got into software engineering</p>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam quisquam atque in expedita porro quae dolores ab doloribus vero. </p>
     
                     <i class="fa-solid fa-heart"></i>
-                    <span>10 Likes</span>
+                    <span class="likes-number">0 <span>Likes</span></span>
                     <i class="fa-solid fa-comment"></i>
-                    <span>10 Comments</span>
+                    <span>0 Comments</span>
                     
                     <i class="fa-solid fa-pen"></i>
                     <span>Edit</span>
@@ -213,12 +211,11 @@
 
                 <div class="create-article hidden">
                     <div class="create-article-container">
-                        <form>
-                            <input type="text" id="title" placeholder="Title"/>
-                            
-                        </form>
+                        
                         <div class="blog-form">
                             <form action="">
+                                <input type="file" name="blog-image" id="blog-image">
+                                <input type="text" id="title" placeholder="Title"/>
                                 <textarea name="story" id="story" rows="10" placeholder="Tell Your Story..."></textarea>
                                 <button class="button" id="publish">Publish</button>
                             </form>
@@ -232,6 +229,82 @@
 
     <script src="https://kit.fontawesome.com/53de108cc6.js" crossorigin="anonymous"></script>
     <script src="main.js"></script>
+    <script type="module">
+        
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+        import { getDatabase, ref, child, get, set, update, remove } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js"
+        
+        const firebaseConfig = {
+          apiKey: "AIzaSyAFgbqbDKaIwR-lDCyDiIdodM6AybnSGzk",
+          authDomain: "crud-b8907.firebaseapp.com",
+          databaseURL: "https://crud-b8907-default-rtdb.europe-west1.firebasedatabase.app",
+          projectId: "crud-b8907",
+          storageBucket: "crud-b8907.appspot.com",
+          messagingSenderId: "622039098639",
+          appId: "1:622039098639:web:2842be5216f1eebf47ca7a"
+        };
+      
+        
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase();
+        const blogTitle = document.querySelector('.blog-title h3');
+        const blogParagraph = document.querySelector('.blogs p');
+        
+        const newPostBtn = document.getElementById('new-post-button');
+        const editBtn = document.querySelector('.fa-solid.fa-pen');
+        const deleteBtn = document.querySelector('.fa-solid.fa-trash');
+
+        
+        function AddData(){
+            set(ref(db, 'blogs/').push(), {
+                title: blogTitle.value,
+                blog: blogParagraph.value
+            }).then(() => {
+                alert("Data added successfully");
+            }).catch((err) => {
+                alert("Unsuccessful")
+            })
+        }
+
+        function ReturnData(){
+            const dbRef = ref(db);
+
+            get(child(dbRef, 'blogs/' + uid))
+            .then((snap) => {
+                if (snap.exists()){
+                    blogTitle.value = snap.val().title;
+                    blogParagraph.value = snap.val().blog;
+                }
+            }).catch((err) => {
+                alert("Unsuccessful");
+            })
+        }
+
+        function updateData(){
+            update(ref(db, 'blogs/' + uid), {
+                title: blogTitle.value,
+                blog: blogParagraph.value
+            }).then(() => {
+                alert("Data updated successfully");
+            }).catch((err) => {
+                alert("Unsuccessful")
+            })
+        }
+
+        function deleteData(){
+            remove(ref(db, 'blogs/' + uid))
+            .then(() => {
+                alert("Data deleted successfully");
+            }).catch((err) => {
+                alert("Unsuccessful")
+            })
+        }
+
+        newPostBtn.addEventListener('click', AddData);
+        editBtn.addEventListener('click', updateData);
+        deleteBtn.addEventListener('click', deleteData);
+
+      </script>
     
 </body>
 </html>

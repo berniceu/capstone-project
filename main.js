@@ -214,28 +214,7 @@ function sendEmail(){
 
 
 
-// prevent login form submission
 
-/*const loginForm = document.getElementById('login-form');
-if (loginForm){
-    loginForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-    
-        let hasError = false;
-        contactInputs.forEach(input => {
-            if (input.classList.contains('error')) {
-                hasError = true;
-            }
-        });
-    
-        if (hasError){
-            alert("Please fill out all field");
-        }else {
-            loginForm.submit();
-        }
-    
-    })
-}*/
 
 
 
@@ -322,41 +301,6 @@ if (confirmPassword){
 /*if (contactBtn){
     contactBtn.addEventListener('click', sendEmail);
 }*/
-
-
-
-// store sign up information
-
-const signupBtn = document.querySelector('.signup-button');
-const username = document.getElementById('name');
-const email = document.getElementById('email');
-const password = document.getElementById('password');
-
-if (signupBtn){
-    signupBtn.addEventListener('click', storeSignUp)
-}
-
-function storeSignUp(){
-    if (username.value && email.value && password.value){
-        localStorage.setItem("name", username.value);
-        localStorage.setItem("email", email.value);
-        localStorage.setItem("password",  password.value);
-
-        username.value = '';
-        email.value = '';
-        password.value = '';
-
-        alert("Signed Up successfully!");
-    } else {
-        alert("Please fill in all fields.")
-    }
-
-    
-    
-
-    
-}
-
 
 
 const publishBtn = document.getElementById('publish');
