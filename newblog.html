@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Brand | Read Blog</title>
+    <link rel="stylesheet" href="styles/blogs.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fascinate&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+    
+    <div class="header">
+        <header>
+            <a href="blogs.html"><h1>BERNICE</h1></a>
+            
+        </header>
+    </div>
+
+    <div class="row">
+        
+        <div class="column">
+            <h3>Break Into Tech</h3>
+            <h5>3rd October, 2024</h5>
+            <div class="img-container">
+            
+                
+            </div>
+            <div class="paragraph">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                    Fugiat consequuntur, blanditiis illo quidem animi vitae ad numquam
+                    impedit corporis, id ipsa rerum nostrum molestias temporibus modi dicta qui facilis! Rem!</p>
+
+
+                <p>   Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut debitis nam tempora omnis dolorum. Fugiat, distinctio. Neque ab ducimus a voluptas. Labore ratione deserunt molestiae consequuntur blanditiis nemo non quae.
+                    Explicabo delectus voluptates iusto illum laborum tenetur vero sed, expedita, neque aspernatur nostrum quisquam soluta enim aliquam cumque, quod natus dolore ut. Dignissimos ullam sequi autem rem ea ipsa tenetur!
+                    Sapiente quo dignissimos nulla natus nesciunt quisquam voluptas sint nemo praesentium fugit optio voluptates magni, saepe tenetur eos neque corporis quibusdam dicta dolor sequi architecto voluptatum velit expedita. Sunt, exercitationem?
+
+                </p>
+
+                <p>
+                    Fuga quidem non officiis accusantium autem, atque voluptas modi explicabo temporibus saepe possimus illum officia repellat adipisci tempora culpa quos corrupti aliquid voluptatibus aut cumque optio! Vitae, voluptate dolorem. Necessitatibus!
+                    Sunt ipsam commodi aspernatur voluptatibus explicabo quia veritatis unde necessitatibus suscipit dolore. Odio quibusdam est accusamus iusto libero magni cupiditate aliquid sunt, id tenetur accusantium ut neque quas ratione aut.
+                    Mollitia iusto dignissimos exercitationem provident inventore aliquam libero tenetur odio perferendis cumque, distinctio, esse fugit rem minima ea ab ipsam ullam non voluptatibus at dolore laborum facilis? Vel, maxime asperiores.
+                    Adipisci saepe enim, cumque eum tempora sunt! Commodi obcaecati sint eum? Aliquid quos odio, quasi libero sunt ullam molestiae odit. Mollitia soluta dolor quos ipsum sed nisi animi maiores. Perferendis.
+                </p>
+                
+            </div>
+            
+
+        </div>
+
+        <div class="likes-comments">
+            <i class="fa-solid fa-heart"></i>
+            <span class="likes-number">0 Likes</span>
+            <i class="fa-solid fa-comment"></i>
+            <span class="comment-span">0 Comments</span>
+        </div>
+
+        
+        
+        <div class="comment-section hidden">
+
+
+            <h4>Leave A Comment</h4>
+            <div class="new-comment">
+            
+            </div>
+            <form action="" class="comment-form">
+                <input type="text" name="name" placeholder="Name" class="commenter-name item" autocomplete="name">
+                <textarea name="textarea" class="comment-text item" cols="80" rows="10" placeholder="Enter your comment..."></textarea>
+
+                <button type="submit" class="button">Comment</button>
+            </form>
+
+            
+        </div>
+    </div>
+    
+    <script>
+        const newImgUrl = localStorage.getItem('image');
+
+        if (newImgUrl){
+            const img = new Image();
+            img.src = newImgUrl;
+
+           const imgContainer =  document.querySelector('.img-container');
+           if (imgContainer){
+            imgContainer.appendChild(img);
+           }
+        }
+        
+
+      </script>
+    <script src="https://kit.fontawesome.com/53de108cc6.js" crossorigin="anonymous"></script>
+</body>
+</html>

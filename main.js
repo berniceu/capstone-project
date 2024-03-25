@@ -112,7 +112,7 @@ const capitalLetter = document.querySelector('.capital');
 const lowercase = document.querySelector('.lowercase');
 const passwordNumber = document.querySelector('.number');
 const specialChar = document.querySelector('.special-character');
-const requirement = document.querySelector('.requirement');
+
 const showConfirm = document.getElementById('show-confirm-password');
 
 // show password
@@ -146,6 +146,7 @@ if(showConfirm){
 const contactForm = document.querySelector(".contact-form");
 const emailValid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const userEmail = document.getElementById('useremail');
+const requirements = document.querySelector('requirements');
 let hasError = false;
 
 contactInputs.forEach(input => {
@@ -214,86 +215,31 @@ function sendEmail(){
 
 
 
-// prevent login form submission
 
-/*const loginForm = document.getElementById('login-form');
-if (loginForm){
-    loginForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-    
-        let hasError = false;
-        contactInputs.forEach(input => {
-            if (input.classList.contains('error')) {
-                hasError = true;
-            }
-        });
-    
-        if (hasError){
-            alert("Please fill out all field");
-        }else {
-            loginForm.submit();
-        }
-    
-    })
-}*/
 
 
 
 if (signupPassword){
     signupPassword.addEventListener('input', validatePassword );
 
-
+}
 // validate password
 
 function validatePassword(){
-    let isValid = true;
-
-    passwordLength.classList.remove('valid');
-    capitalLetter.classList.remove('valid');
-    lowercase.classList.remove('valid');
-    passwordNumber.classList.remove('valid');
-    specialChar.classList.remove('valid');
     
-    
-    if (signupPassword.value.length >= 8) {
-        passwordLength.classList.add('valid');
+    if (signupPassword.value.length >= 8
+        && /[A-Z]/g.test(signupPassword.value) &&
+        /[a-z]/g.test(signupPassword.value) && 
+        /\d/g.test(signupPassword.value) &&
+        /[#.?!@$%^&*\-_]/g.test(signupPassword.value)) {
         
-    } else {
-        isValid = false;
-    }
-    if (/[A-Z]/g.test(signupPassword.value)) {
-        capitalLetter.classList.add('valid');
-    } else {
-        isValid = false;
-    }
-    if (/[a-z]/g.test(signupPassword.value)) {
-        lowercase.classList.add('valid');
-    } else {
-        isValid = false;
-    }
-    if (/\d/g.test(signupPassword.value)) {
-        passwordNumber.classList.add('valid');
-    } else {
-        isValid = false;
-    }
-    if (/[#.?!@$%^&*\-_]/g.test(signupPassword.value)) {
-        specialChar.classList.add('valid');
-    } else {
-        isValid = false;
-    }
-
-
-    if (!isValid){
-        signupPassword.classList.add('error');
-        signupPassword.parentElement.classList.add('error');
-    } else {
         signupPassword.classList.remove('error');
         signupPassword.parentElement.classList.remove('error');
 
 
-    }
-
-
+    } else {
+        signupPassword.classList.add('error');
+        signupPassword.parentElement.classList.add('error');
     }
 
 }
@@ -322,41 +268,6 @@ if (confirmPassword){
 /*if (contactBtn){
     contactBtn.addEventListener('click', sendEmail);
 }*/
-
-
-
-// store sign up information
-
-const signupBtn = document.querySelector('.signup-button');
-const username = document.getElementById('name');
-const email = document.getElementById('email');
-const password = document.getElementById('password');
-
-if (signupBtn){
-    signupBtn.addEventListener('click', storeSignUp)
-}
-
-function storeSignUp(){
-    if (username.value && email.value && password.value){
-        localStorage.setItem("name", username.value);
-        localStorage.setItem("email", email.value);
-        localStorage.setItem("password",  password.value);
-
-        username.value = '';
-        email.value = '';
-        password.value = '';
-
-        alert("Signed Up successfully!");
-    } else {
-        alert("Please fill in all fields.")
-    }
-
-    
-    
-
-    
-}
-
 
 
 const publishBtn = document.getElementById('publish');
@@ -407,7 +318,7 @@ if (publishBtn){
             <div class="blogs">
                 <div class="new-article">
                     <div class="blog-title">
-                        <h3>${articleData.title}</h3>
+                        <a href="newblog.html" class="blog-link">${articleData.title}</a>
                     </div>
                     <p class="blog-story">${articleData.story}</p>
 
@@ -466,7 +377,7 @@ if (publishBtn){
     
 }
 
-if (hiddenPost){
+/*if (hiddenPost){
     hiddenPost.addEventListener('submit', (e) => {
         e.preventDefault();
         const index = parseInt(hiddenPost.dataset.index);
@@ -497,7 +408,7 @@ function renderArticles(articles) {
         <div class="blogs">
             <div class="new-article">
                 <div class="blog-title">
-                    <h3>${articleData.title}</h3>
+                    <h3><a href="newblog.html" class="blog-link">${articleData.title}</a></h3>
                 </div>
                 <p class="blog-story">${articleData.story}</p>
 
@@ -505,7 +416,7 @@ function renderArticles(articles) {
                 <span>0 Likes</span>
 
                 <i class="fa-solid fa-comment"></i>
-                <span>10 Comments</span>
+                <span>0 Comments</span>
 
                 <i class="fa-solid fa-pen edit-button" data-index="${index}"></i>
                 <span>Edit</span>
@@ -517,7 +428,7 @@ function renderArticles(articles) {
 
         newArticleContainer.appendChild(post);
     });
-}
+}*/
 
 
 
@@ -645,3 +556,32 @@ if (commentForm){
         commentText.value = '';
     })
 }
+
+// add image to localStorage
+
+const inputEl = document.getElementById('blog-image');
+const newblogImg = document.getElementById('newblog-img');
+
+if (inputEl){
+    inputEl.addEventListener('change', () => {
+        const file = inputEl.files[0];
+
+        const fr = new FileReader();
+        fr.readAsDataURL(file);
+        
+
+        fr.addEventListener('load', () => {
+            const url = fr.result
+            const img = new Image();
+            img.src = url;
+            localStorage.setItem('image', url);
+        })
+    })
+}
+
+
+
+
+
+
+

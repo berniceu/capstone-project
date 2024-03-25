@@ -32,16 +32,19 @@
                 <input type="email" placeholder="Email Address" id="signup-email" class="item" autocomplete="email">
                 <div class="error-text">Email Address can't be blank</div>
             </div>
-            <div class="input-field signup-password">
-                <input type="password" placeholder="Password" id="passwordInput" required>
-            <div class="checkbox-div">
-                <input type="checkbox" id="show-password" class="show-password">
-                <label for="show-password">Show Password</label>
-            </div>
+            <div class="input-field">
+                <input type="password" placeholder="Password" id="passwordInput" title="Password must have 8+ characters, including uppercase, lowercase, number, and special character" required>
+                <div class="checkbox-div">
+                    <input type="checkbox" id="show-password" class="show-password">
+                    <label for="show-password">Show Password</label>
+                </div>
                 
                 <div class="error-text">
                     
-                    <span class="requirements">Password should have 8 or more characters, include lowercase and uppercase letters, number and special character</span><br>
+                    <div>
+                        Password must meet requirements
+                    </div>
+                    
                    
                 </div>
             </div>
