@@ -215,9 +215,9 @@
                         <div class="blog-form">
                             <form action="">
                                 <input type="file" name="blog-image" id="blog-image">
-                                <input type="text" id="title" placeholder="Title"/>
+                                <input type="text" name="title" id="title" placeholder="Title"/>
                                 <textarea name="story" id="story" rows="10" placeholder="Tell Your Story..."></textarea>
-                                <button class="button" id="publish">Publish</button>
+                                <button class="button" id="publish" onclick="save()">Publish</button>
                             </form>
                             
                         </div>
@@ -229,82 +229,8 @@
 
     <script src="https://kit.fontawesome.com/53de108cc6.js" crossorigin="anonymous"></script>
     <script src="main.js"></script>
-    <script type="module">
-        
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
-        import { getDatabase, ref, child, get, set, update, remove } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js"
-        
-        const firebaseConfig = {
-          apiKey: "AIzaSyAFgbqbDKaIwR-lDCyDiIdodM6AybnSGzk",
-          authDomain: "crud-b8907.firebaseapp.com",
-          databaseURL: "https://crud-b8907-default-rtdb.europe-west1.firebasedatabase.app",
-          projectId: "crud-b8907",
-          storageBucket: "crud-b8907.appspot.com",
-          messagingSenderId: "622039098639",
-          appId: "1:622039098639:web:2842be5216f1eebf47ca7a"
-        };
-      
-        
-        const app = initializeApp(firebaseConfig);
-        const db = getDatabase();
-        const blogTitle = document.querySelector('.blog-title h3');
-        const blogParagraph = document.querySelector('.blogs p');
-        
-        const newPostBtn = document.getElementById('new-post-button');
-        const editBtn = document.querySelector('.fa-solid.fa-pen');
-        const deleteBtn = document.querySelector('.fa-solid.fa-trash');
-
-        
-        function AddData(){
-            set(ref(db, 'blogs/').push(), {
-                title: blogTitle.value,
-                blog: blogParagraph.value
-            }).then(() => {
-                alert("Data added successfully");
-            }).catch((err) => {
-                alert("Unsuccessful")
-            })
-        }
-
-        function ReturnData(){
-            const dbRef = ref(db);
-
-            get(child(dbRef, 'blogs/' + uid))
-            .then((snap) => {
-                if (snap.exists()){
-                    blogTitle.value = snap.val().title;
-                    blogParagraph.value = snap.val().blog;
-                }
-            }).catch((err) => {
-                alert("Unsuccessful");
-            })
-        }
-
-        function updateData(){
-            update(ref(db, 'blogs/' + uid), {
-                title: blogTitle.value,
-                blog: blogParagraph.value
-            }).then(() => {
-                alert("Data updated successfully");
-            }).catch((err) => {
-                alert("Unsuccessful")
-            })
-        }
-
-        function deleteData(){
-            remove(ref(db, 'blogs/' + uid))
-            .then(() => {
-                alert("Data deleted successfully");
-            }).catch((err) => {
-                alert("Unsuccessful")
-            })
-        }
-
-        newPostBtn.addEventListener('click', AddData);
-        editBtn.addEventListener('click', updateData);
-        deleteBtn.addEventListener('click', deleteData);
-
-      </script>
+    
+    
     
 </body>
 </html>

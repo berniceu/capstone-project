@@ -112,7 +112,7 @@ const capitalLetter = document.querySelector('.capital');
 const lowercase = document.querySelector('.lowercase');
 const passwordNumber = document.querySelector('.number');
 const specialChar = document.querySelector('.special-character');
-const requirement = document.querySelector('.requirement');
+
 const showConfirm = document.getElementById('show-confirm-password');
 
 // show password
@@ -146,6 +146,7 @@ if(showConfirm){
 const contactForm = document.querySelector(".contact-form");
 const emailValid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const userEmail = document.getElementById('useremail');
+const requirements = document.querySelector('requirements');
 let hasError = false;
 
 contactInputs.forEach(input => {
@@ -221,58 +222,24 @@ function sendEmail(){
 if (signupPassword){
     signupPassword.addEventListener('input', validatePassword );
 
-
+}
 // validate password
 
 function validatePassword(){
-    let isValid = true;
-
-    passwordLength.classList.remove('valid');
-    capitalLetter.classList.remove('valid');
-    lowercase.classList.remove('valid');
-    passwordNumber.classList.remove('valid');
-    specialChar.classList.remove('valid');
     
-    
-    if (signupPassword.value.length >= 8) {
-        passwordLength.classList.add('valid');
+    if (signupPassword.value.length >= 8
+        && /[A-Z]/g.test(signupPassword.value) &&
+        /[a-z]/g.test(signupPassword.value) && 
+        /\d/g.test(signupPassword.value) &&
+        /[#.?!@$%^&*\-_]/g.test(signupPassword.value)) {
         
-    } else {
-        isValid = false;
-    }
-    if (/[A-Z]/g.test(signupPassword.value)) {
-        capitalLetter.classList.add('valid');
-    } else {
-        isValid = false;
-    }
-    if (/[a-z]/g.test(signupPassword.value)) {
-        lowercase.classList.add('valid');
-    } else {
-        isValid = false;
-    }
-    if (/\d/g.test(signupPassword.value)) {
-        passwordNumber.classList.add('valid');
-    } else {
-        isValid = false;
-    }
-    if (/[#.?!@$%^&*\-_]/g.test(signupPassword.value)) {
-        specialChar.classList.add('valid');
-    } else {
-        isValid = false;
-    }
-
-
-    if (!isValid){
-        signupPassword.classList.add('error');
-        signupPassword.parentElement.classList.add('error');
-    } else {
         signupPassword.classList.remove('error');
         signupPassword.parentElement.classList.remove('error');
 
 
-    }
-
-
+    } else {
+        signupPassword.classList.add('error');
+        signupPassword.parentElement.classList.add('error');
     }
 
 }
