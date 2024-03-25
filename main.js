@@ -574,7 +574,12 @@ if (inputEl){
             const url = fr.result
             const img = new Image();
             img.src = url;
-            localStorage.setItem('image', url);
+            
+
+            const timestamp = Date.now();
+            const key = `image_${timestamp}`;
+            localStorage.setItem(key, url);
+
         })
     })
 }
