@@ -154,14 +154,14 @@
             <div class="blogs-container">
                 <div class="blogs">
                     <div class="blog-title">
-                        <h3>Blog 1</h3>
+                        <h3><a href="readblog.html" class="blog-link">Break Into Tech</a></h3>
                     </div>
-                    <p>How I got into software engineering</p>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam quisquam atque in expedita porro quae dolores ab doloribus vero. </p>
     
                     <i class="fa-solid fa-heart"></i>
-                    <span class="likes-number">10 <span>Likes</span></span>
+                    <span class="likes-number">0 <span>Likes</span></span>
                     <i class="fa-solid fa-comment"></i>
-                    <span>10 Comments</span>
+                    <span>0 Comments</span>
                     
                     <i class="fa-solid fa-pen"></i>
                     <span>Edit</span>
@@ -171,16 +171,14 @@
     
                 <div class="blogs">
                     <div class="blog-title">
-                        <h3>Blog 1</h3>
+                        <h3><a href="readblog.html" class="blog-link">Break Into Tech</a></h3>
                     </div>
-                    <p>How I got into software engineering</p>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam quisquam atque in expedita porro quae dolores ab doloribus vero. </p>
     
-    
-                        <i class="fa-solid fa-heart" id="heart"></i>
-                        <span>10 Likes</span>
-                    
+                    <i class="fa-solid fa-heart"></i>
+                    <span class="likes-number">0 <span>Likes</span></span>
                     <i class="fa-solid fa-comment"></i>
-                    <span>10 Comments</span>
+                    <span>0 Comments</span>
                     
                     <i class="fa-solid fa-pen"></i>
                     <span>Edit</span>
@@ -190,14 +188,14 @@
     
                 <div class="blogs">
                     <div class="blog-title">
-                        <h3>Blog 1</h3>
+                        <h3><a href="readblog.html" class="blog-link">Break Into Tech</a></h3>
                     </div>
-                    <p>How I got into software engineering</p>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam quisquam atque in expedita porro quae dolores ab doloribus vero. </p>
     
                     <i class="fa-solid fa-heart"></i>
-                    <span>10 Likes</span>
+                    <span class="likes-number">0 <span>Likes</span></span>
                     <i class="fa-solid fa-comment"></i>
-                    <span>10 Comments</span>
+                    <span>0 Comments</span>
                     
                     <i class="fa-solid fa-pen"></i>
                     <span>Edit</span>
@@ -213,14 +211,13 @@
 
                 <div class="create-article hidden">
                     <div class="create-article-container">
-                        <form>
-                            <input type="text" id="title" placeholder="Title"/>
-                            
-                        </form>
+                        
                         <div class="blog-form">
                             <form action="">
+                                <input type="file" name="blog-image" id="blog-image">
+                                <input type="text" name="title" id="title" placeholder="Title"/>
                                 <textarea name="story" id="story" rows="10" placeholder="Tell Your Story..."></textarea>
-                                <button class="button" id="publish">Publish</button>
+                                <button class="button" id="publish" onclick="save()">Publish</button>
                             </form>
                             
                         </div>
@@ -232,6 +229,8 @@
 
     <script src="https://kit.fontawesome.com/53de108cc6.js" crossorigin="anonymous"></script>
     <script src="main.js"></script>
+    
+    
     
 </body>
 </html>

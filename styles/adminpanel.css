@@ -327,8 +327,9 @@ span:hover{
 #title{
     outline: none;
     border: none;
-    height: 25px;
+    height: 30px;
     font-size: 25px;
+    margin-bottom: 1rem;
 
 }
 
@@ -357,4 +358,18 @@ span:hover{
 
 #new-post-button{
     margin-top: 1rem;
+}
+
+.blog-link{
+    color: #E5989B;
+    text-decoration: none;
+}
+
+.blog-link:hover{
+    text-decoration: underline;
+}
+
+#blog-image{
+    padding-bottom: 1rem;
+
 }
