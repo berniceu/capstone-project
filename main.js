@@ -318,7 +318,7 @@ if (publishBtn){
             <div class="blogs">
                 <div class="new-article">
                     <div class="blog-title">
-                        <h3>${articleData.title}</h3>
+                        <a href="newblog.html" class="blog-link">${articleData.title}</a>
                     </div>
                     <p class="blog-story">${articleData.story}</p>
 
@@ -377,7 +377,7 @@ if (publishBtn){
     
 }
 
-if (hiddenPost){
+/*if (hiddenPost){
     hiddenPost.addEventListener('submit', (e) => {
         e.preventDefault();
         const index = parseInt(hiddenPost.dataset.index);
@@ -408,7 +408,7 @@ function renderArticles(articles) {
         <div class="blogs">
             <div class="new-article">
                 <div class="blog-title">
-                    <h3>${articleData.title}</h3>
+                    <h3><a href="newblog.html" class="blog-link">${articleData.title}</a></h3>
                 </div>
                 <p class="blog-story">${articleData.story}</p>
 
@@ -416,7 +416,7 @@ function renderArticles(articles) {
                 <span>0 Likes</span>
 
                 <i class="fa-solid fa-comment"></i>
-                <span>10 Comments</span>
+                <span>0 Comments</span>
 
                 <i class="fa-solid fa-pen edit-button" data-index="${index}"></i>
                 <span>Edit</span>
@@ -428,7 +428,7 @@ function renderArticles(articles) {
 
         newArticleContainer.appendChild(post);
     });
-}
+}*/
 
 
 
@@ -556,3 +556,32 @@ if (commentForm){
         commentText.value = '';
     })
 }
+
+// add image to localStorage
+
+const inputEl = document.getElementById('blog-image');
+const newblogImg = document.getElementById('newblog-img');
+
+if (inputEl){
+    inputEl.addEventListener('change', () => {
+        const file = inputEl.files[0];
+
+        const fr = new FileReader();
+        fr.readAsDataURL(file);
+        
+
+        fr.addEventListener('load', () => {
+            const url = fr.result
+            const img = new Image();
+            img.src = url;
+            localStorage.setItem('image', url);
+        })
+    })
+}
+
+
+
+
+
+
+
