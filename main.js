@@ -63,6 +63,8 @@ if (toggleButton){
 
 
 
+
+
 // add animation on scroll
 
 let sections = document.querySelectorAll('.section');
@@ -173,6 +175,8 @@ contactInputs.forEach(input => {
     
 });
 
+const userName = document.getElementById('username');
+const query = document.querySelector('.contact-form textarea');
 if(contactForm){
     contactForm.addEventListener('submit', (e) => {
         
@@ -181,7 +185,8 @@ if(contactForm){
         if (hasError){
             alert("Please fill out all fields correctly");
         } else {
-            alert("Message sent successfully")
+            alert("Message sent successfully");
+            sendEmail();
         }
     })
 }
@@ -190,8 +195,6 @@ if(contactForm){
 
 // send email using smtp
 
-/*const userName = document.getElementById('username');
-const query = document.querySelector('.contact-form textarea');
 
 function sendEmail(){
     
@@ -206,12 +209,12 @@ function sendEmail(){
         Email: ${userEmail.value}<br>
         Message: ${query.value}<br>`
     }).then(
-      message => alert("message sent successfully")
+      (response) => alert("message sent successfully")
     ).catch (err => {
         alert("Failed to send message");
         console.log(err)
     });
-}*/
+}
 
 
 
@@ -297,9 +300,7 @@ if (publishBtn){
     publishBtn.addEventListener('click', (e) => {
         e.preventDefault();
 
-     //   let count = 1;
         let data = {
-    //        id: count,
             title: articleTitle.value,
             story: article.value
         };
@@ -310,77 +311,24 @@ if (publishBtn){
         localStorage.setItem("data", JSON.stringify(newArticles));
         newArticleContainer.innerHTML = ''
         
-        newArticles.forEach((articleData, index) => {
-            const post = document.createElement('div');
-            post.classList.add('new-blog');
-        
-            post.innerHTML = `
-            <div class="blogs">
-                <div class="new-article">
-                    <div class="blog-title">
-                        <a href="newblog.html" class="blog-link">${articleData.title}</a>
-                    </div>
-                    <p class="blog-story">${articleData.story}</p>
-
-                    <i class="fa-solid fa-heart" id="heart"></i>
-                    <span>0 Likes</span>
-
-                    <i class="fa-solid fa-comment"></i>
-                    <span>10 Comments</span>
-
-                    <i class="fa-solid fa-pen edit-button" data-index="${index}"></i>
-                    <span>Edit</span>
-
-                    <i class="fa-solid fa-trash delete-button" data-index="${index}"></i>
-                    <span>Delete</span>
-                </div>
-            </div>`
-            
-    
-    
-            newArticleContainer.appendChild(post);
-
-            hiddenPost.style.display = 'none';
-
-            const deleteBtn = post.querySelector('.delete-button');
-            if (deleteBtn) {
-                deleteBtn.addEventListener('click', () => {
-                    post.remove();
-                    const deleteArticle = parseInt(deleteBtn.dataset.index);
-                    newArticles.splice(deleteArticle, 1);
-
-                    localStorage.setItem('data', JSON.stringify(newArticles));
-                    
-                })
-            }
-            const editBtn = post.querySelector('.edit-button');
-            editBtn.addEventListener('click', () => {
-                hiddenPost.style.display = 'block';
-                hiddenPost.dataset.index = index;
-                articleTitle.value = articleData.title;
-                article.value = articleData.story;
-
-                
-                    
-            
-
-            });
-
-
-        });
+        renderArticles(newArticles);
 
         article.value = '';
         articleTitle.value = '';
         hiddenPost.style.display = 'none';
-    });
 
-    
-}
 
-/*if (hiddenPost){
+        });
+
+        
+    };
+
+
+if (hiddenPost){
     hiddenPost.addEventListener('submit', (e) => {
         e.preventDefault();
         const index = parseInt(hiddenPost.dataset.index);
+        console.log(index);
         const editedData = {
             title: articleTitle.value,
             story: article.value
@@ -427,8 +375,32 @@ function renderArticles(articles) {
         </div>`
 
         newArticleContainer.appendChild(post);
+
+        const deleteBtn = post.querySelector('.delete-button');
+            if (deleteBtn) {
+                deleteBtn.addEventListener('click', () => {
+                    post.remove();
+                    const deleteArticle = parseInt(deleteBtn.dataset.index);
+
+                    articles.splice(deleteArticle, 1);
+
+                    localStorage.setItem('data', JSON.stringify(articles));
+                    
+                })
+            }
+
+            const editBtn = post.querySelector('.edit-button');
+            editBtn.addEventListener('click', () => {
+                hiddenPost.style.display = 'block';
+                hiddenPost.dataset.index = index;
+                articleTitle.value = articleData.title;
+                article.value = articleData.story;
+
+            });
+
+
     });
-}*/
+}
 
 
 
