@@ -1,9 +1,11 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-PORT = 5500;
+const path = require('path');
+const router = express.Router();
 
-DB_URL = 'mongodb://localhost:27017/my-brand';
+const PORT = 3000;
+const DB_URL = 'mongodb://localhost:27017/my-brand';
 
 // connect to mongodb
 
@@ -18,15 +20,47 @@ conn.on('error', () => {
     console.log('error connecting to database');
 })
 
+// render html files
+
+app.use('/styles', express.static(path.join(__dirname, 'styles')));
+app.use('/images', express.static(path.join(__dirname, 'images')));
+app.use(express.static(__dirname));
+
+router.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname+'/index.html'));
+
+})
+
+router.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname+'/login.html'));
+
+})
+router.get('/register', (req, res) => {
+    res.sendFile(path.join(__dirname+'/register.html'));
+
+})
+
+app.use('/', router);
+app.listen(process.env.port || PORT);
+
+// app.get('/', (req, res) => {
+//     res.sendFile('login.html')
+// });
+
+// app.get('/', (req, res) => {
+//     res.sendFile('register.html')
+// });
+
+// app.listen(PORT);
+
+
 
 /*const posts = [{
     username: 'Bernice',
     title: 'Post 1'
 }]
 
-app.get('/posts', (req, res) => {
-    res.json(posts)
-})
+
 
 app.get('/login', (req, res))
 
