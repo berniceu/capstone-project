@@ -2,6 +2,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 const Blogs = require('./models/blogsModel');
+const userData = require('./models/userData');
+const jwt = require('jsonwebtoken');
+
 
 
 
@@ -14,7 +17,7 @@ app.get('/', (req, res) => {
     res.send('hello world');
 })
 
-app.get('/blog', async (req, res) => {
+app.get('/blogs', async (req, res) => {
     try{
 
         const blogs = await Blogs.find({});
@@ -25,7 +28,7 @@ app.get('/blog', async (req, res) => {
     }
 })
 
-app.post('/blog', async (req, res) => {
+app.post('/blogs', async (req, res) => {
 
     try{
         const blog = await Blogs.create(req.body)
@@ -38,7 +41,7 @@ app.post('/blog', async (req, res) => {
     
 })
 
-app.get('/blog/:id', async(req, res) => {
+app.get('/blogs/:id', async(req, res) => {
     try {
         const { id } = req.params
         const blog = await Blogs.findById(id);
@@ -49,7 +52,7 @@ app.get('/blog/:id', async(req, res) => {
 })
 
 // update blog
-app.put('/blog/:id', async(req, res) => {
+app.put('/blogs/:id', async(req, res) => {
     try{
         const { id } = req.params;
         const blog = await Blogs.findByIdAndUpdate(id, req.body);
@@ -66,7 +69,7 @@ app.put('/blog/:id', async(req, res) => {
 
 // delete blog
 
-app.delete('/blog/:id', async(req, res) => {
+app.delete('/blogs/:id', async(req, res) => {
     try {
         const { id } = req.params;
         const blog = await Blogs.findByIdAndDelete(id);
@@ -76,6 +79,49 @@ app.delete('/blog/:id', async(req, res) => {
     }
 })
 
+// create user
+app.post('/signup', async (req, res) => {
+    const data = {
+        fullName: req.body.fullName,
+        email: req.body.email,
+        password: req.body.password
+    }
+
+    const existingUser = await userData.findOne({fullName: data.fullName});
+
+    if(existingUser){
+        res.send('User already exists')
+    } else {
+        const userInfo = await userData.insertMany(data)
+    }
+
+    
+})
+
+
+// login
+
+app.post('/login', async (req, res) => {
+
+    try{
+        const { email, password } = req.params;
+
+        const user = await userData.findOne({email:req.body.email});
+
+        if(!user){
+            res.send("User cannot be found")
+        }
+
+        if(!req.body.password === user.password){
+            res.send("Incorrect password")
+        }
+    } catch(err){
+        console.log(err)
+    }
+    
+
+
+})
 
 
 
