@@ -6,10 +6,12 @@
   "dependencies": {
     "ansi-styles": "^4.3.0",
     "async": "^3.2.5",
+    "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "chalk": "^4.1.2",
     "color-convert": "^2.0.1",
     "color-name": "^1.1.4",
+    "dotenv": "^16.4.5",
     "ejs": "^3.1.9",
     "express": "^4.19.2",
     "filelist": "^1.0.4",

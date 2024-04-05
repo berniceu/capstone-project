@@ -4,6 +4,8 @@ const app = express();
 const Blogs = require('./models/blogsModel');
 const userData = require('./models/userData');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+const dotenv = require('dotenv').config();
 
 
 
@@ -80,40 +82,18 @@ app.delete('/blogs/:id', async(req, res) => {
 })
 
 // create user
-app.post('/signup', async (req, res) => {
-    const data = {
-        fullName: req.body.fullName,
-        email: req.body.email,
-        password: req.body.password
-    }
 
-    const existingUser = await userData.findOne({fullName: data.fullName});
-
-    if(existingUser){
-        res.send('User already exists')
-    } else {
-        const userInfo = await userData.insertMany(data)
-    }
-
-    
-})
-
-
-// login
-
-app.post('/login', async (req, res) => {
-
+app.post('/signup', async(req, res) => {
     try{
-        const { email, password } = req.params;
+        const newUser = new userData(req.body);
+        newUser.hash_password = bcrypt.hashSync(req.body.password, 10);
+        const existingUser = await userData.findOne({email: newUser.email})
 
-        const user = await userData.findOne({email:req.body.email});
-
-        if(!user){
-            res.send("User cannot be found")
-        }
-
-        if(!req.body.password === user.password){
-            res.send("Incorrect password")
+        if (existingUser){
+            return res.status(400).json({message: "User already exists"})
+        } else{
+            const savedUser = await newUser.save();
+            res.status(200).json(savedUser);
         }
     } catch(err){
         console.log(err)
@@ -121,7 +101,34 @@ app.post('/login', async (req, res) => {
     
 
 
+})  
+
+// login
+
+app.post('/login', async(req, res) => {
+    try{
+
+        const { email, password } = req.body;
+        const user = await userData.findOne({ email });
+
+        if (!user){
+            return res.status(404).json({message: "User not found"});
+
+        }
+
+        if (!bcrypt.compareSync(password, user.hash_password)){
+            return res.status(401).json({message: "Incorrect password"});
+        }
+
+        const accessToken = jwt.sign({ email: user.email}, process.env.ACCESS_TOKEN_SECRET);
+        res.status(200).json({ accessToken });
+
+    } catch(err){
+        console.log(err)
+    }
 })
+
+
 
 
 
