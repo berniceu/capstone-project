@@ -121,7 +121,7 @@ app.post('/login', async(req, res) => {
         }
 
         const accessToken = jwt.sign({ email: user.email}, process.env.ACCESS_TOKEN_SECRET);
-        res.status(200).json({ accessToken });
+        res.status(200).json({ message: "Logged In Successfully" });
 
     } catch(err){
         console.log(err)
