@@ -162,12 +162,12 @@ contactInputs.forEach(input => {
                 hasError = true;
                
             }
-             if (userEmail.value!== '' && !emailValid.test(userEmail.value.trim())){
-                userEmail.classList.add("error");
-                userEmail.parentElement.classList.add("error");
-                document.querySelector('.email.error-text').textContent = "Enter valid email";
-                hasError = true
-            }
+            //  if (userEmail.value!== '' && !emailValid.test(userEmail.value.trim())){
+            //     userEmail.classList.add("error");
+            //     userEmail.parentElement.classList.add("error");
+            //     document.querySelector('.email.error-text').textContent = "Enter valid email";
+            //     hasError = true
+            // }
         });
     }
     
@@ -293,145 +293,89 @@ if (newPostBtn){
 
 // add article to localStorage and delete
 
-if (publishBtn){
-    publishBtn.addEventListener('click', (e) => {
-        e.preventDefault();
+// if (publishBtn){
+//     publishBtn.addEventListener('click', (e) => {
+//         e.preventDefault();
 
-     //   let count = 1;
-        let data = {
-    //        id: count,
-            title: articleTitle.value,
-            story: article.value
-        };
+//      //   let count = 1;
+//         let data = {
+//     //        id: count,
+//             title: articleTitle.value,
+//             story: article.value
+//         };
         
-        const newArticles = JSON.parse(localStorage.getItem('data')) || [];
-        newArticles.push(data);
+//         const newArticles = JSON.parse(localStorage.getItem('data')) || [];
+//         newArticles.push(data);
     
-        localStorage.setItem("data", JSON.stringify(newArticles));
-        newArticleContainer.innerHTML = ''
+//         localStorage.setItem("data", JSON.stringify(newArticles));
+//         newArticleContainer.innerHTML = ''
         
-        newArticles.forEach((articleData, index) => {
-            const post = document.createElement('div');
-            post.classList.add('new-blog');
+//         newArticles.forEach((articleData, index) => {
+//             const post = document.createElement('div');
+//             post.classList.add('new-blog');
         
-            post.innerHTML = `
-            <div class="blogs">
-                <div class="new-article">
-                    <div class="blog-title">
-                        <a href="newblog.html" class="blog-link">${articleData.title}</a>
-                    </div>
-                    <p class="blog-story">${articleData.story}</p>
+//             post.innerHTML = `
+//             <div class="blogs">
+//                 <div class="new-article">
+//                     <div class="blog-title">
+//                         <a href="newblog.html" class="blog-link">${articleData.title}</a>
+//                     </div>
+//                     <p class="blog-story">${articleData.story}</p>
 
-                    <i class="fa-solid fa-heart" id="heart"></i>
-                    <span>0 Likes</span>
+//                     <i class="fa-solid fa-heart" id="heart"></i>
+//                     <span>0 Likes</span>
 
-                    <i class="fa-solid fa-comment"></i>
-                    <span>10 Comments</span>
+//                     <i class="fa-solid fa-comment"></i>
+//                     <span>10 Comments</span>
 
-                    <i class="fa-solid fa-pen edit-button" data-index="${index}"></i>
-                    <span>Edit</span>
+//                     <i class="fa-solid fa-pen edit-button" data-index="${index}"></i>
+//                     <span>Edit</span>
 
-                    <i class="fa-solid fa-trash delete-button" data-index="${index}"></i>
-                    <span>Delete</span>
-                </div>
-            </div>`
+//                     <i class="fa-solid fa-trash delete-button" data-index="${index}"></i>
+//                     <span>Delete</span>
+//                 </div>
+//             </div>`
             
     
     
-            newArticleContainer.appendChild(post);
+//             newArticleContainer.appendChild(post);
 
-            hiddenPost.style.display = 'none';
+//             hiddenPost.style.display = 'none';
 
-            const deleteBtn = post.querySelector('.delete-button');
-            if (deleteBtn) {
-                deleteBtn.addEventListener('click', () => {
-                    post.remove();
-                    const deleteArticle = parseInt(deleteBtn.dataset.index);
-                    newArticles.splice(deleteArticle, 1);
+//             const deleteBtn = post.querySelector('.delete-button');
+//             if (deleteBtn) {
+//                 deleteBtn.addEventListener('click', () => {
+//                     post.remove();
+//                     const deleteArticle = parseInt(deleteBtn.dataset.index);
+//                     newArticles.splice(deleteArticle, 1);
 
-                    localStorage.setItem('data', JSON.stringify(newArticles));
+//                     localStorage.setItem('data', JSON.stringify(newArticles));
                     
-                })
-            }
-            const editBtn = post.querySelector('.edit-button');
-            editBtn.addEventListener('click', () => {
-                hiddenPost.style.display = 'block';
-                hiddenPost.dataset.index = index;
-                articleTitle.value = articleData.title;
-                article.value = articleData.story;
+//                 })
+//             }
+//             const editBtn = post.querySelector('.edit-button');
+//             editBtn.addEventListener('click', () => {
+//                 hiddenPost.style.display = 'block';
+//                 hiddenPost.dataset.index = index;
+//                 articleTitle.value = articleData.title;
+//                 article.value = articleData.story;
 
                 
                     
             
 
-            });
+//             });
 
 
-        });
+//         });
 
-        article.value = '';
-        articleTitle.value = '';
-        hiddenPost.style.display = 'none';
-    });
+//         article.value = '';
+//         articleTitle.value = '';
+//         hiddenPost.style.display = 'none';
+//     });
 
     
-}
-
-/*if (hiddenPost){
-    hiddenPost.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const index = parseInt(hiddenPost.dataset.index);
-        const editedData = {
-            title: articleTitle.value,
-            story: article.value
-        };
-    
-        newArticles[index] = editedData;
-        localStorage.setItem('data', JSON.stringify(newArticles));
-        renderArticles(newArticles);
-        hiddenPost.style.display = 'none';
-    
-    
-    });
-}
-
-
-
-
-function renderArticles(articles) {
-    newArticleContainer.innerHTML = '';
-    articles.forEach((articleData, index) => {
-        const post = document.createElement('div');
-        post.classList.add('new-blog');
-
-        post.innerHTML = `
-        <div class="blogs">
-            <div class="new-article">
-                <div class="blog-title">
-                    <h3><a href="newblog.html" class="blog-link">${articleData.title}</a></h3>
-                </div>
-                <p class="blog-story">${articleData.story}</p>
-
-                <i class="fa-solid fa-heart" id="heart"></i>
-                <span>0 Likes</span>
-
-                <i class="fa-solid fa-comment"></i>
-                <span>0 Comments</span>
-
-                <i class="fa-solid fa-pen edit-button" data-index="${index}"></i>
-                <span>Edit</span>
-
-                <i class="fa-solid fa-trash delete-button" data-index="${index}"></i>
-                <span>Delete</span>
-            </div>
-        </div>`
-
-        newArticleContainer.appendChild(post);
-    });
-}*/
-
-
-
+// }
 
 
 

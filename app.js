@@ -6,24 +6,33 @@ const userData = require('./models/userData');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const dotenv = require('dotenv').config();
+const path = require('path');
+const ejs = require('ejs');
+const cors = require('cors');
 
 
+// set ejs as view engine
+
+app.set('view engine', 'ejs');
+app.use(cors())
 
 
 //middleware
 app.use(express.json())
 
 
+
+
 //routes
 app.get('/', (req, res) => {
-    res.send('hello world');
+    res.sendFile('index.html', {root: __dirname})
 })
-
 app.get('/blogs', async (req, res) => {
     try{
 
         const blogs = await Blogs.find({});
-        res.status(200).json(blogs);
+        res.render('blogs', { blogs })
+        // res.status(200).json(blogs);
 
     } catch(err) {
         console.log(err.message)
