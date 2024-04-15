@@ -6,7 +6,18 @@ const userData = require('./models/userData');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const dotenv = require('dotenv').config();
-const path = require('path');
+// const path = require('path');
+// const fs = require('fs');
+// import {v2 as cloudinary} from 'cloudinary';
+// import { fstat } from 'fs';
+          
+// cloudinary.config({ 
+//   cloud_name: 'dsuqly03j', 
+//   api_key: '441768115284719', 
+//   api_secret: 'LwEz0mpEFE3o-WJPGp0Xw9Hz4wQ' 
+// });
+
+
 
 const cors = require('cors');
 
@@ -38,9 +49,22 @@ app.get('/blogs', async (req, res) => {
 app.post('/blogs', async (req, res) => {
 
     try{
-        const blog = await Blogs.create(req.body)
+       const blog = await Blogs.create(req.body);
+        // const { title, author, story } = req.body;
+        // const image = req.files['blog-image'][0];
+        // const cloudinaryResponse = await cloudinary.uploader.upload(image.path);
+
+        // const blog = await Blogs.create({
+        //     title,
+        //     author,
+        //     story,
+        //     blogImage: cloudinaryResponse.secure_url
+        // });
+        // fs.unlinkSync(image.path);
+
         res.status(200).json(blog)
          
+        
 
     } catch (err) {
         console.log(err.message)
@@ -135,9 +159,9 @@ app.post('/login', async(req, res) => {
 
 
 
+const PORT = process.env.port || 5000;
 
-
-app.listen(5000, () => {
+app.listen(PORT, () => {
     console.log('Node app running on port 5000')
 })
 

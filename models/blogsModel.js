@@ -3,10 +3,10 @@ const mongoose = require('mongoose')
 const blogSchema = mongoose.Schema({
     blogTitle: {type: String, required: true},
     blog: {type: String, required: true},
-    author: {type: String, required: false},
-    blogImage: {type: String, required: false}
-
-})
+    author: {type: String, required: true},
+    blogImage: {type: String, required: false},
+    
+}, { timestamps: true})
 
 
 

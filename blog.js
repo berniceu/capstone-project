@@ -1,3 +1,7 @@
+// import {Cloudinary} from "@cloudinary/url-gen";
+
+// const cld = new Cloudinary({cloud: {cloudName: 'dsuqly03j'}});
+
 const publishBtn = document.getElementById("publish");
 const article = document.getElementById("story");
 const articleTitle = document.getElementById("title");
@@ -25,10 +29,13 @@ blogForm.addEventListener("submit", async function (e) {
 
   const title = document.getElementById("title");
   const story = document.getElementById("story");
+  const author = document.getElementById('author');
+  const image = document.getElementById('blog-image').files[0];
 
   const blogData = {
     blogTitle: title.value,
     blog: story.value,
+    author: author.value
   };
 
   const baseUrl = "http://localhost:5000/blogs";
@@ -76,17 +83,19 @@ async function displayBlogs() {
         blogsContainer.appendChild(blogsDiv);
         const blogTitle = document.createElement("div");
         blogTitle.classList.add("blog-title");
-        blogTitle.textContent = `${blog.blogTitle}`;
+        blogTitle.innerHTML = `<h3>
+          <a href='/readblog.html?id=${blog._id}' class='blog-link'>${blog.blogTitle} </a>
+        </h3>`
         blogsDiv.appendChild(blogTitle);
-        const blogParagraph = document.createElement("p");
-        blogParagraph.textContent = `${blog.blog}`;
-        blogsDiv.appendChild(blogParagraph);
+        const blogAuthor = document.createElement("p");
+        blogAuthor.textContent = `${blog.author}`;
+        blogsDiv.appendChild(blogAuthor);
 
         blogsDiv.innerHTML += `<i class="fa-solid fa-heart" id="heart"></i>
                              <span>0 Likes</span>
         
                             <i class="fa-solid fa-comment"></i>
-                            <span>10 Comments</span>
+                            <span>0 Comments</span>
         
                              <i class="fa-solid fa-pen edit-button""></i>
                              <span>Edit</span>
@@ -97,7 +106,7 @@ async function displayBlogs() {
     );
 }
 
-window.addEventListener('DOMContentLoaded', displayBlogs)
+document.addEventListener('DOMContentLoaded', displayBlogs)
 
 //update blogs
 
@@ -187,6 +196,8 @@ blogsContainer.addEventListener("click", async function (e) {
   }
 });
 
+
+// upload image to cloudinary
 
 
 
