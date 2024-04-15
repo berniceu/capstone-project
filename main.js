@@ -270,25 +270,7 @@ if (confirmPassword){
 }*/
 
 
-const publishBtn = document.getElementById('publish');
-const article = document.getElementById("story");
-const articleTitle = document.getElementById("title");
-const newArticleContainer = document.querySelector('.new-article-container');
 
-//display write new post container
-
-const newPostBtn = document.getElementById('new-post-button');
-const hiddenPost = document.querySelector('.create-article.hidden');
-
-if (newPostBtn){
-    newPostBtn.addEventListener('click', () => {
-        if (hiddenPost.style.display == 'none'){
-            hiddenPost.style.display = 'block';
-        } else {
-            hiddenPost.style.display = 'none';
-        }
-    });
-}
 
 
 // add article to localStorage and delete
