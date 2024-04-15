@@ -6,11 +6,15 @@ const userData = require('./models/userData');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const dotenv = require('dotenv').config();
+const swaggerJSDoc = require('swagger-jsdoc');
+const swaggerUI = require('swagger-ui-express');
 // const path = require('path');
 // const fs = require('fs');
 // import {v2 as cloudinary} from 'cloudinary';
 // import { fstat } from 'fs';
-          
+ 
+
+
 // cloudinary.config({ 
 //   cloud_name: 'dsuqly03j', 
 //   api_key: '441768115284719', 
@@ -27,6 +31,23 @@ app.use(cors())
 //middleware
 app.use(express.json())
 
+const options = {
+    definition: {
+        openapi: '3.0.0',
+        info: {
+            title: 'my brand api',
+            version: '1.0.0'
+        },
+        servers: [{
+            url: 'http://localhost:5000'
+        }]
+    },
+
+    apis:['./app.js']
+}
+
+const swaggerSpec = swaggerJSDoc(options);
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec))
 
 
 
@@ -34,6 +55,42 @@ app.use(express.json())
 app.get('/', (req, res) => {
     res.sendFile('index.html', {root: __dirname})
 })
+
+/**
+ * @swagger
+ * components: 
+ *     schema:
+ *          blogs:
+ *              type: object
+ *              properties:
+ *              _id:
+ *                  type: string
+ *              blogTitle:
+ *                   type:string
+ *              blog:
+ *                   type:string
+ *              author: 
+ *                   type:string
+ *              
+ */
+
+/**
+ * @swagger
+ * /blogs:
+ *  get:
+ *      summary: This api is used to get all blogs from mongodb
+ *      description: fetch data from mongodb
+ *      responses:
+ *          200:
+ *              description:  Get data from mongodb
+ *              content: 
+ *                  application/json:
+ *                  schema:
+ *                       type: array
+ *                       items: 
+ *                              $ref:'#components/schema/blogs'
+ * 
+ */
 app.get('/blogs', async (req, res) => {
     try{
 
@@ -71,6 +128,12 @@ app.post('/blogs', async (req, res) => {
     }
     
 })
+
+/**
+ * @swagger
+ * /blogs/:id
+ * 
+ */
 
 app.get('/blogs/:id', async(req, res) => {
     try {
