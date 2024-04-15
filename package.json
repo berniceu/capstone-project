@@ -1,0 +1,36 @@
+{
+  "name": "my-brand-bernice",
+  "version": "1.0.0",
+  "description": "This is a repository for atlp Capstone project",
+  "main": "app.js",
+  "dependencies": {
+    "@cloudinary/url-gen": "^1.19.0",
+    "ansi-styles": "^4.3.0",
+    "async": "^3.2.5",
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "chalk": "^4.1.2",
+    "cloudinary": "^2.1.0",
+    "color-convert": "^2.0.1",
+    "color-name": "^1.1.4",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "filelist": "^1.0.4",
+    "jake": "^10.8.7",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.2.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}

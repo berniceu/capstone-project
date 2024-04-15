@@ -213,11 +213,13 @@
                     <div class="create-article-container">
                         
                         <div class="blog-form">
-                            <form action="">
-                                <input type="file" name="blog-image" id="blog-image">
+                            <form action="" class="new-story-form">
+                                <input type="file" name="blog-image" id="blog-image" accept="image/*">
+                                
                                 <input type="text" name="title" id="title" placeholder="Title"/>
+                                <input type="text" name="author" id="author" placeholder="Author">
                                 <textarea name="story" id="story" rows="10" placeholder="Tell Your Story..."></textarea>
-                                <button class="button" id="publish" onclick="save()">Publish</button>
+                                <button class="button" id="publish">Publish</button>
                             </form>
                             
                         </div>
@@ -229,6 +231,8 @@
 
     <script src="https://kit.fontawesome.com/53de108cc6.js" crossorigin="anonymous"></script>
     <script src="main.js"></script>
+    <script src="blog.js"></script>
+    
     
     
     
