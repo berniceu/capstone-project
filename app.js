@@ -59,37 +59,41 @@ app.get('/', (req, res) => {
 /**
  * @swagger
  * components: 
- *     schema:
- *          blogs:
- *              type: object
- *              properties:
- *              _id:
- *                  type: string
- *              blogTitle:
- *                   type:string
- *              blog:
- *                   type:string
- *              author: 
- *                   type:string
- *              
+ *   schemas:
+ *     blogs:
+ *       type: object
+ *       properties:
+ *         _id:
+ *           type: string
+ *           description: unique identifier of the blog
+ *         blogTitle:
+ *           type: string
+ *           description: title of the blog
+ *         blog:
+ *           type: string
+ *           description: content of the blog
+ *         author: 
+ *           type: string
+ *           description: author of the blog
  */
+
+
 
 /**
  * @swagger
  * /blogs:
- *  get:
- *      summary: This api is used to get all blogs from mongodb
- *      description: fetch data from mongodb
- *      responses:
- *          200:
- *              description:  Get data from mongodb
- *              content: 
- *                  application/json:
- *                  schema:
- *                       type: array
- *                       items: 
- *                              $ref:'#components/schema/blogs'
- * 
+ *   get:
+ *     summary: fetch data from mongodb
+ *     description: This api is used to get all blogs from mongodb
+ *     responses:
+ *       '200':
+ *         description: Get data from mongodb
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/blogs'
  */
 app.get('/blogs', async (req, res) => {
     try{
@@ -103,6 +107,23 @@ app.get('/blogs', async (req, res) => {
     }
 })
 
+
+/**
+ * @swagger
+ * /blogs:
+ *   post:
+ *     summary: post blogs to mongodb
+ *     description: this api is used to post blogs to mongodb
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/blogs'
+ *     responses:
+ *       '200':
+ *         description: blog added successfully.
+ */
 app.post('/blogs', async (req, res) => {
 
     try{
@@ -131,10 +152,27 @@ app.post('/blogs', async (req, res) => {
 
 /**
  * @swagger
- * /blogs/:id
- * 
+ * /blogs/{id}:
+ *   get:
+ *     summary: fetch blog from mongodb using id
+ *     description: This api is used to get a blog from mongodb using its id
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID required
+ *         schema: 
+ *           type: string
+ *     responses:
+ *       '200':
+ *         description: Get blog from mongodb
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/blogs'
  */
-
 app.get('/blogs/:id', async(req, res) => {
     try {
         const { id } = req.params
@@ -146,6 +184,35 @@ app.get('/blogs/:id', async(req, res) => {
 })
 
 // update blog
+/**
+ * @swagger
+ * /blogs/{id}:
+ *   put:
+ *     summary: update blog in mongodb using id
+ *     description: This api is used to update a blog in mongodb using its id
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID required
+ *         schema: 
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/blogs'                 
+ *     responses:
+ *       '200':
+ *         description: Updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/blogs'
+ */
 app.put('/blogs/:id', async(req, res) => {
     try{
         const { id } = req.params;
@@ -162,6 +229,24 @@ app.put('/blogs/:id', async(req, res) => {
 
 
 // delete blog
+/**
+ * @swagger
+ * /blogs/{id}:
+ *   delete:
+ *     summary: delete blog from mongodb using id
+ *     description: This api is used to delete blog from mongodb using its id
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID required
+ *         schema: 
+ *           type: string
+ *     responses:
+ *       '200':
+ *         description: blog deleted successfully
+
+ */
 
 app.delete('/blogs/:id', async(req, res) => {
     try {
@@ -174,7 +259,40 @@ app.delete('/blogs/:id', async(req, res) => {
 })
 
 // create user
+/**
+ * @swagger
+ * components: 
+ *   schemas:
+ *     users:
+ *       type: object
+ *       properties:
+ *         name:
+ *           type: string
+ *           description: name of user
+ *         email:
+ *           type: string
+ *           description: email of user
+ *         password: 
+ *           type: string
+ *           description: password
+ */
 
+/**
+ * @swagger
+ * /signup:
+ *   post:
+ *     summary: save user to mongodb
+ *     description: this api is used to save users to mongodb
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/users'
+ *     responses:
+ *       '200':
+ *         description: user added successfully
+ */
 app.post('/signup', async(req, res) => {
     try{
         const newUser = new userData(req.body);
@@ -196,6 +314,29 @@ app.post('/signup', async(req, res) => {
 })  
 
 // login
+/**
+ * @swagger
+ * /login:
+ *   post:
+ *     summary: user login
+ *     description: this api is used to log users if they exist in mongodb
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 format: email
+ *               password:
+ *                 type: string
+ *                 format: password
+ *     responses:
+ *       '200':
+ *         description: user logged in successfully.
+ */
 
 app.post('/login', async(req, res) => {
     try{
