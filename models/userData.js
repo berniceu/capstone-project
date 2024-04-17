@@ -1,29 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
-/**
- * @swagger
- * components:
- * schemas:
- *  CreateUserInput:
- *      type:object
- *      required:
- *          - Full Name
- *          - email
- *          - password
- *      properties:
- *          Full Name:
- *             type:string
- *             default:'Bernice' 
- *          email:
- *             type:string
- *             default:'bernice@example.com'
- *          password:
- *              type: string
- *              default: 'password123'
- */
-
-
 const userDataSchema = mongoose.Schema({
     fullName: {type: String},
     email:{type:String, required:true},
