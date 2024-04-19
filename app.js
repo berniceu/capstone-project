@@ -1,6 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const app = express();
 const Blogs = require('./models/blogsModel');
 const userData = require('./models/userData');
 const jwt = require('jsonwebtoken');
@@ -8,28 +7,36 @@ const bcrypt = require('bcrypt');
 const dotenv = require('dotenv').config();
 const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerUI = require('swagger-ui-express');
-// const path = require('path');
-// const fs = require('fs');
-// import {v2 as cloudinary} from 'cloudinary';
-// import { fstat } from 'fs';
- 
-
-
-// cloudinary.config({ 
-//   cloud_name: 'dsuqly03j', 
-//   api_key: '441768115284719', 
-//   api_secret: 'LwEz0mpEFE3o-WJPGp0Xw9Hz4wQ' 
-// });
-
-
-
+const cloudinary = require('cloudinary').v2;
+const multer = require('multer');
+const path = require('path');
 const cors = require('cors');
+const fs = require('fs');
 
-app.use(cors())
+const app = express();
 
+cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.API_KEY,
+    api_secret: process.env.API_SECRET
+})
+
+
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads/');
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.originalname);
+    }
+})
+
+const upload = multer( {storage: storage});
 
 //middleware
-app.use(express.json())
+app.use(express.json());
+app.use(cors());
 
 const options = {
     definition: {
@@ -39,7 +46,7 @@ const options = {
             version: '1.0.0'
         },
         servers: [{
-            url: 'http://localhost:5000'
+            url: 'http://localhost:000'
         }]
     },
 
@@ -124,23 +131,28 @@ app.get('/blogs', async (req, res) => {
  *       '200':
  *         description: blog added successfully.
  */
-app.post('/blogs', async (req, res) => {
+app.post('/blogs',upload.single('image'), async (req, res) => {
 
     try{
-       const blog = await Blogs.create(req.body);
-        // const { title, author, story } = req.body;
-        // const image = req.files['blog-image'][0];
-        // const cloudinaryResponse = await cloudinary.uploader.upload(image.path);
+        
 
-        // const blog = await Blogs.create({
-        //     title,
-        //     author,
-        //     story,
-        //     blogImage: cloudinaryResponse.secure_url
-        // });
-        // fs.unlinkSync(image.path);
+        if (!req.file){
+            return res.status(400).json({error: 'No file uploaded'});
+        }
 
-        res.status(200).json(blog)
+       const result = await cloudinary.uploader.upload(req.file.path);
+       const { blogTitle, blog, author } = req.body;
+       console.log(author)
+       const blogData = new Blogs({
+        blogTitle,
+        blog,
+        blogImage: result.secure_url,
+        author
+       })
+
+       const newBlog = await blogData.save();
+       fs.unlinkSync(req.file.path);
+       res.status(200).json(newBlog)
          
         
 

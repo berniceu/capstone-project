@@ -16,7 +16,7 @@ function renderBlog(e){
         <h3>${blog.blogTitle}</h3>
         <h5>${blog.author}</h5>
         <div class='img-container'>
-        <img src=${blog.image} class='readblog-img'/>
+        <img src=${blog.blogImage} class='readblog-img'/>
         </div>
         <div class='paragraph'>
         <p>${blog.blog}</p>

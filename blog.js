@@ -27,24 +27,23 @@ blogForm.addEventListener("submit", async function (e) {
   if (publishBtn.textContent == 'Publish'){
     e.preventDefault();
 
-  const title = document.getElementById("title");
-  const story = document.getElementById("story");
-  const author = document.getElementById('author');
+  const title = document.getElementById("title").value;
+  const story = document.getElementById("story").value;
+  const author = document.getElementById("author").value;
   const image = document.getElementById('blog-image').files[0];
 
-  const blogData = {
-    blogTitle: title.value,
-    blog: story.value,
-    author: author.value
-  };
+  const formData = new FormData();
+  formData.append('blogTitle',title);
+  formData.append('blog', story);
+  formData.append('author', author);
+  formData.append('image', image);
 
   const baseUrl = "http://localhost:5000/blogs";
 
   try {
     const res = await fetch(baseUrl, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(blogData),
+      body: formData
     });
 
     if (res.ok) {
@@ -87,6 +86,7 @@ async function displayBlogs() {
           <a href='/readblog.html?id=${blog._id}' class='blog-link'>${blog.blogTitle} </a>
         </h3>`
         blogsDiv.appendChild(blogTitle);
+        console.log(blog.author)
         const blogAuthor = document.createElement("p");
         blogAuthor.textContent = `${blog.author}`;
         blogsDiv.appendChild(blogAuthor);
