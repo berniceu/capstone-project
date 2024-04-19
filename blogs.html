@@ -23,72 +23,10 @@
         </div>
         
     <div class="blogs-container">
-        <div class="article">
-            <div class="img-container">
-                <img src="images/blogs image.jpg" alt="blog image">
-            </div>
-                
-            
-            <div class="article-title">
-                <h6>
-                    Break into Tech
-                </h6>
-            </div>
-            <div class="updates">
-                <div class="likes">
-                    <i class="fa-solid fa-heart"></i>
-                </div>
-                <div class="comment">
-                    <i class="fa-solid fa-comment"></i>
-                </div>
-                
-            </div>
-            <button class="blog-button"><a href="readblog.html">Read Article</a></button>
-        </div>
+        <div class="articles">
 
-        <div class="article">
-            <div class="img-container">
-                <img src="images/blog image.jpg" alt="">
-            </div>
-            <div class="article-title">
-                <h6>
-                    AI taking over
-                </h6>
-            </div>
-            <div class="updates">
-                <div class="likes">
-                    <i class="fa-solid fa-heart"></i>
-                </div>
-                <div class="comment">
-                    <i class="fa-solid fa-comment"></i>
-                </div>
-                
-            </div>
-            <button class="blog-button"><a href="readblog.html">Read Article</a></button>
         </div>
-
-        <div class="article">
-            <div class="img-container">
-                <img src="images/blogs image.jpg" alt="blog image">
-            </div>
-            <div class="article-title">
-                <h6>
-                    Break Into Tech
-                </h6>
-            </div>
-            <div class="updates">
-                <div class="likes">
-                    <i class="fa-solid fa-heart"></i>
-                </div>
-                <div class="comment">
-                    <i class="fa-solid fa-comment"></i>
-                </div>
-                
-            </div>
-            
-            <button class="blog-button"><a href="readblog.html">Read Article</a></button>
-            
-        </div>
+       
         <div>
             <a href="index.html"><button class="previous-page">Go Back</button></a>
         </div>
@@ -141,5 +79,53 @@
     </footer>
     <script src="https://kit.fontawesome.com/53de108cc6.js" crossorigin="anonymous"></script>
     <script src="main.js"></script>
+    <script>
+
+    async function displayBlogs(){
+            const baseUrl = 'http://localhost:5000/blogs';
+
+            await fetch(baseUrl)
+            .then((res) => {
+                if(!res.ok){
+                   alert('Server error')
+                }
+                return res.json();
+
+            })
+
+            .then((blogs) => blogs.forEach(blog => {
+                const blogContainer = document.querySelector('.blogs-container');
+                const articleDiv = document.createElement('div');
+                articleDiv.classList.add('article');
+                articleDiv.dataset.id = blog._id;
+                articleDiv.innerHTML += `
+                <div class="img-container">
+                    <img src="images/blog image.jpg" alt="blog image">
+                </div>
+            <div class="article-title">
+                <h6>
+                    ${blog.blogTitle}
+                </h6>
+            </div>
+            <div class="updates">
+                <div class="likes">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+                <div class="comment">
+                    <i class="fa-solid fa-comment"></i>
+                </div>
+                
+            </div>
+            <button class="blog-button" ><a href="/newblog.html?blog=${blog._id}">Read Article</a></button>`
+            blogContainer.insertBefore(articleDiv, blogContainer.firstChild)
+
+            }))
+            .catch((err) => console.log(err))
+                
+        } 
+        
+        document.addEventListener('DOMContentLoaded', displayBlogs)
+
+    </script>
 </body>
 </html>
