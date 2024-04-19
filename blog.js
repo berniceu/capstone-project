@@ -80,7 +80,7 @@ async function displayBlogs() {
         const blogsDiv = document.createElement("div");
         blogsDiv.classList.add("blogs");
         blogsDiv.dataset.id = blog._id;
-        blogsContainer.appendChild(blogsDiv);
+        newArticleContainer.appendChild(blogsDiv);
         const blogTitle = document.createElement("div");
         blogTitle.classList.add("blog-title");
         blogTitle.innerHTML = `<h3>
