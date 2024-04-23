@@ -1,7 +1,3 @@
-// import {Cloudinary} from "@cloudinary/url-gen";
-
-// const cld = new Cloudinary({cloud: {cloudName: 'dsuqly03j'}});
-
 const publishBtn = document.getElementById("publish");
 const article = document.getElementById("story");
 const articleTitle = document.getElementById("title");
