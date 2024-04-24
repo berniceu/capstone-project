@@ -1,55 +1,38 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
+const loginForm = document.getElementById('login-form')
+const loginBtn = document.getElementById('login-button');
+const email = document.getElementById('email');
+const password = document.getElementById('login-password');
 
-  // Your web app's Firebase configuration
-  const firebaseConfig = {
-    apiKey: "AIzaSyD-kxm_qX16_HLmhbdmsGsB6H4ClEJxa5c",
-    authDomain: "fir-db-240c8.firebaseapp.com",
-    databaseURL: "https://fir-db-240c8-default-rtdb.firebaseio.com",
-    projectId: "fir-db-240c8",
-    storageBucket: "fir-db-240c8.appspot.com",
-    messagingSenderId: "423859222661",
-    appId: "1:423859222661:web:8b19b5f4459a845df8d1ec"
-  };
+loginBtn.addEventListener('click', async function(e) {
+  e.preventDefault();
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth();
+  const loginData = {
+    email: email.value,
+    password: password.value
+  }
 
+  const baseUrl = 'https://my-brand-api-x8z4.onrender.com/users/login';
 
-  
-  const loginBtn = document.getElementById('login-button');
+  try{
+    const res = await fetch(baseUrl, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(loginData)
+    })
 
-loginBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('login-password').value;
-
-    if (!email || !password){
-        alert("Please enter email and password");
-        loginBtn.disabled = true;
-        return;
+    if (res.ok){
+      alert('logged in successfully');
+      window.location.href = 'adminpanel.html'
+    } else {
+      console.log('log in failed')
     }
+  } catch(err){
 
-    
-    signInWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed In
-    const user = userCredential.user;
-    alert("Logging In...");
-    loginBtn.disabled = false;
-    window.location.href = 'adminpanel.html';
+    console.log(err)
+  }
+  
 
-     
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    alert(errorMessage);
-    loginBtn.disabled = true;
-    return;
-    // ..
-  });
-  })
+
+})
+
+

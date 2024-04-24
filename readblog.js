@@ -1,0 +1,29 @@
+
+// render full blog
+
+document.addEventListener('DOMContentLoaded', renderBlog)
+
+function renderBlog(e){
+    const params = new URLSearchParams(window.location.search);
+    const blogId = params.get('id');
+    const column = document.querySelector('.column');
+
+    if(blogId){
+        fetch(`https://my-brand-api-x8z4.onrender.com/blogs/getBlog/${blogId}`)
+        .then(res => res.json())
+        .then(blog => {
+            column.innerHTML = `
+        <h3>${blog.blogTitle}</h3>
+        <h5>${blog.author}</h5>
+        <div class='img-container'>
+        <img src=${blog.blogImage} class='readblog-img'/>
+        </div>
+        <div class='paragraph'>
+        <p>${blog.blog}</p>
+        </div>
+
+    `
+        })
+        .catch(err => console.log(err))
+    }
+}
