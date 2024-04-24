@@ -9,14 +9,14 @@ function renderBlog(e){
     const column = document.querySelector('.column');
 
     if(blogId){
-        fetch(`http://localhost:5000/blogs/${blogId}`)
+        fetch(`https://my-brand-api-x8z4.onrender.com/blogs/getBlog/${blogId}`)
         .then(res => res.json())
         .then(blog => {
             column.innerHTML = `
         <h3>${blog.blogTitle}</h3>
         <h5>${blog.author}</h5>
         <div class='img-container'>
-        <img src=${blog.image} class='readblog-img'/>
+        <img src=${blog.blogImage} class='readblog-img'/>
         </div>
         <div class='paragraph'>
         <p>${blog.blog}</p>
@@ -26,6 +26,4 @@ function renderBlog(e){
         })
         .catch(err => console.log(err))
     }
-    
-
 }

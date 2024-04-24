@@ -1,7 +1,3 @@
-// import {Cloudinary} from "@cloudinary/url-gen";
-
-// const cld = new Cloudinary({cloud: {cloudName: 'dsuqly03j'}});
-
 const publishBtn = document.getElementById("publish");
 const article = document.getElementById("story");
 const articleTitle = document.getElementById("title");
@@ -27,24 +23,23 @@ blogForm.addEventListener("submit", async function (e) {
   if (publishBtn.textContent == 'Publish'){
     e.preventDefault();
 
-  const title = document.getElementById("title");
-  const story = document.getElementById("story");
-  const author = document.getElementById('author');
+  const title = document.getElementById("title").value;
+  const story = document.getElementById("story").value;
+  const author = document.getElementById("author").value;
   const image = document.getElementById('blog-image').files[0];
 
-  const blogData = {
-    blogTitle: title.value,
-    blog: story.value,
-    author: author.value
-  };
+  const formData = new FormData();
+  formData.append('blogTitle',title);
+  formData.append('blog', story);
+  formData.append('author', author);
+  formData.append('image', image);
 
-  const baseUrl = "http://localhost:5000/blogs";
+  const baseUrl = "https://my-brand-api-x8z4.onrender.com/blogs/createBlog";
 
   try {
     const res = await fetch(baseUrl, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(blogData),
+      body: formData
     });
 
     if (res.ok) {
@@ -63,7 +58,7 @@ blogForm.addEventListener("submit", async function (e) {
 //retrieve and display
 
 async function displayBlogs() {
-  const baseUrl = "http://localhost:5000/blogs";
+  const baseUrl = "https://my-brand-api-x8z4.onrender.com/blogs/getAllBlogs";
 
   await fetch(baseUrl)
     .then((res) => {
@@ -80,13 +75,14 @@ async function displayBlogs() {
         const blogsDiv = document.createElement("div");
         blogsDiv.classList.add("blogs");
         blogsDiv.dataset.id = blog._id;
-        blogsContainer.appendChild(blogsDiv);
+        newArticleContainer.appendChild(blogsDiv);
         const blogTitle = document.createElement("div");
         blogTitle.classList.add("blog-title");
         blogTitle.innerHTML = `<h3>
           <a href='/readblog.html?id=${blog._id}' class='blog-link'>${blog.blogTitle} </a>
         </h3>`
         blogsDiv.appendChild(blogTitle);
+        console.log(blog.author)
         const blogAuthor = document.createElement("p");
         blogAuthor.textContent = `${blog.author}`;
         blogsDiv.appendChild(blogAuthor);
@@ -121,7 +117,7 @@ blogsContainer.addEventListener("click", async function (e) {
     const blogId = blogDiv.dataset.id;
 
     try {
-      const res = await fetch(`http://localhost:5000/blogs/${blogId}`)
+      const res = await fetch(`https://my-brand-api-x8z4.onrender.com/blogs/getBlog/${blogId}`)
       if(!res.ok){
         console.log('failed to fetch blog')
       }
@@ -142,7 +138,7 @@ blogsContainer.addEventListener("click", async function (e) {
           const story = document.getElementById('story');
           
           try{
-            const updateRes = await fetch(`http://localhost:5000/blogs/${blogId} `, {
+            const updateRes = await fetch(`https://my-brand-api-x8z4.onrender.com/blogs/updateBlog/${blogId}`, {
               method: 'PUT',
               headers: {'Content-Type': 'application/json'},
               body: JSON.stringify({blogTitle: title.value, blog: story.value})
@@ -178,7 +174,7 @@ blogsContainer.addEventListener("click", async function (e) {
     const blogId = blogDiv.dataset.id;
 
     try {
-      const res = await fetch(`http://localhost:5000/blogs/${blogId}`, {
+      const res = await fetch(`https://my-brand-api-x8z4.onrender.com/blogs/deleteBlog/${blogId}`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
       });
@@ -197,7 +193,7 @@ blogsContainer.addEventListener("click", async function (e) {
 });
 
 
-// upload image to cloudinary
+
 
 
 
