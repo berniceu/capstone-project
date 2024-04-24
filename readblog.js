@@ -9,7 +9,7 @@ function renderBlog(e){
     const column = document.querySelector('.column');
 
     if(blogId){
-        fetch(`http://localhost:5000/blogs/${blogId}`)
+        fetch(`https://my-brand-api-x8z4.onrender.com/blogs/getBlog/${blogId}`)
         .then(res => res.json())
         .then(blog => {
             column.innerHTML = `
@@ -26,6 +26,4 @@ function renderBlog(e){
         })
         .catch(err => console.log(err))
     }
-    
-
 }

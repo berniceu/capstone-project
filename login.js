@@ -11,7 +11,7 @@ loginBtn.addEventListener('click', async function(e) {
     password: password.value
   }
 
-  const baseUrl = 'http://localhost:5000/login';
+  const baseUrl = 'https://my-brand-api-x8z4.onrender.com/users/login';
 
   try{
     const res = await fetch(baseUrl, {

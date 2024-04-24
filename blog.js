@@ -34,7 +34,7 @@ blogForm.addEventListener("submit", async function (e) {
   formData.append('author', author);
   formData.append('image', image);
 
-  const baseUrl = "http://localhost:5000/blogs";
+  const baseUrl = "https://my-brand-api-x8z4.onrender.com/blogs/createBlog";
 
   try {
     const res = await fetch(baseUrl, {
@@ -58,7 +58,7 @@ blogForm.addEventListener("submit", async function (e) {
 //retrieve and display
 
 async function displayBlogs() {
-  const baseUrl = "http://localhost:5000/blogs";
+  const baseUrl = "https://my-brand-api-x8z4.onrender.com/blogs/getAllBlogs";
 
   await fetch(baseUrl)
     .then((res) => {
@@ -117,7 +117,7 @@ blogsContainer.addEventListener("click", async function (e) {
     const blogId = blogDiv.dataset.id;
 
     try {
-      const res = await fetch(`http://localhost:5000/blogs/${blogId}`)
+      const res = await fetch(`https://my-brand-api-x8z4.onrender.com/blogs/getBlog/${blogId}`)
       if(!res.ok){
         console.log('failed to fetch blog')
       }
@@ -138,7 +138,7 @@ blogsContainer.addEventListener("click", async function (e) {
           const story = document.getElementById('story');
           
           try{
-            const updateRes = await fetch(`http://localhost:5000/blogs/${blogId} `, {
+            const updateRes = await fetch(`https://my-brand-api-x8z4.onrender.com/blogs/updateBlog/${blogId}`, {
               method: 'PUT',
               headers: {'Content-Type': 'application/json'},
               body: JSON.stringify({blogTitle: title.value, blog: story.value})
@@ -174,7 +174,7 @@ blogsContainer.addEventListener("click", async function (e) {
     const blogId = blogDiv.dataset.id;
 
     try {
-      const res = await fetch(`http://localhost:5000/blogs/${blogId}`, {
+      const res = await fetch(`https://my-brand-api-x8z4.onrender.com/blogs/deleteBlog/${blogId}`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
       });
@@ -193,7 +193,7 @@ blogsContainer.addEventListener("click", async function (e) {
 });
 
 
-// upload image to cloudinary
+
 
 
 
