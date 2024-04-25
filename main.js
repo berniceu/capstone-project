@@ -162,27 +162,55 @@ contactInputs.forEach(input => {
                 hasError = true;
                
             }
-            //  if (userEmail.value!== '' && !emailValid.test(userEmail.value.trim())){
-            //     userEmail.classList.add("error");
-            //     userEmail.parentElement.classList.add("error");
-            //     document.querySelector('.email.error-text').textContent = "Enter valid email";
-            //     hasError = true
-            // }
         });
     }
     
 });
 
 if(contactForm){
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async function(e) {
         
         e.preventDefault();
+        const contactBtn = document.querySelector('.contact-button button');
         
         if (hasError){
             alert("Please fill out all fields correctly");
-        } else {
-            alert("Message sent successfully")
+            contactBtn.disabled = true;
+        } else{
+            contactBtn.disabled = false;
+            const username = document.getElementById('username').value;
+        const query = document.getElementById('query').value;
+        const queryData = {
+            name: username,
+            email: userEmail.value,
+            query: query
         }
+
+            const baseUrl = "https://my-brand-api-x8z4.onrender.com/queries/sendquery";
+            try{
+                const res = await fetch(baseUrl, {
+                    method: "POST",
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify(queryData)
+
+                });
+
+                if(res.ok){
+                    location.reload()
+                    alert("message sent successfully");
+                    
+
+                } else{
+                    console.log("message not sent");
+                }
+
+
+            } catch(err){
+                console.log(err);
+            }
+
+        }
+        
     })
 }
 
