@@ -219,12 +219,13 @@ async function displayQueries() {
 
     if(!res.ok){
       console.log('Server error');
+      return;
     }
 
     const queryData = await res.json();
-    queries.forEach((query) => {
+    queryData.forEach((query) => {
       const queryElement = document.createElement("div");
-      queryElement.classList.add = 'queries';
+      queryElement.classList.add('queries');
       
       queryElement.innerHTML = `<div class="user">
       <h3>${query.name}</h3>
@@ -246,27 +247,34 @@ async function displayQueries() {
         <p>
            ${query.query}
         </p>`;
+
+        const moreInfoDiv = document.createElement('div');
+        moreInfoDiv.innerHTML = popupContent;
+
+        popupElement.classList.add("more-info");
+
+        popup.innerHTML = '';
+        popup.appendChild(moreInfoDiv);
       })
 
-      const moreInfoDiv = document.createElement('div');
-      moreInfoDiv.innerHTML = popupContent;
+      
 
 
-      popupElement.classList.add("more-info");
+      
 
-      popupElement.innerHTML = `
+      // popupElement.innerHTML = `
 
-      <span class="close">&times</span>
-      <div class="user">
-          <h3>${query.name}</h3>
-          <h4>${query.email}</h4>
-      </div>
+      // <span class="close">&times</span>
+      // <div class="user">
+      //     <h3>${query.name}</h3>
+      //     <h4>${query.email}</h4>
+      // </div>
 
-      <p>
-         ${query.query}
-      </p>`;
+      // <p>
+      //    ${query.query}
+      // </p>`;
 
-      popup.appendChild(popupElement);
+      // popup.appendChild(popupElement);
     })
 
 

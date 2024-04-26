@@ -23,7 +23,7 @@ loginBtn.addEventListener('click', async function(e) {
     
 
     if (res.ok){
-
+      const data = await res.json();
       const userRole = data.role;
 
     if(userRole === 'admin'){
