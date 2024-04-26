@@ -18,11 +18,22 @@ loginBtn.addEventListener('click', async function(e) {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(loginData)
-    })
+    });
+
+    
 
     if (res.ok){
-      alert('logged in successfully');
+
+      const userRole = data.role;
+
+    if(userRole === 'admin'){
       window.location.href = 'adminpanel.html'
+    } else{
+      window.location.href = 'blogs.html';
+    }
+
+      alert('logged in successfully');
+      
     } else {
       console.log('log in failed')
     }

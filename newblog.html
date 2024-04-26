@@ -19,6 +19,9 @@
     />
   </head>
   <body>
+    <div class="loader">
+
+    </div>
     <div class="header">
       <header>
         <a href="blogs.html"><h1>BERNICE</h1></a>
@@ -78,7 +81,10 @@ function renderBlog(e){
     const blogId = params.get('blog');
     const column = document.querySelector('.column');
 
+    const loader = document.querySelector('.loader');
+
     if(blogId){
+        loader.style.display = 'flex';
         fetch(`https://my-brand-api-x8z4.onrender.com/blogs/getBlog/${blogId}`)
         .then(res => res.json())
         .then(blog => {
@@ -96,6 +102,8 @@ function renderBlog(e){
     `
         })
         .catch(err => console.log(err))
+
+        .finally(() => loader.style.display = 'none')
     }
     
 }
