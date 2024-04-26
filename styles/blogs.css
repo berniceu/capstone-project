@@ -277,7 +277,7 @@ header{
     display: none;
 }
 
-.paragraph{
-   
-    
+h4{
+    font-weight: bold;
+    margin-top: 1rem;
 }

@@ -216,37 +216,6 @@ if(contactForm){
 
 
 
-// send email using smtp
-
-/*const userName = document.getElementById('username');
-const query = document.querySelector('.contact-form textarea');
-
-function sendEmail(){
-    
-    userEmail.send({
-        Host : "smtp.elasticemail.com",
-        Username : "berniceuwituze@gmail.com",
-        Password : "C65756295C348ECB6FD31FECAC66EEE1D6D5",
-        To : 'berniceuwituze@gmail.com',
-        From : 'berniceuwituze@gmail.com',
-        Subject : "Portfolio Query",
-        Body : `Name: ${userName.value}<br>
-        Email: ${userEmail.value}<br>
-        Message: ${query.value}<br>`
-    }).then(
-      message => alert("message sent successfully")
-    ).catch (err => {
-        alert("Failed to send message");
-        console.log(err)
-    });
-}*/
-
-
-
-
-
-
-
 if (signupPassword){
     signupPassword.addEventListener('input', validatePassword );
 
@@ -432,11 +401,28 @@ if (subscribeForm){
     subscribeForm.addEventListener('submit', (e) => {
         e.preventDefault();
 
+        
         if (subscribeEmail.value == ''){
             alert("Please fill out your email");
+            return;
         } else if (emailValid.test(subscribeEmail.value)){
-            alert("Subscribed successfully");
-           // subscribeForm.submit();
+            fetch("https://my-brand-api-x8z4.onrender.com/subscribe", {
+                method: "POST",
+                headers:{
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({email: subscribeEmail.value})
+
+            })
+
+            .then(res => res.json())
+            .then(data => {
+                alert("Thank you for subscribing to my blog");
+                window.location.reload();
+            })
+
+            .catch(err => {alert("Subscription failed. Try again later")})
+                
         } else {
             alert ("Enter valid email address");
         }
@@ -511,27 +497,6 @@ if (commentForm){
     })
 }
 
-// add image to localStorage
-
-const inputEl = document.getElementById('blog-image');
-const newblogImg = document.getElementById('newblog-img');
-
-if (inputEl){
-    inputEl.addEventListener('change', () => {
-        const file = inputEl.files[0];
-
-        const fr = new FileReader();
-        fr.readAsDataURL(file);
-        
-
-        fr.addEventListener('load', () => {
-            const url = fr.result
-            const img = new Image();
-            img.src = url;
-            localStorage.setItem('image', url);
-        })
-    })
-}
 
 
 
