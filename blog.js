@@ -2,6 +2,9 @@ const publishBtn = document.getElementById("publish");
 const article = document.getElementById("story");
 const articleTitle = document.getElementById("title");
 const newArticleContainer = document.querySelector(".new-article-container");
+const loader = document.querySelector('.loader');
+
+
 
 //display write new post container
 
@@ -63,7 +66,8 @@ blogForm.addEventListener("submit", async function (e) {
 
 async function displayBlogs() {
   const baseUrl = "https://my-brand-api-x8z4.onrender.com/blogs/getAllBlogs";
-
+  
+  loader.style.display = 'flex';
   await fetch(baseUrl)
     .then((res) => {
       if (!res.ok) {
@@ -75,6 +79,7 @@ async function displayBlogs() {
     //.then(blogs => console.log(blogs))
     .then((blogs) =>
       blogs.forEach((blog) => {
+        
         const blogsContainer = document.querySelector(".blogs-container");
         const blogsDiv = document.createElement("div");
         blogsDiv.classList.add("blogs");
@@ -103,7 +108,8 @@ async function displayBlogs() {
                           <i class="fa-solid fa-trash delete-button""></i>
                              <span>Delete</span>`;
       })
-    );
+    )
+    .finally(() => loader.style.display = 'none')
 }
 
 document.addEventListener("DOMContentLoaded", displayBlogs);
@@ -208,13 +214,43 @@ blogsContainer.addEventListener("click", async function (e) {
 
 //get queries
 
-const queriesDiv = document.querySelector(".queriesDiv");
-const popup = document.querySelector('.popup');
+const queriesDiv = document.querySelector(".queries-div");
+
+const createPopup = () => {
+  const popup = document.createElement('div');
+  popup.classList.add('popup');
+
+  const closeBtn = document.createElement('span');
+  closeBtn.classList.add('close');
+  closeBtn.innerHTML = '&times;';
+
+  closeBtn.addEventListener('click', () => {
+    popup.style.display = 'none';
+  });
+
+  window.addEventListener('click', (e) => {
+    if(e.target === popup){
+      popup.style.display = 'none';
+    }
+  })
+
+  const moreInfoDiv = document.createElement('div');
+  moreInfoDiv.classList.add('more-info');
+
+  popup.appendChild(closeBtn);
+  popup.appendChild(moreInfoDiv);
+
+  return popup;
+
+
+}
+
 
 async function displayQueries() {
   const baseUrl = "https://my-brand-api-x8z4.onrender.com/queries/getquery";
 
   try{
+    
     const res = await fetch(baseUrl);
 
     if(!res.ok){
@@ -223,6 +259,9 @@ async function displayQueries() {
     }
 
     const queryData = await res.json();
+    const popup = createPopup();
+    document.body.appendChild(popup);
+
     queryData.forEach((query) => {
       const queryElement = document.createElement("div");
       queryElement.classList.add('queries');
@@ -248,34 +287,21 @@ async function displayQueries() {
            ${query.query}
         </p>`;
 
-        const moreInfoDiv = document.createElement('div');
+        const moreInfoDiv = popup.querySelector('.more-info');
         moreInfoDiv.innerHTML = popupContent;
 
-        popupElement.classList.add("more-info");
+        popup.style.display = 'block';
 
         popup.innerHTML = '';
         popup.appendChild(moreInfoDiv);
-      })
 
-      
+      });
 
+  });
 
-      
+    
 
-      // popupElement.innerHTML = `
-
-      // <span class="close">&times</span>
-      // <div class="user">
-      //     <h3>${query.name}</h3>
-      //     <h4>${query.email}</h4>
-      // </div>
-
-      // <p>
-      //    ${query.query}
-      // </p>`;
-
-      // popup.appendChild(popupElement);
-    })
+    
 
 
   } catch(err){
