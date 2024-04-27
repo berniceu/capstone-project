@@ -1,4 +1,5 @@
 const signupForm = document.getElementById("signup-form");
+const errorText = document.querySelector('.error-text')
 
 signupForm.addEventListener("submit", async function (e) {
   e.preventDefault();
@@ -19,6 +20,10 @@ signupForm.addEventListener("submit", async function (e) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
     });
+
+    if(errorText.style.display == 'block'){
+      alert("Please fill out all fields correctly");
+    }
 
     if (res.ok) {
       alert("Signed up successfully");

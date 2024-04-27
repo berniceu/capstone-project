@@ -162,60 +162,57 @@ contactInputs.forEach(input => {
                 hasError = true;
                
             }
-            //  if (userEmail.value!== '' && !emailValid.test(userEmail.value.trim())){
-            //     userEmail.classList.add("error");
-            //     userEmail.parentElement.classList.add("error");
-            //     document.querySelector('.email.error-text').textContent = "Enter valid email";
-            //     hasError = true
-            // }
         });
     }
     
 });
 
 if(contactForm){
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async function(e) {
         
         e.preventDefault();
+        const contactBtn = document.querySelector('.contact-button button');
         
         if (hasError){
             alert("Please fill out all fields correctly");
-        } else {
-            alert("Message sent successfully")
+            contactBtn.disabled = true;
+        } else{
+            contactBtn.disabled = false;
+            const username = document.getElementById('username').value;
+        const query = document.getElementById('query').value;
+        const queryData = {
+            name: username,
+            email: userEmail.value,
+            query: query
         }
+
+            const baseUrl = "https://my-brand-api-x8z4.onrender.com/queries/sendquery";
+            try{
+                const res = await fetch(baseUrl, {
+                    method: "POST",
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify(queryData)
+
+                });
+
+                if(res.ok){
+                    location.reload()
+                    alert("message sent successfully");
+                    
+
+                } else{
+                    console.log("message not sent");
+                }
+
+
+            } catch(err){
+                console.log(err);
+            }
+
+        }
+        
     })
 }
-
-
-
-// send email using smtp
-
-/*const userName = document.getElementById('username');
-const query = document.querySelector('.contact-form textarea');
-
-function sendEmail(){
-    
-    userEmail.send({
-        Host : "smtp.elasticemail.com",
-        Username : "berniceuwituze@gmail.com",
-        Password : "C65756295C348ECB6FD31FECAC66EEE1D6D5",
-        To : 'berniceuwituze@gmail.com',
-        From : 'berniceuwituze@gmail.com',
-        Subject : "Portfolio Query",
-        Body : `Name: ${userName.value}<br>
-        Email: ${userEmail.value}<br>
-        Message: ${query.value}<br>`
-    }).then(
-      message => alert("message sent successfully")
-    ).catch (err => {
-        alert("Failed to send message");
-        console.log(err)
-    });
-}*/
-
-
-
-
 
 
 
@@ -404,11 +401,28 @@ if (subscribeForm){
     subscribeForm.addEventListener('submit', (e) => {
         e.preventDefault();
 
+        
         if (subscribeEmail.value == ''){
             alert("Please fill out your email");
+            return;
         } else if (emailValid.test(subscribeEmail.value)){
-            alert("Subscribed successfully");
-           // subscribeForm.submit();
+            fetch("https://my-brand-api-x8z4.onrender.com/subscribe", {
+                method: "POST",
+                headers:{
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({email: subscribeEmail.value})
+
+            })
+
+            .then(res => res.json())
+            .then(data => {
+                alert("Thank you for subscribing to my blog");
+                window.location.reload();
+            })
+
+            .catch(err => {alert("Subscription failed. Try again later")})
+                
         } else {
             alert ("Enter valid email address");
         }
@@ -483,27 +497,6 @@ if (commentForm){
     })
 }
 
-// add image to localStorage
-
-const inputEl = document.getElementById('blog-image');
-const newblogImg = document.getElementById('newblog-img');
-
-if (inputEl){
-    inputEl.addEventListener('change', () => {
-        const file = inputEl.files[0];
-
-        const fr = new FileReader();
-        fr.readAsDataURL(file);
-        
-
-        fr.addEventListener('load', () => {
-            const url = fr.result
-            const img = new Image();
-            img.src = url;
-            localStorage.setItem('image', url);
-        })
-    })
-}
 
 
 

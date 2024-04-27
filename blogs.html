@@ -16,6 +16,9 @@
     
 </head>
 <body>
+    <div class="loader">
+
+    </div>
     <main>
         <div class="welcome">
             <h1>Welcome To My Blog</h1>
@@ -27,16 +30,13 @@
 
         </div>
        
-        <div>
+        <div class="blog-buttons">
             <a href="index.html"><button class="previous-page">Go Back</button></a>
+            <a href="signup.html"><button>Sign Up</button></a>
         </div>
         
-    </div>
-
     
-    <div class="signup">
-        <p>Sign Up To Create Your Own Blogs</p>
-        <a href="signup.html"><button>Sign Up</button></a>
+
     </div>
     </main>
     
@@ -84,16 +84,27 @@
     async function displayBlogs(){
             const baseUrl = 'https://my-brand-api-x8z4.onrender.com/blogs/getAllBlogs';
 
+
+            const loader = document.querySelector('.loader');
+
+            loader.style.display = 'flex';
+
+
+
             await fetch(baseUrl)
             .then((res) => {
                 if(!res.ok){
                    alert('Server error')
                 }
                 return res.json();
+                preload.style.display = 'none';
 
             })
 
-            .then((blogs) => blogs.forEach(blog => {
+            .then((blogs) => 
+            
+            blogs.forEach(blog => {
+
                 const blogContainer = document.querySelector('.blogs-container');
                 const articleDiv = document.createElement('div');
                 articleDiv.classList.add('article');
@@ -120,12 +131,22 @@
             blogContainer.insertBefore(articleDiv, blogContainer.firstChild)
 
             }))
-            .catch((err) => console.log(err))
+            .catch((err) => {
+            console.log(err);
+            alert('Failed to retrieve blogs')
+            preload.style.display = 'none';
+    })
+            .finally(() => {
+                loader.style.display = 'none';
+            })
                 
         } 
         
         document.addEventListener('DOMContentLoaded', displayBlogs)
 
+        
+
+        
     </script>
 </body>
 </html>
