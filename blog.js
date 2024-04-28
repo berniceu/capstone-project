@@ -6,12 +6,13 @@ const loader = document.querySelector('.loader');
 
 
 
+
 //display write new post container
 
 const newPostBtn = document.getElementById("new-post-button");
 const hiddenPost = document.querySelector(".create-article.hidden");
 
-if (newPostBtn) {
+if (newPostBtn && hiddenPost) {
   newPostBtn.addEventListener("click", () => {
     if (hiddenPost.style.display == "none") {
       hiddenPost.style.display = "block";
@@ -39,28 +40,41 @@ blogForm.addEventListener("submit", async function (e) {
 
     const baseUrl = "https://my-brand-api-x8z4.onrender.com/blogs/createBlog";
 
-    try {
-      const loader = document.getElementById("loader");
-      loader.classList.remove("hidden");
-      const res = await fetch(baseUrl, {
-        method: "POST",
-        body: formData,
-      });
+//     try {
+      
+//       const res = await fetch(baseUrl, {
+//         method: "POST",
+//         body: formData,
+//       });
 
-      loader.classList.add("hidden");
+      
 
-      if (res.ok) {
-        alert("blog created successfully");
-        location.reload();
-      } else {
-        console.log("blog not created");
-      }
-    } catch (err) {
-      // loader.classList.add("hidden");
-      console.log(err);
-    }
-  }
+//       if (!res.ok) {
+//         alert("Server error");
+        
+//       } 
+//       return res.json();
+
+//     } catch (err) {
+      
+//       console.log(err);
+//     }
+//   }
+// });
+
+const res = await fetch(baseUrl, {
+  method: "POST",
+  body: formData,
 });
+
+if (res.status === 201) {
+  alert("Blog created successfully");
+  location.reload();
+} else {
+  const data = await res.text();
+  console.log("Error creating blog:", data);
+}
+  }})
 
 //retrieve and display
 
@@ -74,6 +88,7 @@ async function displayBlogs() {
         alert("Server error");
       }
       return res.json();
+      
     })
 
     //.then(blogs => console.log(blogs))

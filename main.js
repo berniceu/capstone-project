@@ -452,50 +452,53 @@ const newCommentContainer = document.querySelector('.new-comment');
 
 
 
-if (commentForm){
+// if (commentForm){
 
-    commentForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        let commentObj = {
-            commenter: commenterName.value,
-            commentText: commentText.value
-        }
+//     commentForm.addEventListener('submit', (e) => {
+//         e.preventDefault();
+//         const params = new URLSearchParams(window.location.search);
+//         const blogId = params.get('id');
+        
+//         let comment = {
+//             name: commenterName.value,
+//             comment: commentText.value
+//         }
 
-        console.log(commentObj)
+//         console.log(comment)
 
-        const newComments = JSON.parse(localStorage.getItem('comments')) || [];
-        newComments.push(commentObj);
+//         const newComments = JSON.parse(localStorage.getItem('comments')) || [];
+//         newComments.push(commentObj);
 
-        localStorage.setItem('comments', JSON.stringify(newComments));
-        newCommentContainer.innerHTML = '';
+//         localStorage.setItem('comments', JSON.stringify(newComments));
+//         newCommentContainer.innerHTML = '';
 
-        newComments.forEach((comment, index) => {
-            const commentDiv = document.createElement('div');
-            commentDiv.classList.add('comment-div');
+//         newComments.forEach((comment, index) => {
+//             const commentDiv = document.createElement('div');
+//             commentDiv.classList.add('comment-div');
 
-            commentDiv.innerHTML = `<h5>${comment.commenter}</h5>
-            <p>${comment.commentText}</p>
-            <button class="button" data-index="${index}">delete</button>`
+//             commentDiv.innerHTML = `<h5>${comment.commenter}</h5>
+//             <p>${comment.commentText}</p>
+//             <button class="button" data-index="${index}">delete</button>`
 
-            newCommentContainer.appendChild(commentDiv);
+//             newCommentContainer.appendChild(commentDiv);
 
-            const deleteComment = commentDiv.querySelector('.button');
-            if(deleteComment){
-                deleteComment.addEventListener('click', () => {
-                    const deleteIndex = parseInt(deleteComment.dataset.index);
-                    newComments.splice(deleteIndex, 1);
+//             const deleteComment = commentDiv.querySelector('.button');
+//             if(deleteComment){
+//                 deleteComment.addEventListener('click', () => {
+//                     const deleteIndex = parseInt(deleteComment.dataset.index);
+//                     newComments.splice(deleteIndex, 1);
 
-                    localStorage.setItem('comments', JSON.stringify(newComments));
-                    commentDiv.remove();
-                })
-            }
+//                     localStorage.setItem('comments', JSON.stringify(newComments));
+//                     commentDiv.remove();
+//                 })
+//             }
 
-        })
+//         })
 
-        commenterName.value = '';
-        commentText.value = '';
-    })
-}
+//         commenterName.value = '';
+//         commentText.value = '';
+//     })
+// }
 
 
 
