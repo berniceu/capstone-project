@@ -24,8 +24,9 @@ if (newPostBtn && hiddenPost) {
 
 const blogForm = document.querySelector(".new-story-form");
 blogForm.addEventListener("submit", async function (e) {
+  e.preventDefault();
   if (publishBtn.textContent == "Publish") {
-    e.preventDefault();
+    
 
     const title = document.getElementById("title").value;
     const story = document.getElementById("story").value;
@@ -36,38 +37,18 @@ blogForm.addEventListener("submit", async function (e) {
     formData.append("blogTitle", title);
     formData.append("blog", story);
     formData.append("author", author);
-    formData.append("image", image);
+    formData.append("blogImage", image);
 
     const baseUrl = "https://my-brand-api-x8z4.onrender.com/blogs/createBlog";
 
-//     try {
-      
-//       const res = await fetch(baseUrl, {
-//         method: "POST",
-//         body: formData,
-//       });
 
-      
-
-//       if (!res.ok) {
-//         alert("Server error");
-        
-//       } 
-//       return res.json();
-
-//     } catch (err) {
-      
-//       console.log(err);
-//     }
-//   }
-// });
 
 const res = await fetch(baseUrl, {
   method: "POST",
   body: formData,
 });
 
-if (res.status === 201) {
+if (res.ok) {
   alert("Blog created successfully");
   location.reload();
 } else {
@@ -90,6 +71,7 @@ async function displayBlogs() {
       return res.json();
       
     })
+    
 
     //.then(blogs => console.log(blogs))
     .then((blogs) =>
@@ -155,10 +137,12 @@ blogsContainer.addEventListener("click", async function (e) {
       const title = document.getElementById("title");
       const story = document.getElementById("story");
       const author = document.getElementById("author");
+  
 
       title.value = blogData.blogTitle;
       story.value = blogData.blog;
       author.value = blogData.author;
+
 
       if (publishBtn.textContent == "update") {
         publishBtn.addEventListener("click", async function (e) {
@@ -177,6 +161,7 @@ blogsContainer.addEventListener("click", async function (e) {
                   blogTitle: title.value,
                   blog: story.value,
                   author: author.value,
+
                 }),
               }
             );
