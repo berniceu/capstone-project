@@ -19,9 +19,7 @@
     />
   </head>
   <body>
-    <div class="loader">
-
-    </div>
+    <div class="loader"></div>
     <div class="header">
       <header>
         <a href="blogs.html"><h1>BERNICE</h1></a>
@@ -62,9 +60,8 @@
       </div>
     </div>
 
-    <script src="main.js"></script>
-    <script src="readblog.js"></script>
     
+    <script src="main.js"></script>
 
     <script
       src="https://kit.fontawesome.com/53de108cc6.js"
@@ -72,42 +69,40 @@
     ></script>
 
     <script>
-        
-// render full blog
 
-document.addEventListener('DOMContentLoaded', renderBlog)
+      document.addEventListener('DOMContentLoaded', renderBlog)
 
-// function renderBlog(e){
-//     const params = new URLSearchParams(window.location.search);
-//     const blogId = params.get('blog');
-//     const column = document.querySelector('.column');
+      function renderBlog(e) {
+        const params = new URLSearchParams(window.location.search);
+        const blogId = params.get("id");
+        const column = document.querySelector(".column");
 
-//     const loader = document.querySelector('.loader');
+        if (blogId) {
+          loader.style.display = "flex";
+          fetch(
+            `https://my-brand-api-x8z4.onrender.com/blogs/getBlog/${blogId}`
+          )
+            .then((res) => res.json())
+            .then((blog) => {
+              const formattedBlog = blog.blog
+                .replace(/\n/g, "<br>")
+                .replace(/\n===(.*)===\n/g, "<h4>$1</h4>");
+              column.innerHTML = `
+        <h3>${blog.blogTitle}</h3>
+        <h5>${blog.author}</h5>
+        <div class='img-container'>
+        <img src=${blog.blogImage} class='readblog-img'/>
+        </div>
+        <div class='paragraph'>
+        <p>${formattedBlog}</p>
+        </div>
 
-//     if(blogId){
-//         loader.style.display = 'flex';
-//         fetch(`https://my-brand-api-x8z4.onrender.com/blogs/getBlog/${blogId}`)
-//         .then(res => res.json())
-//         .then(blog => {
-//         const formattedBlog = blog.blog.replace(/\n/g, '<br>').replace(/\n===(.*)===\n/g, '<h4>$1</h4>');
-//             column.innerHTML = `
-//         <h3>${blog.blogTitle}</h3>
-//         <h5>${blog.author}</h5>
-//         <div class='img-container'>
-//         <img src=${blog.blogImage} class='readblog-img'/>
-//         </div>
-//         <div class='paragraph' style='white-space: pre-wrap;'>
-//         <p>${formattedBlog}</p>
-//         </div>
-
-//     `
-//         })
-//         .catch(err => console.log(err))
-
-//         .finally(() => loader.style.display = 'none')
-//     }
-    
-// }
+    `;
+            })
+            .catch((err) => console.log(err))
+            .finally(() => (loader.style.display = "none"));
+        }
+      }
     </script>
   </body>
 </html>
