@@ -84,9 +84,11 @@
     async function displayBlogs(){
             const baseUrl = 'https://my-brand-api-x8z4.onrender.com/blogs/getAllBlogs';
 
+
             const loader = document.querySelector('.loader');
 
             loader.style.display = 'flex';
+
 
 
             await fetch(baseUrl)
