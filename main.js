@@ -441,61 +441,6 @@ if (commentIcon){
 }
 
 
-// add comment
-
-const commentForm = document.querySelector('.comment-form');
-const commenterName = document.querySelector(".commenter-name");
-const commentText = document.querySelector('.comment-text');
-const commentBtn = document.querySelector('.comment-form .button');
-
-const newCommentContainer = document.querySelector('.new-comment');
-
-
-
-if (commentForm){
-
-    commentForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        let commentObj = {
-            commenter: commenterName.value,
-            commentText: commentText.value
-        }
-
-        console.log(commentObj)
-
-        const newComments = JSON.parse(localStorage.getItem('comments')) || [];
-        newComments.push(commentObj);
-
-        localStorage.setItem('comments', JSON.stringify(newComments));
-        newCommentContainer.innerHTML = '';
-
-        newComments.forEach((comment, index) => {
-            const commentDiv = document.createElement('div');
-            commentDiv.classList.add('comment-div');
-
-            commentDiv.innerHTML = `<h5>${comment.commenter}</h5>
-            <p>${comment.commentText}</p>
-            <button class="button" data-index="${index}">delete</button>`
-
-            newCommentContainer.appendChild(commentDiv);
-
-            const deleteComment = commentDiv.querySelector('.button');
-            if(deleteComment){
-                deleteComment.addEventListener('click', () => {
-                    const deleteIndex = parseInt(deleteComment.dataset.index);
-                    newComments.splice(deleteIndex, 1);
-
-                    localStorage.setItem('comments', JSON.stringify(newComments));
-                    commentDiv.remove();
-                })
-            }
-
-        })
-
-        commenterName.value = '';
-        commentText.value = '';
-    })
-}
 
 
 

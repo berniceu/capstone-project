@@ -6,12 +6,13 @@ const loader = document.querySelector('.loader');
 
 
 
+
 //display write new post container
 
 const newPostBtn = document.getElementById("new-post-button");
 const hiddenPost = document.querySelector(".create-article.hidden");
 
-if (newPostBtn) {
+if (newPostBtn && hiddenPost) {
   newPostBtn.addEventListener("click", () => {
     if (hiddenPost.style.display == "none") {
       hiddenPost.style.display = "block";
@@ -23,8 +24,9 @@ if (newPostBtn) {
 
 const blogForm = document.querySelector(".new-story-form");
 blogForm.addEventListener("submit", async function (e) {
+  e.preventDefault();
   if (publishBtn.textContent == "Publish") {
-    e.preventDefault();
+    
 
     const title = document.getElementById("title").value;
     const story = document.getElementById("story").value;
@@ -35,32 +37,25 @@ blogForm.addEventListener("submit", async function (e) {
     formData.append("blogTitle", title);
     formData.append("blog", story);
     formData.append("author", author);
-    formData.append("image", image);
+    formData.append("blogImage", image);
 
     const baseUrl = "https://my-brand-api-x8z4.onrender.com/blogs/createBlog";
 
-    try {
-      const loader = document.getElementById("loader");
-      loader.classList.remove("hidden");
-      const res = await fetch(baseUrl, {
-        method: "POST",
-        body: formData,
-      });
 
-      loader.classList.add("hidden");
 
-      if (res.ok) {
-        alert("blog created successfully");
-        location.reload();
-      } else {
-        console.log("blog not created");
-      }
-    } catch (err) {
-      // loader.classList.add("hidden");
-      console.log(err);
-    }
-  }
+const res = await fetch(baseUrl, {
+  method: "POST",
+  body: formData,
 });
+
+if (res.ok) {
+  alert("Blog created successfully");
+  location.reload();
+} else {
+  const data = await res.text();
+  console.log("Error creating blog:", data);
+}
+  }})
 
 //retrieve and display
 
@@ -74,7 +69,9 @@ async function displayBlogs() {
         alert("Server error");
       }
       return res.json();
+      
     })
+    
 
     //.then(blogs => console.log(blogs))
     .then((blogs) =>
@@ -140,10 +137,12 @@ blogsContainer.addEventListener("click", async function (e) {
       const title = document.getElementById("title");
       const story = document.getElementById("story");
       const author = document.getElementById("author");
+  
 
       title.value = blogData.blogTitle;
       story.value = blogData.blog;
       author.value = blogData.author;
+
 
       if (publishBtn.textContent == "update") {
         publishBtn.addEventListener("click", async function (e) {
@@ -162,6 +161,7 @@ blogsContainer.addEventListener("click", async function (e) {
                   blogTitle: title.value,
                   blog: story.value,
                   author: author.value,
+
                 }),
               }
             );
