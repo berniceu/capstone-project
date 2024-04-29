@@ -97,7 +97,7 @@
                    alert('Server error')
                 }
                 return res.json();
-                preload.style.display = 'none';
+                
 
             })
 
@@ -127,14 +127,14 @@
                 </div>
                 
             </div>
-            <button class="blog-button" ><a href="/newblog.html?blog=${blog._id}">Read Article</a></button>`
+            <button class="blog-button" ><a href="/newblog.html?id=${blog._id}">Read Article</a></button>`
             blogContainer.insertBefore(articleDiv, blogContainer.firstChild)
 
             }))
             .catch((err) => {
             console.log(err);
             alert('Failed to retrieve blogs')
-            preload.style.display = 'none';
+            
     })
             .finally(() => {
                 loader.style.display = 'none';
