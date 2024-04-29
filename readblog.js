@@ -22,7 +22,7 @@ function renderBlog(e) {
       .then((blog) => {
         const formattedBlog = blog.blog
           .replace(/\n/g, "<br>")
-          .replace(/\n===(.*)===\n/g, "<h4>$1</h4>");
+          .replace(/===(.*)===/g, "<h4>$1</h4>");
         column.innerHTML = `
         <h3>${blog.blogTitle}</h3>
         <h5>${blog.author}</h5>
