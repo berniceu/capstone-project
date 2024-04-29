@@ -2,10 +2,7 @@ const publishBtn = document.getElementById("publish");
 const article = document.getElementById("story");
 const articleTitle = document.getElementById("title");
 const newArticleContainer = document.querySelector(".new-article-container");
-const loader = document.querySelector('.loader');
-
-
-
+const loader = document.querySelector(".loader");
 
 //display write new post container
 
@@ -26,8 +23,6 @@ const blogForm = document.querySelector(".new-story-form");
 blogForm.addEventListener("submit", async function (e) {
   e.preventDefault();
   if (publishBtn.textContent == "Publish") {
-    
-
     const title = document.getElementById("title").value;
     const story = document.getElementById("story").value;
     const author = document.getElementById("author").value;
@@ -41,42 +36,38 @@ blogForm.addEventListener("submit", async function (e) {
 
     const baseUrl = "https://my-brand-api-x8z4.onrender.com/blogs/createBlog";
 
+    const res = await fetch(baseUrl, {
+      method: "POST",
+      body: formData,
+    });
 
-
-const res = await fetch(baseUrl, {
-  method: "POST",
-  body: formData,
+    if (res.ok) {
+      alert("Blog created successfully");
+      location.reload();
+    } else {
+      const data = await res.text();
+      console.log("Error creating blog:", data);
+    }
+  }
 });
-
-if (res.ok) {
-  alert("Blog created successfully");
-  location.reload();
-} else {
-  const data = await res.text();
-  console.log("Error creating blog:", data);
-}
-  }})
 
 //retrieve and display
 
 async function displayBlogs() {
   const baseUrl = "https://my-brand-api-x8z4.onrender.com/blogs/getAllBlogs";
-  
-  loader.style.display = 'flex';
+
+  loader.style.display = "flex";
   await fetch(baseUrl)
     .then((res) => {
       if (!res.ok) {
         alert("Server error");
       }
       return res.json();
-      
     })
-    
 
     //.then(blogs => console.log(blogs))
     .then((blogs) =>
       blogs.forEach((blog) => {
-        
         const blogsContainer = document.querySelector(".blogs-container");
         const blogsDiv = document.createElement("div");
         blogsDiv.classList.add("blogs");
@@ -106,7 +97,7 @@ async function displayBlogs() {
                              <span>Delete</span>`;
       })
     )
-    .finally(() => loader.style.display = 'none')
+    .finally(() => (loader.style.display = "none"));
 }
 
 document.addEventListener("DOMContentLoaded", displayBlogs);
@@ -137,12 +128,14 @@ blogsContainer.addEventListener("click", async function (e) {
       const title = document.getElementById("title");
       const story = document.getElementById("story");
       const author = document.getElementById("author");
+      const image = document.getElementById("blog-image");
+      const imageContainer = document.querySelector('.image-container');
   
 
       title.value = blogData.blogTitle;
       story.value = blogData.blog;
       author.value = blogData.author;
-
+      imageContainer.innerHTML = `<img src='${blogData.blogImage}' alt="blog image">`
 
       if (publishBtn.textContent == "update") {
         publishBtn.addEventListener("click", async function (e) {
@@ -151,18 +144,18 @@ blogsContainer.addEventListener("click", async function (e) {
           const story = document.getElementById("story");
           const author = document.getElementById("author");
 
+          const formData = new FormData();
+          formData.append('blogTitle', title.value);
+          formData.append('blog', story.value);
+          formData.append('author', author.value);
+          formData.append('blogImage', image);
+
           try {
             const updateRes = await fetch(
               `https://my-brand-api-x8z4.onrender.com/blogs/updateBlog/${blogId}`,
               {
                 method: "PUT",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                  blogTitle: title.value,
-                  blog: story.value,
-                  author: author.value,
-
-                }),
+                body: formData
               }
             );
 
@@ -217,44 +210,40 @@ blogsContainer.addEventListener("click", async function (e) {
 const queriesDiv = document.querySelector(".queries-div");
 
 const createPopup = () => {
-  const popup = document.createElement('div');
-  popup.classList.add('popup');
+  const popup = document.createElement("div");
+  popup.classList.add("popup");
 
-  const closeBtn = document.createElement('span');
-  closeBtn.classList.add('close');
-  closeBtn.innerHTML = '&times;';
+  const closeBtn = document.createElement("span");
+  closeBtn.classList.add("close");
+  closeBtn.innerHTML = "&times;";
 
-  closeBtn.addEventListener('click', () => {
-    popup.style.display = 'none';
+  closeBtn.addEventListener("click", () => {
+    popup.style.display = "none";
   });
 
-  window.addEventListener('click', (e) => {
-    if(e.target === popup){
-      popup.style.display = 'none';
+  window.addEventListener("click", (e) => {
+    if (e.target === popup) {
+      popup.style.display = "none";
     }
-  })
+  });
 
-  const moreInfoDiv = document.createElement('div');
-  moreInfoDiv.classList.add('more-info');
+  const moreInfoDiv = document.createElement("div");
+  moreInfoDiv.classList.add("more-info");
 
   popup.appendChild(closeBtn);
   popup.appendChild(moreInfoDiv);
 
   return popup;
-
-
-}
-
+};
 
 async function displayQueries() {
   const baseUrl = "https://my-brand-api-x8z4.onrender.com/queries/getquery";
 
-  try{
-    
+  try {
     const res = await fetch(baseUrl);
 
-    if(!res.ok){
-      console.log('Server error');
+    if (!res.ok) {
+      console.log("Server error");
       return;
     }
 
@@ -264,8 +253,8 @@ async function displayQueries() {
 
     queryData.forEach((query) => {
       const queryElement = document.createElement("div");
-      queryElement.classList.add('queries');
-      
+      queryElement.classList.add("queries");
+
       queryElement.innerHTML = `<div class="user">
       <h3>${query.name}</h3>
       <h4>${query.email}</h4>
@@ -275,8 +264,8 @@ async function displayQueries() {
 
       queriesDiv.appendChild(queryElement);
 
-      const viewMoreBtn = queryElement.querySelector('.button');
-      viewMoreBtn.addEventListener('click', () => {
+      const viewMoreBtn = queryElement.querySelector(".button");
+      viewMoreBtn.addEventListener("click", () => {
         const popupContent = `<span class="close">&times</span>
         <div class="user">
             <h3>${query.name}</h3>
@@ -287,26 +276,18 @@ async function displayQueries() {
            ${query.query}
         </p>`;
 
-        const moreInfoDiv = popup.querySelector('.more-info');
+        const moreInfoDiv = popup.querySelector(".more-info");
         moreInfoDiv.innerHTML = popupContent;
 
-        popup.style.display = 'block';
+        popup.style.display = "block";
 
-        popup.innerHTML = '';
+        popup.innerHTML = "";
         popup.appendChild(moreInfoDiv);
-
       });
-
-  });
-
-    
-
-    
-
-
-  } catch(err){
-    console.log('Could not fetch data')
+    });
+  } catch (err) {
+    console.log("Could not fetch data");
   }
 }
 
-document.addEventListener('DOMContentLoaded', displayQueries)
+document.addEventListener("DOMContentLoaded", displayQueries);
