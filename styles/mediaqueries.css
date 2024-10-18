@@ -31,6 +31,12 @@
 
     }
 
+    .footer-container{
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+
     
 }
 
@@ -40,10 +46,8 @@
         
     }
 
-    footer{
-        flex-direction: column;
-        gap: 2rem;
-    }
+
+    
 
     body{
         font-size: 15px;

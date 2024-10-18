@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Brand | Admin Panel</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/adminpanel.css">
+    <link rel="stylesheet" href="styles/mediaqueries.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fascinate&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+    <div class="loader">
+
+    </div>
+    <div class="admin-container">
+        <div class="left-container">
+            <a href="index.html"><h1>BERNICE</h1></a>
+    
+            <div class="navigation">
+                <a href="adminpanel.html">Dashboard</a>
+                <a href="profile.html">Profile</a>
+                <a href="login.html">Sign Out</a>
+                
+            </div>
+            
+        
+        </div>
+        <div class="right-container">
+            <div id="hamburger-menu">
+                <div class="header">
+                    <button class="hamburger-btn">☰</button>
+                </div>
+                
+                <nav class="hamburger-nav">
+                    
+                    
+                    <div class="nav-links">
+                        <a href="index.html"><h1>BERNICE</h1></a>
+                        <a href="adminpanel.html">Dashboard</a>
+                        <a href="profile.html">Profile</a>
+                        <a href="login.html">Sign Out</a>
+                        
+                    </div>
+                </nav>
+            </div>
+            <div class="top">
+                
+                <button class="toggle"><img src="images/moon.png" alt="dark mode icon" class="moon"></button>
+            </div>
+            
+            <div class="admin-profile">
+                    <div class="profile-picture">
+                        <img src="images/profile.png" alt="profile">
+                    </div>
+                    <div class="info">
+                        <h3>BERNICE UWITUZE</h3>
+                        <p>Developer/Blogger</p>
+
+                        
+                        
+                    </div>
+                
+            </div>
+
+            <h2 >Recent Queries</h2>
+            <div class="queries-div">
+                
+            </div>
+            
+            
+
+            <h2>Recent Blogs</h2>
+            <div class="blogs-container">
+                
+
+                <div class="new-article-container">
+
+                </div>
+
+                <button class="button" id="new-post-button"><a href="#title">Write New Post</a></button>
+
+                <div class="create-article hidden">
+                    <div class="create-article-container">
+                        
+                        <div class="blog-form">
+                            <div class="image-container">
+
+                            </div>
+                            <form action="" class="new-story-form">
+                                <input type="file" name="image" id="blog-image" accept="image/*"><br>
+                                
+                                <input type="text" name="title" id="title" placeholder="Title"/><br>
+                                <input type="text" name="author" id="author" placeholder="Author">
+                                <textarea name="story" id="story" rows="10" placeholder="Tell Your Story..."></textarea>
+                                <button class="button" id="publish">Publish</button>
+                            </form>
+                            
+                        </div>
+                </div>
+            </div>
+            </div>
+            
+    </div>
+
+    <script src="https://kit.fontawesome.com/53de108cc6.js" crossorigin="anonymous"></script>
+    <script src="main.js"></script>
+    <script src="blog.js"></script>
+    
+    
+    
+    
+</body>
+</html>

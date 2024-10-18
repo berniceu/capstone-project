@@ -4,25 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
-    <link rel="stylesheet" href="signup.css">
+    <link rel="stylesheet" href="styles/signup.css">
+    <link rel="stylesheet" href="styles/login.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="header">
+        <header>
+            <a href="blogs.html"><h1>BERNICE</h1></a>
+            <button class="toggle"><img src="images/moon.png" alt="dark mode icon" class="moon"></button>
+        </header>
+    </div>
     <div class="container">
+        
         <div class="title">
             <h1>SIGN UP</h1>
         </div>
-        <form action="">
-            <input type="text" placeholder="Name" required>
-            <input type="email" placeholder="Email Address" required>
-            <input type="password" placeholder="Password" id="passwordInput" required>
-            <input type="password" placeholder="Confirm Password" class="passwordInput" required>
+        <form id="signup-form">
+            
+            <div class="input-field">
+                <input type="text" placeholder="Name" class="item" id="full-name" autocomplete="name">
+                <div class="error-text">Name can't be blank</div>
+            </div>
+            <div class="input-field">
+                <input type="email" placeholder="Email Address" id="signup-email" class="item" autocomplete="email">
+                <div class="error-text">Email Address can't be blank</div>
+            </div>
+            <div class="input-field">
+                <input type="password" placeholder="Password" id="passwordInput" title="Password must have 8+ characters, including uppercase, lowercase, number, and special character" required>
+                <div class="checkbox-div">
+                    <input type="checkbox" id="show-password" class="show-password">
+                    <label for="show-password">Show Password</label>
+                </div>
+                
+                <div class="error-text">
+                    
+                    <div>
+                        Enter stronger password
+                    </div>
+                    
+                   
+                </div>
+            </div>
+            <div class="input-field">
+                <input type="password" placeholder="Confirm Password" class="passwordInput" id="confirm-password" required>
+                <div class="checkbox-div">
+                    <input type="checkbox" id="show-confirm-password" class="show-password">
+                    <label for="show-password" >Show Password</label>
+                </div>
+                <div class="error-text" id="repeat">Passwords must match</div>
+            </div>
+
+            <button type="submit" id="submit-btn">Submit</button>
         </form>
         
-        <button type="submit">Submit</button>
+        
     </div>
+
+    
+    
+    <script src="main.js"></script>
+    <script type="module" src="register.js"></script>
+    <script src="https://kit.fontawesome.com/53de108cc6.js" crossorigin="anonymous"></script>
 
     
 </body>

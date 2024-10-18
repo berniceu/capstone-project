@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="mediaqueries.css">
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/mediaqueries.css">
     <title>Web Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Fascinate&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
+    
     <!--desktop navbar-->
     <div class="container">
         <header>
@@ -21,13 +22,16 @@
         </header>
         <nav class="desktop-nav">
             <ul>
-                <li><a class="link" href="#home">Home</a></li>
-                <li><a class="link" href="#about">About</a></li>
-                <li><a class="link" href="#projects">Projects</a></li>
-                <li><a class="link" href="#contact">Contact</a></li>
+                <li><a class="link tab-item active" href="#home">Home</a></li>
+                <li><a class="link tab-item" href="#about">About</a></li>
+                <li><a class="link tab-item" href="#projects">Projects</a></li>
+                <li><a class="link tab-item" href="#contact">Contact</a></li>
                 <li><a href="login.html" class="button">Log In</a></li>
+                
             </ul>
+            <button class="toggle"><img src="images/moon.png" alt="dark mode icon" class="moon"></button>
         </nav>
+        
     </div>
 
     <!--hamburger menu for smaller screens-->
@@ -60,16 +64,22 @@
                     <h1>Welcome To My Personal Website</h1>
                     <p>Hello, welcome to my online portfolio.
                     My name is Bernice Uwituze,  I’m 
-                    a developer/student based in Kigali, Rwanda. <br>
+                    a software developer based in Kigali, Rwanda. <br>
                     Here you’ll find information about my skills, 
                     experience, projects I have worked on, and blogs.</p>
+                    
                 <button class="button"><a href="blogs.html">Read My Blogs</a></button>
+                <div class="social-icons">
+                    <a href="https://linkedin.com/in/bernice-uwituze" target="_blank"><i class="fa-brands fa-linkedin fa-2x"></i></a>    
+                    <a href="https://github.com/berniceu" target="_blank"><i class="fa-brands fa-github fa-2x"></i></a>
                 </div>
-                
+                        
+                    
+                </div>
             </div>
         </section>
 
-        <section id="about">
+        <section id="about" class="section">
             <div class="about-container">
                 <h1 class="title first">Get To Know More</h1>
                 <h1 class="title">About Me</h1>
@@ -121,7 +131,7 @@
         </section>
 
         <!--projects section-->
-        <section id="projects">
+        <section id="projects" class="section">
             <h1 class="title">Projects</h1>
             <div class="projects">
                 
@@ -130,6 +140,7 @@
                         <img src="images/url-shortener.JPG" alt="project image">
                     </div>
                     <h3 class="project-title"> URL Shortener</h3>
+                    
                     <div class="project-buttons">
                         <button class="button" onclick="location.href='https://berniceu.github.io/url-shortening-api/'">Demo</button>
                         <button class="button" onclick="location.href='https://github.com/berniceu/url-shortening-api'">GitHub</button>
@@ -179,70 +190,94 @@
                     </div>
                 </div>
             </div>
+
+            
             
         </section>
 
         <!--contact section-->
-        <section id="contact">
+        <section id="contact" class="section">
             <div class="contact-section">
                 <h1 class="title first">Get In Touch</h1>
                 <h1 class="title">With Me</h1>
 
-                <form action="" class="contact-form">
-                    <input type="text" placeholder="Name" name="username">
-                    <input type="email" placeholder="Email" name="useremail">
-                    <textarea name="query" id="" cols="30" rows="10" placeholder="Enter Your Query..."></textarea>
+                <form method="post" class="contact-form">
+
+                    
+                    <div class="input-field">
+                        <input type="text" id="username" placeholder="Name" name="username" autocomplete="name" class="item">
+                        <div class="error-text">Name can't be blank</div>
+                    </div>
+                    
+                    <div class="input-field">
+                        <input type="email" placeholder="Email Address" name="useremail" id="useremail" autocomplete="email" class="item">
+                        <div class="email error-text">Email Address can't be blank</div>
+                    </div>
+
+                    <div class="input-field">
+                        <textarea name="query" id="query" cols="30" rows="10" placeholder="Enter Your Query..." autocomplete="off" class="item"></textarea>
+                        <div class="error-text">Message can't be blank</div>
+                    </div>
+                    
+                    <div class="contact-button">
+                        <button type="submit" class="button">Send</button>
+                    </div>
+                    
                 </form>
-                <div class="contact-button">
-                    <button class="button">Submit</button>
-                </div>
+                
                 
             </div>
         </section>
         
     </main>
 
-    <footer>
-        <div class="footer-nav">
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-
-        </div>
-        <div class="subscribe">
-            <h6>Get the freshest articles right in your inbox</h6>
-            <form action="">
-                <input type="email" placeholder="Email">
-                <button>Subscribe</button>
-            </form>
-
-            <h6>Connect With Me</h6>
-            <div class="socials">
-                <div class="icon">
-                    
-                    <a href="https://linkedin.com/in/bernice-uwituze" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
-                </div>
-                <div class="icon">
-                    
-                    <a href="https://github.com/berniceu" target="_blank"><i class="fa-brands fa-github"></i></a>
-                </div>
-                <div class="icon">
-                    
-                    <a href="mailto:berniceuwituze@gmail.com" target="_blank"><i class="fa-solid fa-envelope"></i></a>
-                </div>
-                
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-nav">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+    
             </div>
-            
-            
+            <div class="subscribe">
+
+                <h2>Get the freshest articles right in your inbox</h2>
+
+                <form method="post" id="subscribe">
+                    <input type="email" id="subscribe-email" placeholder="Email">
+                    <button type="submit" id="subscribe-btn">Subscribe</button>
+                </form>
+    
+
+                <h4>Connect With Me</h4>
+
+                <div class="socials">
+                    <div class="icon">
+                        
+                        <a href="https://linkedin.com/in/bernice-uwituze" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                    <div class="icon">
+                        
+                        <a href="https://github.com/berniceu" target="_blank"><i class="fa-brands fa-github"></i></a>
+                    </div>
+                    <div class="icon">
+                        
+                        <a href="mailto:berniceuwituze@gmail.com" target="_blank"><i class="fa-solid fa-envelope"></i></a>
+                    </div>
+                    
+                </div>
+            </div>
         </div>
         
+        <p>© Bernice 2024</p>
+        
     </footer>
-    <script src="main.js">
-
-    </script>
+    <script src="main.js"></script>
     <script src="https://kit.fontawesome.com/53de108cc6.js" crossorigin="anonymous"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    
 </body>
 </html>

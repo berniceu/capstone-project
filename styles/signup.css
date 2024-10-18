@@ -1,0 +1,148 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    text-align: center;
+    background-color: #E5989B;
+
+
+}
+/* header*/
+
+header{
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.toggle{
+    border: none;
+    background-color: #E5989B;
+    cursor: pointer;
+    display: inline;
+    
+}
+
+.toggle.dark-mode{
+    background-color: black;
+}
+
+.moon{
+    width: 30px;
+    height: auto;
+    
+}
+.header{
+    text-align: left;    
+    background-color: #E5989B;
+    padding: 1rem;
+}
+
+.header a{
+    text-decoration: none;
+    color: #fff;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    
+    background-color: #fff;
+    width: 500px;
+    
+    margin:auto;
+    border-radius: 10px;
+    
+}
+
+@media screen and (max-width: 800px) {
+    .container{
+        width: 400px;
+    }
+}
+
+
+.title h1{
+    color: #E5989B;
+    font-weight: 800;
+    padding-top: 2rem;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+}
+
+form input{
+    width: 300px;
+    padding-bottom: 0.5rem;
+    border: none;
+    border-bottom: 2px solid black ;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+form input:focus{
+    
+    border-bottom: 3px solid black;
+}
+
+button{
+    border-radius: 10px;
+    padding: 10px 18px;
+    color: white;
+    background-color: #E5989B;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 2rem;
+}
+
+.valid{
+    color: green;
+}
+
+
+.checkbox-div{
+    position: relative;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+
+}
+
+#show-password, 
+#show-confirm-password{
+    position: absolute;
+    left: -144px;
+    accent-color: #E5989B;
+    cursor: pointer;
+    
+    
+}
+
+.checkbox-div label{
+    font-size: 0.8rem;
+    color: #333;
+    position: absolute;
+    left: 20px;
+    top: 12px;
+}
+
+button a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.fa-xmark{
+    display: none;
+}
